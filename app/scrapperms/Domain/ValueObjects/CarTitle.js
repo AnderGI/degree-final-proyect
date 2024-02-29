@@ -9,4 +9,4 @@ const carTitleSchema = z
   .default("Unamed Car");
 
 // Validaciones strictas por defecto lanza una excepcción
-export const CardTitle = (title) => carTitleSchema.parse(title);
+export const CarTitle = (title) => carTitleSchema.parse(title);

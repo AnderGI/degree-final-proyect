@@ -1,4 +1,7 @@
 import crypto from "crypto";
+import { CarId } from "../ValueObjects/CarId.js";
+import { CarTitle } from "../ValueObjects/CarTitle.js";
+import { CarDescription } from "../ValueObjects/CarDescription.js";
 
 export const CarModel = ({
   title,
@@ -11,12 +14,12 @@ export const CarModel = ({
 }) => ({
   id: CarId(),
   title: CarTitle(title),
-  description: CardDescription(description),
-  imageURL: CardImageURL(imageURL),
-  source: CardSource(source),
-  currentPrice: CardPrice(currentPrice),
-  betAmount: CardBetAmount(betAmount),
-  reservePrice: CardPrice(reservePrice),
+  description: CarDescription(description),
+  imageURL: CarImageURL(imageURL),
+  source: CarSource(source),
+  currentPrice: CarPrice(currentPrice),
+  betAmount: CarBetAmount(betAmount),
+  reservePrice: CarPrice(reservePrice),
 });
 
 /*

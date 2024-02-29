@@ -1,2 +1,2 @@
 import crypto from "crypto";
-export const CardId = () => crypto.randomUUID();
+export const CarId = () => crypto.randomUUID();
