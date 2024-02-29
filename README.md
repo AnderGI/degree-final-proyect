@@ -27,3 +27,7 @@ Este proyecto busca desarrollar una plataforma web que permita a los usuarios co
 - Patrón Value Object
 - Patrón Criteria
 
+
+### Recursos para RabbitMQ
+-How to Use RabbitMQ with NodeJS to Send and Receive Messages [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-use-rabbitmq-with-nodejs/)
+
