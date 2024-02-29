@@ -1,12 +1,12 @@
 import { z } from "zod";
 
-const carPriceSchema = z;
+const carBetAmountSchema = z;
 number({
   invalid_type_error: "Price must be a number",
 })
   .finite()
   .safe()
-  .positive();
+  .nonnegative();
 
 // Validaciones strictas por defecto lanza una excepcción
-export const CarPrice = (price) => carPriceSchema.parse(price);
+export const CarBetAmount = (betAmount) => carBetAmountSchema.parse(betAmount);
