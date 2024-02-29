@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-const carBetAmountSchema = z;
-number({
-  invalid_type_error: "Price must be a number",
-})
+const carBetAmountSchema = z
+  .number({
+    invalid_type_error: "Price must be a number",
+  })
   .finite()
   .safe()
   .nonnegative();
