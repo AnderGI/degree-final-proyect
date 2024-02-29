@@ -57,7 +57,6 @@ export const PuppeteerScrapper = () => {
               CAR_OF_LIST_OF_CARDS_CAR_BET_AMOUNT_SELECTOR
             ).innerText;
             data.push({
-              id: crypto.randomUUID(),
               title,
               description,
               imageURL,
@@ -72,8 +71,9 @@ export const PuppeteerScrapper = () => {
         },
         SoulAutoConstConfig
       );
-      console.log(data);
       await page.close();
+
+      return data;
     },
   };
 
