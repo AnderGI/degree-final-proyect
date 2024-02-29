@@ -9,6 +9,18 @@ export const CarModel = ({
   betAmount,
   reservePrice,
 }) => ({
+  id: CarId(),
+  title: CarTitle(title),
+  description: CardDescription(description),
+  imageURL: CardImageURL(imageURL),
+  source: CardSource(source),
+  currentPrice: CardPrice(currentPrice),
+  betAmount: CardBetAmount(betAmount),
+  reservePrice: CardPrice(reservePrice),
+});
+
+/*
+{
   id: crypto.randomUUID(),
   title,
   description,
@@ -17,4 +29,5 @@ export const CarModel = ({
   currentPrice,
   betAmount,
   reservePrice,
-});
+}
+*/
