@@ -26,3 +26,4 @@ Este proyecto busca desarrollar una plataforma web que permita a los usuarios co
 - Arquitectura Hexagoanl
 - Patrón Value Object
 - Patrón Criteria
+
