@@ -1,8 +1,10 @@
 import { ObtenerCochesScrapeados } from "../../Application/ObtenerCochesScrappeadosUseCase/ObtenerCochesScrappeados.js";
 import { PuppeteerScrapper } from "../ScrapperImplementations/PuppeteerScraper.js";
 
+const pupperterScrapper = PuppeteerScrapper();
+const implementations = [pupperterScrapper];
+
 export const getAllCars = async (req, res) => {
-  const pupperterScrapper = PuppeteerScrapper();
-  const data = await ObtenerCochesScrapeados([pupperterScrapper]);
+  const data = await ObtenerCochesScrapeados(implementations);
   res.json(data);
 };
