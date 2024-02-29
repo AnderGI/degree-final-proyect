@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const carImageUrlSchema = z
+const carUrlSchema = z
   .string({
     invalid_type_error: "The image url must be a string",
   })
@@ -8,4 +8,4 @@ const carImageUrlSchema = z
   .url({ message: "Invalid URL" })
   .default("Unamed Car");
 
-export const CarImageURL = (imageURL) => carImageUrlSchema.parse(imageURL);
+export const CarURL = (imageURL) => carUrlSchema.parse(imageURL);

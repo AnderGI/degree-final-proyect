@@ -2,6 +2,7 @@ import crypto from "crypto";
 import { CarId } from "../ValueObjects/CarId.js";
 import { CarTitle } from "../ValueObjects/CarTitle.js";
 import { CarDescription } from "../ValueObjects/CarDescription.js";
+import { CarImageURL, CarURL } from "../ValueObjects/CarURL.js";
 
 export const CarModel = ({
   title,
@@ -16,7 +17,7 @@ export const CarModel = ({
   title: CarTitle(title),
   description: CarDescription(description),
   imageURL: CarImageURL(imageURL),
-  source: CarSource(source),
+  source: CarURL(source),
   currentPrice: CarPrice(currentPrice),
   betAmount: CarBetAmount(betAmount),
   reservePrice: CarPrice(reservePrice),
