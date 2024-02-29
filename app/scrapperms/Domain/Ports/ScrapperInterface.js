@@ -3,5 +3,5 @@
 
 export const Scrapper = (scrapperImpl) => ({
   type: "scrapper",
-  scrappWeb: (args) => scrapperImpl.scrappWeb(args),
+  scrappWeb: () => scrapperImpl.scrappWeb(),
 });
