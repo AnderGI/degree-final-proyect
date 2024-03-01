@@ -4,10 +4,12 @@ import { CarDescription } from "../ValueObjects/CarDescription.js";
 import { CarURL } from "../ValueObjects/CarURL.js";
 import { CarPrice } from "../ValueObjects/CarPrice.js";
 import { CarBetAmount } from "../ValueObjects/CarBetAmount.js";
+import { CarBrand } from "../ValueObjects/CarBrand.js";
 
 export const CarModel = ({
   title,
   description,
+  brand,
   imageURL,
   source,
   currentPrice,
@@ -17,6 +19,7 @@ export const CarModel = ({
   id: CarId(),
   title: CarTitle(title),
   description: CarDescription(description),
+  brand: CarBrand(brand),
   imageURL: CarURL(imageURL),
   source: CarURL(source),
   currentPrice: CarPrice(currentPrice),

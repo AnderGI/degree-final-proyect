@@ -9,11 +9,21 @@ const implementations = [pupperterScrapper];
 const queue = "car_scrapping";
 
 export const scrappAllCars = async (req, res) => {
+  // Caso de uso de scrappear todos los coches
   const data = await ObtenerCochesScrapeados(implementations);
 
-  const rabbitMq = RabbitMQDomainEventPublisher(data);
+  // Publicar un evento de dominio mediante rabbit
+  const eventPublisher = RabbitMQDomainEventPublisher(data);
 
-  rabbitMq.publishEvent(data);
+  // Validar el tipo del event publisher
+  // No creo que sea la mejor forma para validar porque el metodo
+  // ya queda publisher al scrappAllCars
+  if (eventPublisher.type !== "DomainEventPublisher") {
+    return res.json({ error: "Invalid DomainEventPublisherType" });
+  }
+
+  // publicar evento
+  eventPublisher.publishEvent(data);
 
   res.json(data);
 
