@@ -1,11 +1,14 @@
-import { Scrapper } from "../../domain/ports/ScrapperInterface";
+import { Scrapper } from "../../domain/ports/ScrapperInterface.js";
+import puppeteer from "puppeteer";
+import { CochesNetConstConfig } from "../WebConstants/CochesNetConst.js";
 const COCHEA_COMPETICION_URL_COCHES_NET =
   "https://www.coches.net/clasicos-competicion/";
 export const CochesNetScrapper = () => {
-  const proto = {
+  const basicData = {
     scrappWeb: async () => {
       const browser = await puppeteer.launch({
-        headless: "new",
+        headless: false,
+        slowMo: 400,
       });
 
       const page = await browser.newPage();
@@ -32,19 +35,27 @@ export const CochesNetScrapper = () => {
             const title = car.querySelector(
               CAR_TITLE_AND_SOURCE_DOM_SELECTOR_FROM_CAR
             ).title;
-            const currentPrice = car.querySelector(
+            const currentPriceText = car.querySelector(
               CAR_PRICE_DOM_SELECTOR_FROM_CAR
             ).innerText;
+            const currentPrice = parseFloat(carPriceText.replace(/\s|€/g, ""));
             const carDetailsInfo = car.querySelector(
               CAR_DETAILS_CONTAINER_INFO_DOM_SELECTOR_FROM_CAR
             ).innerText;
             const imageURL = car.querySelector(
               "img.mt-GalleryBasic-sliderImage.mt-GalleryBasic-sliderImage--squared"
             ).src;
+            console.log({
+              title,
+              imageURL,
+              source,
+              currentPrice,
+              carDetailsInfo,
+            });
             data.push({
               title,
               imageURL,
-              source: "https://soulauto.com/",
+              source,
               currentPrice,
               carDetailsInfo,
             });
@@ -60,7 +71,7 @@ export const CochesNetScrapper = () => {
     },
   };
 
-  const composite = Scrapper(proto);
+  const composite = Scrapper(basicData);
 
-  return Object.assign(Object.create(composite), proto);
+  return Object.assign(Object.create(composite), basicData);
 };
