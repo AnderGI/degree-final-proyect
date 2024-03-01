@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const carPriceSchema = z
   .number({
+    required_error: "Price is required",
     invalid_type_error: "Price must be a number",
   })
   .finite()
