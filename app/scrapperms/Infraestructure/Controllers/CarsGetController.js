@@ -8,7 +8,7 @@ const implementations = [pupperterScrapper];
 
 const queue = "car_scrapping";
 
-export const getAllCars = async (req, res) => {
+export const scrappAllCars = async (req, res) => {
   const data = await ObtenerCochesScrapeados(implementations);
 
   const rabbitMq = RabbitMQDomainEventPublisher(data);
