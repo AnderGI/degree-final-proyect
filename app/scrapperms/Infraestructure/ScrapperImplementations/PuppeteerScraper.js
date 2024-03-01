@@ -56,9 +56,21 @@ export const PuppeteerScrapper = () => {
             const betAmount = car.querySelector(
               CAR_OF_LIST_OF_CARDS_CAR_BET_AMOUNT_SELECTOR
             ).innerText;
+            const SELECT_CAR_BRAND = (car) => {
+              const classList = [...car.classList];
+              const CAR_CLASS = classList.find(
+                (string) => string.indexOf("product_cat") !== -1
+              );
+              const carBrand = CAR_CLASS.replace("product_cat", "").substring(
+                1
+              );
+              return carBrand;
+            };
+            const carBrand = SELECT_CAR_BRAND(car);
             data.push({
               title,
               description,
+              brand: carBrand,
               imageURL,
               source: "https://soulauto.com/",
               currentPrice,
