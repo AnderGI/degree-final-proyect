@@ -1,4 +1,5 @@
 import { ObtenerCochesScrapeados } from "../../Application/ObtenerCochesScrappeadosUseCase/ObtenerCochesScrappeados.js";
+import { RabbitMQDomainEventPublisher } from "../DomainEventPublisherImplementations/RabbitMQDomainEventPublisher.js";
 import { PuppeteerScrapper } from "../ScrapperImplementations/PuppeteerScraper.js";
 import amqp from "amqplib";
 
@@ -9,25 +10,14 @@ const queue = "car_scrapping";
 
 export const getAllCars = async (req, res) => {
   const data = await ObtenerCochesScrapeados(implementations);
-  (async () => {
-    let connection;
-    try {
-      connection = await amqp.connect("amqp://localhost");
-      const channel = await connection.createChannel();
 
-      await channel.assertQueue(queue, { durable: false });
-      channel.sendToQueue(queue, Buffer.from(JSON.stringify(data)));
-      console.log(" [x] Sent '%s'", JSON.stringify(data));
-      await channel.close();
-    } catch (err) {
-      console.warn(err);
-    } finally {
-      if (connection) await connection.close();
-    }
-  })();
+  const rabbitMq = RabbitMQDomainEventPublisher(data);
+
+  rabbitMq.publishEvent(data);
 
   res.json(data);
 
+  // Consumer data ===> Car Microservice in Java
   (async () => {
     try {
       const connection = await amqp.connect("amqp://localhost");
