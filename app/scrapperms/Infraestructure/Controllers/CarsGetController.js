@@ -1,17 +1,18 @@
 import { ObtenerCochesScrapeados } from "../../Application/ObtenerCochesScrappeadosUseCase/ObtenerCochesScrappeados.js";
 import { RabbitMQDomainEventPublisher } from "../DomainEventPublisherImplementations/RabbitMQDomainEventPublisher.js";
+import { CochesNetScrapper } from "../ScrapperImplementations/CochesNetScrapper.js";
 import { PuppeteerScrapper } from "../ScrapperImplementations/PuppeteerScraper.js";
 import amqp from "amqplib";
 
 const pupperterScrapper = PuppeteerScrapper();
-const implementations = [pupperterScrapper];
+const cochesNetScrapper = CochesNetScrapper();
+const implementations = [pupperterScrapper, cochesNetScrapper];
 
 const queue = "car_scrapping";
 
 export const scrappAllCars = async (req, res) => {
   // Caso de uso de scrappear todos los coches
   const data = await ObtenerCochesScrapeados(implementations);
-
   // Publicar un evento de dominio mediante rabbit
   const eventPublisher = RabbitMQDomainEventPublisher(data);
 
@@ -28,6 +29,7 @@ export const scrappAllCars = async (req, res) => {
   res.json(data);
 
   // Consumer data ===> Car Microservice in Java
+  /*
   (async () => {
     try {
       const connection = await amqp.connect("amqp://localhost");
@@ -39,7 +41,8 @@ export const scrappAllCars = async (req, res) => {
       });
 
       await channel.assertQueue(queue, { durable: false });
-      await channel.consume(
+
+      /*await channel.consume(
         queue,
         (message) => {
           if (message) {
@@ -56,5 +59,5 @@ export const scrappAllCars = async (req, res) => {
     } catch (err) {
       console.warn(err);
     }
-  })();
+  })();*/
 };
