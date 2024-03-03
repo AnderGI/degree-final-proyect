@@ -1,12 +1,14 @@
 import { ObtenerCochesScrapeados } from "../../Application/ObtenerCochesScrappeadosUseCase/ObtenerCochesScrappeados.js";
 import { RabbitMQDomainEventPublisher } from "../DomainEventPublisherImplementations/RabbitMQDomainEventPublisher.js";
+import { AutoocasionScrapper } from "../ScrapperImplementations/AutoocasionScrapper.js";
 import { CochesNetScrapper } from "../ScrapperImplementations/CochesNetScrapper.js";
 import { PuppeteerScrapper } from "../ScrapperImplementations/PuppeteerScraper.js";
 import amqp from "amqplib";
 
 const pupperterScrapper = PuppeteerScrapper();
-const cochesNetScrapper = CochesNetScrapper();
-const implementations = [pupperterScrapper, cochesNetScrapper];
+//const cochesNetScrapper = CochesNetScrapper(); // o funciona anti-scrapping tools :(
+const autoocasionScrapper = AutoocasionScrapper();
+const implementations = [pupperterScrapper, autoocasionScrapper];
 
 const queue = "car_scrapping";
 
