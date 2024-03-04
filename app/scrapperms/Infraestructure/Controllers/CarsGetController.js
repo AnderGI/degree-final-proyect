@@ -1,4 +1,5 @@
 import { ObtenerCochesScrapeados } from "../../Application/ObtenerCochesScrappeadosUseCase/ObtenerCochesScrappeados.js";
+import { partialCarValidation } from "../../Domain/Services/CarService.js";
 import { RabbitMQDomainEventPublisher } from "../DomainEventPublisherImplementations/RabbitMQDomainEventPublisher.js";
 import { AutoocasionScrapper } from "../ScrapperImplementations/AutoocasionScrapper.js";
 import { SoulAutoScrapper } from "../ScrapperImplementations/SoulAutoScraper.js";
@@ -11,10 +12,10 @@ const queue = "car_scrapping";
 
 export const scrappAllCars = async (req, res) => {
   // Caso de uso de scrappear todos los coches
-  const data = await ObtenerCochesScrapeados(implementations);
+  let data = await ObtenerCochesScrapeados(implementations);
 
   // Validar info
-
+  data = data.map((coche) => partialCarValidation(coche));
   // Publicar un evento de dominio mediante rabbit
   const eventPublisher = RabbitMQDomainEventPublisher(data);
 

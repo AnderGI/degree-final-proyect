@@ -1,6 +1,7 @@
 import { Scrapper } from "../../domain/ports/ScrapperInterface.js";
 import puppeteer from "puppeteer";
 import { SoulAutoDomSelectors } from "../WebConstants/SoulAutoConsts.js";
+import { CarModel } from "../../Domain/Entities/CarModel.js";
 
 const SOUL_AUTO_URL_MAIN_PAGE = "https://soulauto.com/";
 

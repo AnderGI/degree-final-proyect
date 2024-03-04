@@ -3,7 +3,6 @@ import { CarTitle } from "../ValueObjects/CarTitle.js";
 import { CarDescription } from "../ValueObjects/CarDescription.js";
 import { CarURL } from "../ValueObjects/CarURL.js";
 import { CarPrice } from "../ValueObjects/CarPrice.js";
-import { CarBetAmount } from "../ValueObjects/CarBetAmount.js";
 import { CarBrand } from "../ValueObjects/CarBrand.js";
 
 export const CarModel = ({
@@ -15,7 +14,7 @@ export const CarModel = ({
   price,
   //betAmount,
   //reservePrice,
-  //carDetailsInfo = null,
+  //detailsInfo = null,
 }) => ({
   id: CarId(),
   title: CarTitle(title),
@@ -26,7 +25,6 @@ export const CarModel = ({
   price: CarPrice(price),
   //betAmount: CarBetAmount(betAmount),
   //reservePrice: CarPrice(reservePrice),
-  //carDetailsInfo,
 });
 
 /*
@@ -37,4 +35,8 @@ carImageURL
 carAnnouncement
 price
 detailsInfo
+bet?{
+  amount,
+  reservePrice,
+}
 */

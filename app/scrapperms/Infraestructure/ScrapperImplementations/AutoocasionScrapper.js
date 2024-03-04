@@ -30,7 +30,6 @@ export const AutoocasionScrapper = () => {
           CAR_DESCRIPTION_DOM_SELECTOR_QUERY_FROM_CAR,
           CAR_ANNOUNCMENT_DOM_SELECTOR_FROM_CAR,
           CAR_IMAGE_URL_DOM_SELECTOR_QUERY_FROM_CAR,
-          DETAILS_COCHE_DOMSELECTOR,
         }) => {
           const data = [];
           const carsList = [
@@ -43,8 +42,8 @@ export const AutoocasionScrapper = () => {
             const price = car.querySelector(
               CAR_PRICE_DOM_SELECTOR_QUERY_FROM_CAR
             ).innerText;
-            const detailsInfo = car.querySelector(
-              DETAILS_COCHE_DOMSELECTOR
+            const description = car.querySelector(
+              CAR_DESCRIPTION_DOM_SELECTOR_QUERY_FROM_CAR
             ).innerText;
             const brand = title.substring(0, title.indexOf(" ")).toLowerCase();
             const carAnnouncement = car.querySelector(
@@ -55,11 +54,11 @@ export const AutoocasionScrapper = () => {
             ).srcset;
             data.push({
               title,
-              price,
-              detailsInfo,
+              description,
               brand,
               carImageURL,
               carAnnouncement,
+              price,
             });
           }
 
