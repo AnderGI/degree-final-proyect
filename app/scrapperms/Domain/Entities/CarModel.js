@@ -1,4 +1,3 @@
-import { CarPrice } from "../ValueObjects/CarPrice.js";
 import { MinimumLengthStringValidator } from "../../Infraestructure/Validations/Zod/MinimumLengthStringValidator.js";
 import { URLStringValidator } from "../../Infraestructure/Validations/Zod/URLStringValidator.js";
 import crypto from "node:crypto";
