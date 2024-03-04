@@ -11,7 +11,7 @@ export const RabbitMQDomainEventPublisher = (data) => {
 
         await channel.assertQueue(queue, { durable: false });
         channel.sendToQueue(queue, Buffer.from(JSON.stringify(data)));
-        console.log(" [x] Sent '%s'", JSON.stringify(data));
+        // console.log(" [x] Sent '%s'", JSON.stringify(data));
         await channel.close();
       } catch (err) {
         console.warn(err);

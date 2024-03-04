@@ -1,19 +1,31 @@
 import { Scrapper } from "../../domain/ports/ScrapperInterface.js";
 import puppeteer from "puppeteer";
 import { CochesNetConstConfig } from "../WebConstants/CochesNetConst.js";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 const COCHEA_COMPETICION_URL_COCHES_NET =
   "https://www.coches.net/clasicos-competicion/";
 export const CochesNetScrapper = () => {
   const basicData = {
     scrappWeb: async () => {
-      const browser = await puppeteer.launch({
-        headless: false,
-        slowMo: 400,
-      });
+      const browser = await puppeteer.launch();
 
       const page = await browser.newPage();
 
-      await page.goto(COCHEA_COMPETICION_URL_COCHES_NET);
+      const response = await page.goto(COCHEA_COMPETICION_URL_COCHES_NET);
+
+      console.log(await response.text());
+
+      page.setUserAgent(
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36"
+      );
+      await page.screenshot({
+        path: path.resolve(
+          path.dirname(fileURLToPath(import.meta.url)),
+          "../../screenshot.png"
+        ),
+        fullPage: true,
+      });
 
       // Hacemos un destructuring de SoulAutoConstConfig
       const data = await page.evaluate(
@@ -38,7 +50,9 @@ export const CochesNetScrapper = () => {
             const currentPriceText = car.querySelector(
               CAR_PRICE_DOM_SELECTOR_FROM_CAR
             ).innerText;
-            const currentPrice = parseFloat(carPriceText.replace(/\s|€/g, ""));
+            const currentPrice = parseFloat(
+              currentPriceText.replace(/\s|€/g, "")
+            );
             const carDetailsInfo = car.querySelector(
               CAR_DETAILS_CONTAINER_INFO_DOM_SELECTOR_FROM_CAR
             ).innerText;
