@@ -22,12 +22,12 @@ export const ObtenerCochesScrapeados = async (scrappers = []) => {
       return c;
     } catch {
       return partialCarValidation({
-        title: "Titulo de coche por error",
-        description: "Descripccion de coche por error",
-        brand: "Marca de coche por error",
-        carImageURL: "Imagen de coche pro error",
-        carAnnouncement: "Anuncio d coche por error",
-        price: "0€",
+        title: coche.title ?? "Titulo de coche por error",
+        description: coche.description ?? "Descripccion de coche por error",
+        brand: coche.brand ?? "Marca de coche por error",
+        carImageURL: coche.carImageURL ?? "Imagen de coche pro error",
+        carAnnouncement: coche.carAnnouncement ?? "Anuncio d coche por error",
+        price: coche.price ?? "0€",
       });
     }
   });
