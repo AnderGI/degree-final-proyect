@@ -2,7 +2,6 @@ import { ObtenerCochesScrapeados } from "../../Application/ObtenerCochesScrappea
 import { RabbitMQDomainEventPublisher } from "../DomainEventPublisherImplementations/RabbitMQDomainEventPublisher.js";
 import { CochesNetScrapper } from "../ScrapperImplementations/CochesNetScrapper.js";
 import { PuppeteerScrapper } from "../ScrapperImplementations/PuppeteerScraper.js";
-import amqp from "amqplib";
 
 const pupperterScrapper = PuppeteerScrapper();
 const cochesNetScrapper = CochesNetScrapper();

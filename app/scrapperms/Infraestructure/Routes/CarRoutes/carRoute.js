@@ -6,4 +6,4 @@ const scrapper = PuppeteerScrapper();
 
 export const carRoutes = Router();
 
-carRoutes.get("/", async (req, res) => await scrappAllCars(req, res));
+carRoutes.get("/", scrappAllCars);
