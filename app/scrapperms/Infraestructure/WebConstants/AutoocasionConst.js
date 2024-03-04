@@ -1,12 +1,16 @@
-const LISTADO_COCHES_CONTENEDOR_DOM_SELECTOR = "div.container-fluid.listado";
-const ALL_ANUNCIOS_COCHE_FROM_CONTENEDOR_DOM_SELECTOR = `${LISTADO_COCHES_CONTENEDOR_DOM_SELECTOR}  article.anuncio`;
-const TITULO_COCHE_DOM_SELECTOR = "div.contenido-anuncio h2";
-const PRECIO_COCHE_DOM_SELECTOR = "p.precio > span";
-const DETAILS_COCHE_DOMSELECTOR = "div.contenido-anuncio ul";
+import { getDOMSelectors } from "../../Domain/Utils/DomSelectors.js";
 
-export const AutoocasionConstConfig = {
-  ALL_ANUNCIOS_COCHE_FROM_CONTENEDOR_DOM_SELECTOR,
-  TITULO_COCHE_DOM_SELECTOR,
-  PRECIO_COCHE_DOM_SELECTOR,
+const DETAILS_COCHE_DOMSELECTOR = "div.contenido-anuncio ul";
+const sharedDOMSelectors = getDOMSelectors({
+  ALL_CARS_LIST_DOM_SELECTOR: "div.container-fluid.listado article.anuncio",
+  CAR_TITLE_DOM_SELECTOR_QUERY_FROM_CAR: "div.contenido-anuncio h2",
+  CAR_PRICE_DOM_SELECTOR_QUERY_FROM_CAR: "p.precio > span",
+  CAR_DESCRIPTION_DOM_SELECTOR_QUERY_FROM_CAR: null,
+  CAR_ANNOUNCMENT_DOM_SELECTOR_FROM_CAR: "a",
+  CAR_IMAGE_URL_DOM_SELECTOR_QUERY_FROM_CAR: "a figure picture source",
+});
+
+export const AutoocasionDomSelectors = {
+  ...sharedDOMSelectors,
   DETAILS_COCHE_DOMSELECTOR,
 };

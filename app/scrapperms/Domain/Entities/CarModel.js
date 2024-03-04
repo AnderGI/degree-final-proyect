@@ -10,21 +10,31 @@ export const CarModel = ({
   title,
   description,
   brand,
-  imageURL,
-  source,
-  currentPrice,
-  betAmount,
-  reservePrice,
-  carDetailsInfo = null,
+  carImageURL,
+  carAnnouncement,
+  price,
+  //betAmount,
+  //reservePrice,
+  //carDetailsInfo = null,
 }) => ({
   id: CarId(),
   title: CarTitle(title),
   description: CarDescription(description),
   brand: CarBrand(brand),
-  imageURL: CarURL(imageURL),
-  source: CarURL(source),
-  currentPrice: CarPrice(currentPrice),
-  betAmount: CarBetAmount(betAmount),
-  reservePrice: CarPrice(reservePrice),
-  carDetailsInfo,
+  carImageURL: CarURL(carImageURL),
+  carAnnouncement: CarURL(carAnnouncement),
+  price: CarPrice(price),
+  //betAmount: CarBetAmount(betAmount),
+  //reservePrice: CarPrice(reservePrice),
+  //carDetailsInfo,
 });
+
+/*
+title
+description
+brand
+carImageURL
+carAnnouncement
+price
+detailsInfo
+*/

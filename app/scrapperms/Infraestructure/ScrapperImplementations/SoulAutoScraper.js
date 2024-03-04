@@ -1,6 +1,6 @@
 import { Scrapper } from "../../domain/ports/ScrapperInterface.js";
 import puppeteer from "puppeteer";
-import { SoulAutoConstConfig } from "../WebConstants/SoulAutoConsts.js";
+import { SoulAutoDomSelectors } from "../WebConstants/SoulAutoConsts.js";
 
 const SOUL_AUTO_URL_MAIN_PAGE = "https://soulauto.com/";
 
@@ -9,7 +9,7 @@ const SOUL_AUTO_URL_MAIN_PAGE = "https://soulauto.com/";
 // por eso que sea necesario pasarle los selectores ya que no se ejecutan en el
 // contaxto de Node
 
-export const PuppeteerScrapper = () => {
+export const SoulAutoScrapper = () => {
   // Crear la implementación
   const basicData = {
     scrappWeb: async () => {
@@ -24,32 +24,36 @@ export const PuppeteerScrapper = () => {
       // Hacemos un destructuring de SoulAutoConstConfig
       const data = await page.evaluate(
         ({
-          SOUL_AUTO_MAIN_PAGE_CAR_DOM_SELECTOR,
-          CAR_OF_LIST_OF_CARDS_CAR_DESCRIPTION_SELECTOR,
-          CAR_OF_LIST_OF_CARDS_CAR_IMAGE_URL_SELECTOR,
-          CAR_OF_LIST_OF_CARDS_CAR_TITLE_SELECTOR,
-          CAR_OF_LIST_OF_CARDS_CAR_PRICE_SELECTOR,
+          ALL_CARS_LIST_DOM_SELECTOR,
+          CAR_TITLE_DOM_SELECTOR_QUERY_FROM_CAR,
+          CAR_PRICE_DOM_SELECTOR_QUERY_FROM_CAR,
+          CAR_DESCRIPTION_DOM_SELECTOR_QUERY_FROM_CAR,
+          CAR_ANNOUNCMENT_DOM_SELECTOR_FROM_CAR,
+          CAR_IMAGE_URL_DOM_SELECTOR_QUERY_FROM_CAR,
           CAR_OF_LIST_OF_CARDS_CAR_RESERVE_PRICE_SELECTOR,
           CAR_OF_LIST_OF_CARDS_CAR_BET_AMOUNT_SELECTOR,
         }) => {
           const data = [];
           const carsList = [
-            ...document.querySelectorAll(SOUL_AUTO_MAIN_PAGE_CAR_DOM_SELECTOR),
+            ...document.querySelectorAll(ALL_CARS_LIST_DOM_SELECTOR),
           ];
 
           for (const car of carsList) {
             const description = car.querySelector(
-              CAR_OF_LIST_OF_CARDS_CAR_DESCRIPTION_SELECTOR
+              CAR_DESCRIPTION_DOM_SELECTOR_QUERY_FROM_CAR
             ).innerText;
-            const imageURL = car.querySelector(
-              CAR_OF_LIST_OF_CARDS_CAR_IMAGE_URL_SELECTOR
+            const carAnnouncement = car.querySelector(
+              CAR_ANNOUNCMENT_DOM_SELECTOR_FROM_CAR
             ).href;
             const title = car.querySelector(
-              CAR_OF_LIST_OF_CARDS_CAR_TITLE_SELECTOR
+              CAR_TITLE_DOM_SELECTOR_QUERY_FROM_CAR
             ).innerText;
-            const currentPrice = car.querySelector(
-              CAR_OF_LIST_OF_CARDS_CAR_PRICE_SELECTOR
+            const price = car.querySelector(
+              CAR_PRICE_DOM_SELECTOR_QUERY_FROM_CAR
             ).innerText;
+            const carImageURL = car.querySelector(
+              CAR_IMAGE_URL_DOM_SELECTOR_QUERY_FROM_CAR
+            ).src;
             const reservePrice = car.querySelector(
               CAR_OF_LIST_OF_CARDS_CAR_RESERVE_PRICE_SELECTOR
             ).attributes.reserve_price.value;
@@ -71,17 +75,17 @@ export const PuppeteerScrapper = () => {
               title,
               description,
               brand: carBrand,
-              imageURL,
-              source: "https://soulauto.com/",
-              currentPrice,
-              betAmount,
-              reservePrice,
+              carImageURL,
+              carAnnouncement,
+              price,
+              //betAmount,
+              //reservePrice,
             });
           }
 
           return data;
         },
-        SoulAutoConstConfig
+        SoulAutoDomSelectors
       );
       await page.close();
 

@@ -1,19 +1,20 @@
 import { ObtenerCochesScrapeados } from "../../Application/ObtenerCochesScrappeadosUseCase/ObtenerCochesScrappeados.js";
 import { RabbitMQDomainEventPublisher } from "../DomainEventPublisherImplementations/RabbitMQDomainEventPublisher.js";
 import { AutoocasionScrapper } from "../ScrapperImplementations/AutoocasionScrapper.js";
-import { CochesNetScrapper } from "../ScrapperImplementations/CochesNetScrapper.js";
-import { PuppeteerScrapper } from "../ScrapperImplementations/PuppeteerScraper.js";
+import { SoulAutoScrapper } from "../ScrapperImplementations/SoulAutoScraper.js";
 
-const pupperterScrapper = PuppeteerScrapper();
-//const cochesNetScrapper = CochesNetScrapper(); // o funciona anti-scrapping tools :(
+const soulAutoScrapper = SoulAutoScrapper();
 const autoocasionScrapper = AutoocasionScrapper();
-const implementations = [pupperterScrapper, autoocasionScrapper];
+const implementations = [soulAutoScrapper, autoocasionScrapper];
 
 const queue = "car_scrapping";
 
 export const scrappAllCars = async (req, res) => {
   // Caso de uso de scrappear todos los coches
   const data = await ObtenerCochesScrapeados(implementations);
+
+  // Validar info
+
   // Publicar un evento de dominio mediante rabbit
   const eventPublisher = RabbitMQDomainEventPublisher(data);
 

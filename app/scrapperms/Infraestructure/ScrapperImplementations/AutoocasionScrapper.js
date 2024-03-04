@@ -1,6 +1,6 @@
 import { Scrapper } from "../../domain/ports/ScrapperInterface.js";
 import puppeteer from "puppeteer";
-import { AutoocasionConstConfig } from "../WebConstants/AutoocasionConst.js";
+import { AutoocasionDomSelectors } from "../WebConstants/AutoocasionConst.js";
 
 const AUTOOCASION_URL_MAIN_PAGE =
   "https://www.autocasion.com/venta-coches-clasicos";
@@ -24,42 +24,48 @@ export const AutoocasionScrapper = () => {
       // Hacemos un destructuring de SoulAutoConstConfig
       const data = await page.evaluate(
         ({
-          ALL_ANUNCIOS_COCHE_FROM_CONTENEDOR_DOM_SELECTOR,
-          TITULO_COCHE_DOM_SELECTOR,
-          PRECIO_COCHE_DOM_SELECTOR,
+          ALL_CARS_LIST_DOM_SELECTOR,
+          CAR_TITLE_DOM_SELECTOR_QUERY_FROM_CAR,
+          CAR_PRICE_DOM_SELECTOR_QUERY_FROM_CAR,
+          CAR_DESCRIPTION_DOM_SELECTOR_QUERY_FROM_CAR,
+          CAR_ANNOUNCMENT_DOM_SELECTOR_FROM_CAR,
+          CAR_IMAGE_URL_DOM_SELECTOR_QUERY_FROM_CAR,
           DETAILS_COCHE_DOMSELECTOR,
         }) => {
           const data = [];
           const carsList = [
-            ...document.querySelectorAll(
-              ALL_ANUNCIOS_COCHE_FROM_CONTENEDOR_DOM_SELECTOR
-            ),
+            ...document.querySelectorAll(ALL_CARS_LIST_DOM_SELECTOR),
           ];
           for (const car of carsList) {
             const title = car.querySelector(
-              TITULO_COCHE_DOM_SELECTOR
+              CAR_TITLE_DOM_SELECTOR_QUERY_FROM_CAR
             ).innerText;
-            const precio = car.querySelector(
-              PRECIO_COCHE_DOM_SELECTOR
+            const price = car.querySelector(
+              CAR_PRICE_DOM_SELECTOR_QUERY_FROM_CAR
             ).innerText;
             const detailsInfo = car.querySelector(
               DETAILS_COCHE_DOMSELECTOR
             ).innerText;
-            const marca = title.substring(0, title.indexOf(" ")).toLowerCase();
-            const carAnnouncement = car.querySelector("a").href;
+            const brand = title.substring(0, title.indexOf(" ")).toLowerCase();
+            const carAnnouncement = car.querySelector(
+              CAR_ANNOUNCMENT_DOM_SELECTOR_FROM_CAR
+            ).href;
+            const carImageURL = car.querySelector(
+              CAR_IMAGE_URL_DOM_SELECTOR_QUERY_FROM_CAR
+            ).srcset;
             data.push({
               title,
-              precio,
+              price,
               detailsInfo,
-              marca,
+              brand,
+              carImageURL,
               carAnnouncement,
-              source: "https://www.autocasion.com/venta-coches-clasicos",
             });
           }
 
           return data;
         },
-        AutoocasionConstConfig
+        AutoocasionDomSelectors
       );
       await page.close();
 
