@@ -1,10 +1,8 @@
-import { CarId } from "../ValueObjects/CarId.js";
-import { CarTitle } from "../ValueObjects/CarTitle.js";
-import { CarDescription } from "../ValueObjects/CarDescription.js";
-import { CarURL } from "../ValueObjects/CarURL.js";
 import { CarPrice } from "../ValueObjects/CarPrice.js";
-import { CarBrand } from "../ValueObjects/CarBrand.js";
-
+import { MinimumLengthStringValidator } from "../../Infraestructure/Validations/Zod/MinimumLengthStringValidator.js";
+import { URLStringValidator } from "../../Infraestructure/Validations/Zod/URLStringValidator.js";
+import crypto from "node:crypto";
+import { PriceFromStringValidator } from "../../Infraestructure/Validations/Zod/PriceFromStringValidator.js";
 export const CarModel = ({
   title,
   description,
@@ -16,13 +14,22 @@ export const CarModel = ({
   //reservePrice,
   //detailsInfo = null,
 }) => ({
-  id: CarId(),
-  title: CarTitle(title),
-  description: CarDescription(description),
-  brand: CarBrand(brand),
-  carImageURL: CarURL(carImageURL),
-  carAnnouncement: CarURL(carAnnouncement),
-  price: CarPrice(price),
+  id: crypto.randomUUID(),
+  title: MinimumLengthStringValidator(title, "Title", 10, "Unnamed Car"),
+  description: MinimumLengthStringValidator(
+    description,
+    "Description",
+    20,
+    "Car with no description"
+  ),
+  brand: MinimumLengthStringValidator(brand, "Brand", 1, "Car with no brand"),
+  carImageURL: URLStringValidator(carImageURL, "Image", "Bad image url"),
+  carAnnouncement: URLStringValidator(
+    carAnnouncement,
+    "Price",
+    "Bad car announcement price"
+  ),
+  price: PriceFromStringValidator(price),
   //betAmount: CarBetAmount(betAmount),
   //reservePrice: CarPrice(reservePrice),
 });
