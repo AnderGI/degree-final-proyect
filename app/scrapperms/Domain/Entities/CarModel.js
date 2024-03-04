@@ -15,6 +15,7 @@ export const CarModel = ({
   currentPrice,
   betAmount,
   reservePrice,
+  carDetailsInfo = null,
 }) => ({
   id: CarId(),
   title: CarTitle(title),
@@ -25,4 +26,5 @@ export const CarModel = ({
   currentPrice: CarPrice(currentPrice),
   betAmount: CarBetAmount(betAmount),
   reservePrice: CarPrice(reservePrice),
+  carDetailsInfo,
 });
