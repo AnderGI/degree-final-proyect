@@ -15,18 +15,4 @@ final public class Criteria {
 		this.ordenacion = order;
 	}
 	
-	
-	/*
-	 	public function __construct(
-		private Filters $filters,
-		private Order $order,
-		private ?int $offset,
-		private ?int $limit
-	) {}
-	
-	private CarTitle title;
-	private CarDescription description;
-	private CarBrand brand;
-	private CarPrice price;
-	 */
 }

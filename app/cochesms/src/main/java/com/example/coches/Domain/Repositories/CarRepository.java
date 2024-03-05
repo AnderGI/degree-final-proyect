@@ -2,6 +2,7 @@ package com.example.coches.Domain.Repositories;
 
 import java.util.List;
 
+import com.example.coches.Domain.Criteria.Criteria;
 import com.example.coches.Domain.Entities.Car;
 
 public interface CarRepository {
@@ -10,5 +11,5 @@ public interface CarRepository {
 	Car updateCar(Car car, String id);
 	Car deleteCar(String id);
 	Car addCar(Car car);
-	List<Car> findBy(); //Specification / Criteria Pattern 
+	List<Car> findByCriteria(Criteria criteria); //Specification / Criteria Pattern 
 }

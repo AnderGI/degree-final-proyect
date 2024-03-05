@@ -1,12 +1,15 @@
 package com.example.coches.Domain.Entities;
 
+import java.util.UUID;
+
 import com.example.coches.Domain.ValueObjects.CarBrand;
 import com.example.coches.Domain.ValueObjects.CarDescription;
 import com.example.coches.Domain.ValueObjects.CarPrice;
 import com.example.coches.Domain.ValueObjects.CarTitle;
 import com.example.coches.Domain.ValueObjects.CarUrl;
 
-public class Car {
+final public class Car {
+	private String id;
 	private CarTitle title;
 	private CarDescription description;
 	private CarBrand brand;
@@ -21,6 +24,7 @@ public class Car {
 			Double precio,
 			String carImageUrl,
 			String carAnnouncmentURL) {
+		this.id = UUID.randomUUID().toString();
 		this.title = new CarTitle(title);
 		this.description = new CarDescription(description);
 		this.brand = new CarBrand(brand);
@@ -29,6 +33,9 @@ public class Car {
 		this.carAnnouncementUrl = carAnnouncementUrl;
 	}
 	
+	public String getIdValue() {
+		return this.id;
+	}
 	public String getTitleValue() {
 		return this.title.getValue();
 	}
