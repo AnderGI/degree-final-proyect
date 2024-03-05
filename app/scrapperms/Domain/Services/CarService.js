@@ -8,7 +8,7 @@ const carSchema = z.object({
   brand: z.string(),
   carImageURL: z.string().url(),
   carAnnouncement: z.string().url(),
-  price: z.number(),
+  price: z.string(),
   detailsInfo: z.string(),
 });
 

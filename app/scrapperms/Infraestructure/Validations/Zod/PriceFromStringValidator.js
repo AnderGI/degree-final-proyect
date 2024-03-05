@@ -13,5 +13,6 @@ export const PriceFromStringValidator = (price) => {
     price.toString().replace(".", "").replace("€", "").trim()
   );
 
-  return carPriceSchema.parse(formattedPrice);
+  //return carPriceSchema.parse(formattedPrice);
+  return price.toString().replace(".", "").replace("€", "").trim();
 };

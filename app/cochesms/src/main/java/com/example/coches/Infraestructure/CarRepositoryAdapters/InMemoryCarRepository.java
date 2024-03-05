@@ -3,10 +3,13 @@ package com.example.coches.Infraestructure.CarRepositoryAdapters;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.example.coches.Domain.Criteria.Criteria;
 import com.example.coches.Domain.Entities.Car;
 import com.example.coches.Domain.Repositories.CarRepository;
 
+@Repository
 public class InMemoryCarRepository implements CarRepository {
 	private List<Car> cars = new ArrayList();
 
