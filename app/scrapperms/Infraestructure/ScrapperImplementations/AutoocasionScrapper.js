@@ -31,6 +31,11 @@ export const AutoocasionScrapper = () => {
           CAR_ANNOUNCMENT_DOM_SELECTOR_FROM_CAR,
           CAR_IMAGE_URL_DOM_SELECTOR_QUERY_FROM_CAR,
         }) => {
+          console.log(
+            document.querySelector(
+              "div.container-fluid.listado article.anuncio"
+            )
+          );
           const data = [];
           const carsList = [
             ...document.querySelectorAll(ALL_CARS_LIST_DOM_SELECTOR),
