@@ -5,9 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.coches.cars.domain.criteria.Criteria;
 
-
-
-
 public interface CarRepository {
 	Car getCar(String id);
 	List<Car> getCars();

@@ -3,6 +3,8 @@ package com.example.coches.cars.infraestructure.adapters.cars;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.example.coches.cars.domain.car.Car;

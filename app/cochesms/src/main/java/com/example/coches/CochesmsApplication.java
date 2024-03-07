@@ -49,19 +49,11 @@ public class CochesmsApplication {
 	}
 
 	
-    @Bean
-    @Primary
-    public CarRepository carRepository() {
-        // Aquí puedes configurar manualmente la implementación del repositorio que deseas utilizar
-        // Por ejemplo, podrías devolver una instancia de InMemoryCarRepository o DatabaseCarRepository
-        return new InMemoryCarRepository(); // Cambiar esto según la implementación que desees utilizar
-    }
 
     
     @Bean
-    @Primary
-    public MessageReceiver messageReceiver(@Autowired ObjectMapper objectMapper) {
-    	return new RabbitMQMessageReceiver(objectMapper);
+    public MessageReceiver messageReceiver(@Autowired ObjectMapper objectMapper, @Autowired  CarRepository carRepository) {
+    	return new RabbitMQMessageReceiver(objectMapper, carRepository);
     }
     
 	public static void main(String[] args) {
