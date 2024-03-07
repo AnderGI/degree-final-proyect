@@ -1,16 +1,11 @@
 package com.example.coches.Domain.Entities;
 
-import com.example.coches.Domain.ValueObjects.CarBrand;
-import com.example.coches.Domain.ValueObjects.CarDescription;
-import com.example.coches.Domain.ValueObjects.CarPrice;
-import com.example.coches.Domain.ValueObjects.CarTitle;
-import com.example.coches.Domain.ValueObjects.CarUrl;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
-public class CarModel {
+public class CarJSONModel {
 	@JsonProperty("id")
 	private String id;
 	@JsonProperty("title")
