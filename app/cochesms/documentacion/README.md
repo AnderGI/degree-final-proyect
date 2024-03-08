@@ -27,6 +27,20 @@ Esta clase tiene con fin, el mappear todas las propiedades de cada car en JSON (
 
 Aquí si que utilizamos lombok para generar, getters, setters y constructores a doc, ya que estamos generando modelos de dominio anémicos, que solo van a contener propiedades (información) sin ningún tipo de funcionalidad.
 
+### Patrón Criteria
+
+![alt text](criteria-pattern/domain/Criteria.png)
+
+Este patrón sera utilizado para especificar mediante un solo método los posibles criterios de búsqueda, filtrado
+y ordenación.
+
+### Message Receiver
+
+![alt text](domainevents/rabbitmq/ports-adapters/RabbitMQDomainEvents.png)
+
+Abstraccion para establecer un contrato que especifíque el cómo han de recibirse mensajes dentro de sistemas de
+mensajeria de microservicios.
+
 ### Abstracciones de base de datos
 
 ![alt text](car/domain/CarRepository.png)
