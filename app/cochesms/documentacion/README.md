@@ -9,6 +9,24 @@ Este microservicio se ha desarrollado utilizando arquitectura hexagonal (puertos
 > [!IMPORTANT]
 > Esta capa contendrá toda la lógica de nuestro negocio (entidades de dominio, value objects, abstracciones / interfaces de repositorios, servicios de dominio...) Es decir, todo aquello que dependa exclusivamente de criterios internos propios.
 
+### Entidades de dominio: Car
+
+![alt text](car/domain/Car.png)
+
+Esta clase contiene propiedades privadas asociadas a value objects ( no a tipos primitivos). Y métodos tanto para devolver (get...) los valores que estos wrappers contienen, como para actualizarlos (update...). Evitamos el uso de getters y setters a dock para cumplir con el principio de <quote><strong>Tell don´t ask</strong></quote> (linkear a video).
+
+Los value objects los utilizaremos con el fin de tener toda la lógica de validación dentro de estos wrappers y evitar generar clases que representen entidades de dominio excesivamente grandes y dificiles de manejar.
+
+Los métodos que actualizan los valores de los value objectos, devolverán nuevas instancias del tipo que se este actualizando, ya que este patrón especifíca que value object se distinge de otro por el valor que contiene.
+
+### CarDTO : De RabbitMQ a entidad de dominio
+
+![alt text](car/domain/CarDTO.png)
+
+Esta clase tiene con fin, el mappear todas las propiedades de cada car en JSON (información transmitida mediante eventos de dominio) a un data transfer obejct que servirá para instanciar entidades de dominio funcionales.
+
+Aquí si que utilizamos lombok para generar, getters, setters y constructores a doc, ya que estamos generando modelos de dominio anémicos, que solo van a contener propiedades (información) sin ningún tipo de funcionalidad.
+
 ## Capa de aplicación
 
 > [!IMPORTANT]
