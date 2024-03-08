@@ -1,0 +1,16 @@
+<mxfile host="65bd71144e">
+    <diagram id="x7gAFiAOiV3sEu1BR1f4" name="Page-1">
+        <mxGraphModel dx="725" dy="563" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="20" value="Car::dominio" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=20;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fontColor=#FFFFFF;fontFamily=Courier New;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="170" y="80" width="380" height="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="-id : CarId&lt;br&gt;-title : CarTitle&lt;br&gt;-description : CarDescription&lt;br&gt;-brand : CarBrand&lt;br&gt;-carImageUrl : CarUrl&lt;br&gt;-carAnnouncmentUrl : CarUrl&lt;br&gt;-price : CarPrice&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;+ getIdValue() : String&lt;br&gt;+ getTitleValue() : String&lt;br&gt;+ getDescriptionValue() : String&lt;br&gt;+ getPriceValue() : String&lt;br&gt;+ getCarImageUrlValue() : String&lt;br&gt;+ getCarAnnouncmentUrlValue() : String&lt;br&gt;+ getBrandValue() : String&lt;br&gt;+ updateTitle(String title) : void&lt;br&gt;+ updateDescription(String description) : void&lt;br&gt;+ updateCarImageUrl(String imageUrl) : void&lt;br&gt;" style="align=left;spacingLeft=4;fontSize=13;verticalAlign=top;resizable=0;rotatable=0;part=1;fontFamily=Courier New;fontStyle=0;html=1;" vertex="1" parent="20">
+                    <mxGeometry y="30" width="380" height="370" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
