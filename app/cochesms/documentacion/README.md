@@ -27,10 +27,16 @@ Esta clase tiene con fin, el mappear todas las propiedades de cada car en JSON (
 
 Aquí si que utilizamos lombok para generar, getters, setters y constructores a doc, ya que estamos generando modelos de dominio anémicos, que solo van a contener propiedades (información) sin ningún tipo de funcionalidad.
 
+### Abstracciones de base de datos
+
+![alt text](car/domain/CarRepository.png)
+
+Esta interfaz tiene como fin respetar el principio de inversión de dependencias (DIP) de solid, el cual nos va a ser de gran utilidad, para en los casos de uso de nuestra aplicación (capa application), codificar contra esta abstracción y no contra implementaciones específicas.
+
 ## Capa de aplicación
 
 > [!IMPORTANT]
-> Esta capa será el punto de entrada de nuestra aplicación (los controladores por lo tanto residirán aquí). Además, aquí es donde se añadirán todos los casos de uso (application services) que nuestro microservicio utilizará.
+> Esta capa será el punto de entrada de nuestra aplicación (los controladores por lo tanto residirán aquí). Además, aquí es donde se añadirán todos los casos de uso (application services) que nuestro microservicio utilizará. Limite para la publicación de eventos y acciones de base de datos
 
 > [!NOTE]
 > Los servicios de dominio y aplicación se diferencian en que estos últimos serán procesos atómicos que representarán aquellas casuísticas que un cliente pueda llevar a cabo. Los de dominio, será creados con el fin de minimizar al máximo partes de código reutilizadas por varios servicios de aplicación.
