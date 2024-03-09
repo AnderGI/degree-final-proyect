@@ -61,42 +61,20 @@ public class CarPrice {
     private Double value;
 
     @JsonCreator
-    public CarPrice(@JsonProperty("price") String price) {
-        this.value = parsePrice(price);
+    public CarPrice(Double price) {
+        this.value = asignarPrecio(price);
     }
 
-    public String getValue() {
-        return formatPrice(value);
+    private Double asignarPrecio(Double price) {
+		// TODO Auto-generated method stub
+    	if(price == null || price <= 0) return null;
+		return price;
+	}
+
+	public Double getCarPriceValue() {
+        return value;
     }
 
-    private Double parsePrice(String priceStr) {
-        if (priceStr == null) {
-            return null;
-        }
-        try {
-            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
-            symbols.setGroupingSeparator(',');
-            symbols.setDecimalSeparator('.');
-            DecimalFormat format = new DecimalFormat("#,##0.00", symbols);
-            format.setParseBigDecimal(true);
-            return format.parse(priceStr).doubleValue();
-        } catch (Exception e) {
-            // En caso de error, devuelve null
-            return null;
-        }
-    }
-
-    private String formatPrice(Double price) {
-        if (price != null) {
-            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
-            symbols.setGroupingSeparator(',');
-            symbols.setDecimalSeparator('.');
-            DecimalFormat format = new DecimalFormat("#,##0.00", symbols);
-            return format.format(price);
-        } else {
-            return "";
-        }
-    }
 
     @Override
     public int hashCode() {
@@ -115,8 +93,9 @@ public class CarPrice {
         return Objects.equals(value, other.value);
     }
 
+    // Aquí podria aplicar algún tipo de formateador según locale -> Dominio
     @Override
     public String toString() {
-        return getValue();
+        return getCarPriceValue().toString();
     }
 }

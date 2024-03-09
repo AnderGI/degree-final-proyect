@@ -1,11 +1,8 @@
 package com.example.coches.cars.domain.car;
 
-import java.util.UUID;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 final public class Car {
-	private String id;
+	private CarId id;
 	private CarTitle title;
 	private CarDescription description;
 	private CarBrand brand;
@@ -13,19 +10,20 @@ final public class Car {
 	private CarUrl carAnnouncementUrl;
 	private CarPrice price;
 
-	public Car(String title, String description, String brand, String precio, String carImageUrl,
-			String carAnnouncmentURL) {
-		this.id = UUID.randomUUID().toString();
-		this.title = new CarTitle(title);
-		this.description = new CarDescription(description);
-		this.brand = new CarBrand(brand);
-		this.price = new CarPrice(precio);
-		this.carImageURL = new CarUrl(carImageUrl);
-		this.carAnnouncementUrl = new CarUrl(carAnnouncmentURL);
+	public Car(CarTitle title, CarDescription description, 
+			CarBrand brand, CarPrice precio, 
+			CarUrl carImageUrl, CarUrl carAnnouncmentURL) {
+		this.id = new CarId();
+		this.title = title;
+		this.description = description;
+		this.brand = brand;
+		this.price = precio;
+		this.carImageURL = carImageUrl;
+		this.carAnnouncementUrl = carAnnouncmentURL;
 	}
 
 	public String getIdValue() {
-		return this.id;
+		return this.id.getCarIdValue();
 	}
 
 	public String getTitleValue() {
@@ -36,15 +34,15 @@ final public class Car {
 		return this.description.getValue();
 	}
 
-	public String getDoubleValue() {
-		return this.price.getValue();
+	public Double getCarPriceValue() {
+		return this.price.getCarPriceValue();
 	}
 
 	public String getBrandValue() {
 		return this.brand.getValue();
 	}
 
-	public String getCariMAGEURLValue() {
+	public String getCarImageUrlValue() {
 		return this.carImageURL.getValue();
 	}
 
@@ -63,7 +61,11 @@ final public class Car {
 	public void updateCarImageUrl(String url) {
 		this.carImageURL = new CarUrl(url);
 	}
-
+	
+	public void updateCarPrice(Double price) {
+		this.price = new CarPrice(price);
+	}
+	
 	@Override
 	public String toString() {
 		return "Car [id=" + id + ", title=" + title + ", description=" + description + ", brand=" + brand

@@ -1,7 +1,7 @@
 package com.example.coches.cars.domain.car;
 import java.util.Objects;
 
-public class CarTitle {
+final public class CarTitle {
 	private String value;
 	
 	public CarTitle(String titulo) {
@@ -14,10 +14,8 @@ public class CarTitle {
 	
 	private String asignarValor(String titulo) {
 		// TODO Auto-generated method stub
-		if(titulo != null || !titulo.isBlank()) {
-			return titulo;
-		}
-		return null;
+		if(titulo == null || titulo.isBlank())return null;
+		return titulo.toLowerCase();
 	}
 	
 	@Override

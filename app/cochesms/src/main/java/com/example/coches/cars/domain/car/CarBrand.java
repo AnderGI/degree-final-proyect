@@ -15,10 +15,8 @@ public class CarBrand {
 	
 	private String asignarValor(String brand) {
 		// TODO Auto-generated method stub
-		if(brand != null || !brand.isBlank()) {
-			return brand;
-		}
-		return null;
+		if(brand == null || brand.isBlank()) return null;
+		return brand.toLowerCase();
 	}
 	
 	@Override

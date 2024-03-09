@@ -4,23 +4,23 @@ import java.util.Objects;
 
 public class CarDescription {
 	private String value;
-	
+
 	public CarDescription(String titulo) {
 		this.value = this.asignarValor(titulo);
 	}
-	
+
 	public String getValue() {
 		return this.value;
 	}
-	
+
 	private String asignarValor(String descripccion) {
 		// TODO Auto-generated method stub
-		if(descripccion != null || !descripccion.isBlank()) {
-			return descripccion;
-		}
-		return null;
+		if (descripccion == null || descripccion.isBlank())
+			return null;
+		return descripccion.toLowerCase();
+
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
