@@ -1,40 +1,31 @@
 package com.example.coches.cars.application.convertJsonToCar;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.example.coches.cars.application.createCar.CarCreator;
 import com.example.coches.cars.domain.car.Car;
+import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDTO;
+import com.example.coches.cars.domain.car.CarDescription;
+import com.example.coches.cars.domain.car.CarId;
+import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
+import com.example.coches.cars.domain.car.CarTitle;
+import com.example.coches.cars.domain.car.CarUrl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 final public class JSONCarToModelCarConverter {
-	
-	
-	private CarRepository repo;
-	
-	public JSONCarToModelCarConverter(CarRepository repo) {
-		this.repo = repo;
+
+	public JSONCarToModelCarConverter() {
+		
 	}
 
-	public void convertJSONCarToModelCarFromJSONString(String messageString) throws JsonMappingException, JsonProcessingException {
+	public CarDTO[] convertJSONCarToModelCarFromJSONString(String messageString)
+			throws JsonMappingException, JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		CarDTO[] cars = objectMapper.readValue(messageString, CarDTO[].class);
-		//List<Car> carsList = new ArrayList();
-		for (CarDTO carModel : cars) {
-			Car car = new Car(carModel.getTitle(), carModel.getDescription(), carModel.getBrand(), carModel.getPrice(), carModel.getCarImageURL(),carModel.getCarAnnouncementUrl());
-			repo.addCar(car);
-			//carsList.add(car);
-		}
-		
-		
-		
+		return cars;
+
 	}
 }

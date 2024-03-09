@@ -5,7 +5,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
 
-public class CarUrl {
+final public class CarUrl {
 	private String value;
 
 	public CarUrl(String url) {

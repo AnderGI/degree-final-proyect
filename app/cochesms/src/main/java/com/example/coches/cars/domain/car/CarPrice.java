@@ -57,18 +57,25 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Objects;
 
-public class CarPrice {
+final public class CarPrice {
     private Double value;
-
+    private static NumberFormat nfMoneda = NumberFormat.getInstance();
     @JsonCreator
-    public CarPrice(Double price) {
+    public CarPrice(String price) {
         this.value = asignarPrecio(price);
     }
 
-    private Double asignarPrecio(Double price) {
+    private Double asignarPrecio(String price) {
 		// TODO Auto-generated method stub
-    	if(price == null || price <= 0) return null;
-		return price;
+    	if(price == null) return null;
+    	Number n = null;
+    	try {
+    		n = nfMoneda.parse(price);
+    	}catch(ParseException exc) {
+    		return null;
+    	}
+    	
+		return n.doubleValue();
 	}
 
 	public Double getCarPriceValue() {

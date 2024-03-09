@@ -9,7 +9,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class CarDTO {
+final public class CarDTO {
 	@JsonProperty("id")
 	private String id;
 	@JsonProperty("title")

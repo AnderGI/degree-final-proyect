@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.coches.cars.application.convertJsonToCar.JSONCarToModelCarConverter;
+import com.example.coches.cars.application.createCar.CarCreator;
 import com.example.coches.cars.domain.car.Car;
+import com.example.coches.cars.domain.car.CarDTO;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.messagereceiver.MessageReceiver;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,14 +30,13 @@ final public class RabbitMQMessageReceiver implements MessageReceiver {
 	@Override
 	public void receiveMessage(byte[] message) {
 		// TODO Auto-generated method stub
-        try {
+        
         	String messageString = new String(message, StandardCharsets.UTF_8);
-        	JSONCarToModelCarConverter converter = new JSONCarToModelCarConverter(repo);
-        	converter.convertJSONCarToModelCarFromJSONString(messageString);
-          	
+        	
+        	CarCreator carCreator = new CarCreator(repo);
+    		carCreator.createEntityCarsFromRabbitMQJSONMessage(messageString);
+    		
             
-        } catch (Exception e) {
-            System.out.println("Error al procesar el mensaje: " + e.getMessage());
-        }
+        
     }
 }

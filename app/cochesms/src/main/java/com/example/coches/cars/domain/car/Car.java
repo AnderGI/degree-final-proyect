@@ -1,6 +1,5 @@
 package com.example.coches.cars.domain.car;
 
-
 final public class Car {
 	private CarId id;
 	private CarTitle title;
@@ -10,9 +9,8 @@ final public class Car {
 	private CarUrl carAnnouncementUrl;
 	private CarPrice price;
 
-	public Car(CarTitle title, CarDescription description, 
-			CarBrand brand, CarPrice precio, 
-			CarUrl carImageUrl, CarUrl carAnnouncmentURL) {
+	public Car(CarTitle title, CarDescription description, CarBrand brand, CarPrice precio, CarUrl carImageUrl,
+			CarUrl carAnnouncmentURL) {
 		this.id = new CarId();
 		this.title = title;
 		this.description = description;
@@ -20,6 +18,14 @@ final public class Car {
 		this.price = precio;
 		this.carImageURL = carImageUrl;
 		this.carAnnouncementUrl = carAnnouncmentURL;
+	}
+
+	// Name constructor https://codely.com/blog/constructores-semanticos
+	public static Car createCar(CarTitle title, CarDescription description, CarBrand brand, CarPrice precio,
+			CarUrl carImageUrl, CarUrl carAnnouncmentURL) {
+		Car createdCar = new Car(title, description, brand, precio, carImageUrl, carAnnouncmentURL);
+
+		return createdCar;
 	}
 
 	public String getIdValue() {
@@ -61,11 +67,11 @@ final public class Car {
 	public void updateCarImageUrl(String url) {
 		this.carImageURL = new CarUrl(url);
 	}
-	
-	public void updateCarPrice(Double price) {
+
+	public void updateCarPrice(String price) {
 		this.price = new CarPrice(price);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Car [id=" + id + ", title=" + title + ", description=" + description + ", brand=" + brand
@@ -73,8 +79,4 @@ final public class Car {
 				+ "]";
 	}
 
-	
-	
-	
-	
 }

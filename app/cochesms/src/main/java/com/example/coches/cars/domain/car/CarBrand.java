@@ -2,7 +2,7 @@ package com.example.coches.cars.domain.car;
 
 import java.util.Objects;
 
-public class CarBrand {
+final public class CarBrand {
 	private String value;
 	
 	public CarBrand(String brand) {

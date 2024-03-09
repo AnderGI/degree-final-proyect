@@ -2,7 +2,7 @@ package com.example.coches.cars.domain.car;
 
 import java.util.Objects;
 
-public class CarDescription {
+final public class CarDescription {
 	private String value;
 
 	public CarDescription(String titulo) {
