@@ -1,6 +1,11 @@
 package com.example.coches.cars.domain.car;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(value = "car")
 final public class Car {
+	@Id
 	private CarId id;
 	private CarTitle title;
 	private CarDescription description;
@@ -9,7 +14,8 @@ final public class Car {
 	private CarUrl carAnnouncementUrl;
 	private CarPrice price;
 
-	public Car(CarTitle title, CarDescription description, CarBrand brand, CarPrice precio, CarUrl carImageUrl,
+	public Car(CarTitle title, CarDescription description, CarBrand brand, CarPrice precio, 
+			CarUrl carImageUrl,
 			CarUrl carAnnouncmentURL) {
 		this.id = new CarId();
 		this.title = title;

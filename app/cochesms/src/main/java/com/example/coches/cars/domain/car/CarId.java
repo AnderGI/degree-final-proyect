@@ -12,4 +12,9 @@ final public class CarId {
 	public String getCarIdValue() {
 		return value;
 	}
+	
+	@Override
+	public String toString() {
+		return value;
+	}
 }
