@@ -1,0 +1,83 @@
+[
+    {
+    "id": "f4d19d12-b2e8-4245-95db-dcec4c06b398",
+    "title": "1966 MERCEDES 230SL PAGODA",
+    "description": "Dos propietarios | Hardtop | Bajo kilometraje",
+    "brand": "mercedes-benz",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/02/00_00_M12-copia-420x280.jpg?x10431",
+    "carAnnouncement": "https://soulauto.com/1966-mercedes-benz-230sl-pagoda-2/",
+    "price": "38750"
+    },
+    {
+    "id": "60f233d1-ac1b-47fb-961e-21387dc0e3dc",
+    "title": "2008 MASERATI GRANTURISMO S",
+    "description": "Superdeportivo 2+2 | Nacional | Deportividad y elegancia",
+    "brand": "maserati",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/02/00_00_00_02_Reserva-rebajada-420x280.jpg?x10431",
+    "carAnnouncement": "https://soulauto.com/2008-maserati-granturismo-s-2/",
+    "price": "3000"
+    },
+    {
+    "id": "fbbe0800-37a3-4001-ba30-3d48f1996342",
+    "title": "1992 DODGE STEALTH R/T",
+    "description": "Manual | 4×4 | Eje trasero direccional",
+    "brand": "dodge",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/03/00_00_DODGE-STEALTH_RESERVA-REBAJADA-420x280.jpg?x10431",
+    "carAnnouncement": "https://soulauto.com/1992-dodge-stealth-r-t-4/",
+    "price": "100"
+    },
+    {
+    "id": "404702aa-4dbd-4db0-9aba-7ee7ca0b1ad0",
+    "title": "1966 MERCEDES-BENZ 200D (W110)",
+    "description": "Fantástico estado de conservación | Completamente Original | Versión Americana",
+    "brand": "mercedes-benz",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2023/09/00_00_IMG_2553-copia_01_0383-1-420x280.webp?x10431",
+    "carAnnouncement": "https://soulauto.com/1966-mercedes-benz-200d-w110-2/",
+    "price": "100"
+    },
+    {
+    "id": "3f34ba08-01d6-481d-9f3c-3fb0730dbe3b",
+    "title": "1935 CITROËN TRACTION AVANT 7C",
+    "description": "Matriculado como histórico | Muy pocas unidades | Símbolo Francés",
+    "brand": "citroen-fabricante",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/03/00_01_Traction-Avant_01-0489-420x280.jpg?x10431",
+    "carAnnouncement": "https://soulauto.com/1935-citroen-traction-avant-7c/",
+    "price": "100"
+    },
+    {
+    "id": "5c33ec83-9a75-4079-bbae-5711ba5b3412",
+    "title": "1984 VW CARAVELLE T3",
+    "description": "Símbolo | Camper retro | Bajo kilometraje",
+    "brand": "volkswagen",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/03/00_01_Vw_caravelle_01-0488-420x280.jpg?x10431",
+    "carAnnouncement": "https://soulauto.com/1984-vw-caravelle-t3/",
+    "price": "100"
+    },
+    {
+    "id": "a45b0686-dee6-41c9-a66c-1277604e795b",
+    "title": "1987 MERCEDES-BENZ 230CE (C124)",
+    "description": "Nacional | Color poco visto | Estado original",
+    "brand": "mercedes-benz",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/03/00_01_Mercedes-Benz-230-CE-01-0490-420x280.jpeg?x10431",
+    "carAnnouncement": "https://soulauto.com/1987-mercedes-benz-230ce-c124/",
+    "price": "100"
+    },
+    {
+    "id": "41799244-5819-4cab-ae1e-366389a7b94e",
+    "title": "2018 FIAT 500 ABARTH",
+    "description": "Asientos Sabelt | “Look Competizione” | Silueta atemporal",
+    "brand": "fiat",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/03/00_01_Fiat-500-Abarth_01-0491-420x280.jpg?x10431",
+    "carAnnouncement": "https://soulauto.com/2018-fiat-500-abarth/",
+    "price": "1550"
+    },
+    {
+    "id": "559fdf10-23d2-418b-a31b-4f17f51913f9",
+    "title": "2023 BMW M3 XDRIVE COMPETITION (G80)",
+    "description": "Único propietario | Xdrive | Unidad de reestreno",
+    "brand": "bmw",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2023/11/00_00_MG_0842_01_0429-420x280.jpg?x10431",
+    "carAnnouncement": "https://soulauto.com/2023-bmw-m3-xdrive-competition-g80-2/",
+    "price": "100"
+    }
+    ]
