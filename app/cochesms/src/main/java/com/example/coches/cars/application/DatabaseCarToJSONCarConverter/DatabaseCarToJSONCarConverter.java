@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 final public class DatabaseCarToJSONCarConverter {
-	static public List<Car> convert_database_cars_to_json_response_cars(List<CarDTO> carsDTO){
+	static public List<Car> convert_database_cars_to_json_response_model_cars(List<CarDTO> carsDTO){
 		List<Car> cars = new ArrayList<>();
 		ObjectMapper objectMapper = new ObjectMapper();
 		for(CarDTO carDTO : carsDTO) {

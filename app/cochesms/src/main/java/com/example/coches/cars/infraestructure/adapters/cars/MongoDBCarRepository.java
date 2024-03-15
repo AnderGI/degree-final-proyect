@@ -36,7 +36,7 @@ public class MongoDBCarRepository implements CarRepository {
 		// TODO Auto-generated method stub
 		//System.out.println("Find all");
 		List<CarDTO> carsDTO = mongoTemplate.findAll(CarDTO.class, "cars");
-		return DatabaseCarToJSONCarConverter.convert_database_cars_to_json_response_cars(carsDTO);
+		return DatabaseCarToJSONCarConverter.convert_database_cars_to_json_response_model_cars(carsDTO);
 	}
 
 	@Override
