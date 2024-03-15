@@ -77,7 +77,7 @@ public class CochesmsApplication {
     }
     @Bean
     public MongoClient mongo() {
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://<username>:<password>@cars.svnrlal.mongodb.net/cars?retryWrites=true&w=majority&appName=cars");
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://user:p4ssw0rd@cars.svnrlal.mongodb.net/cars?retryWrites=true&w=majority&appName=cars");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
           .applyConnectionString(connectionString)
           .build();
