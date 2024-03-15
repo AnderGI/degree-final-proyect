@@ -8,15 +8,14 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.coches.cars.application.DatabaseCarToJSONCarConverter.DatabaseCarToJSONCarConverter;
 import com.example.coches.cars.domain.car.Car;
-import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDTO;
-import com.example.coches.cars.domain.car.CarDescription;
-import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
-import com.example.coches.cars.domain.car.CarTitle;
-import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.domain.criteria.Criteria;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository 
 @Primary
@@ -37,18 +36,7 @@ public class MongoDBCarRepository implements CarRepository {
 		// TODO Auto-generated method stub
 		//System.out.println("Find all");
 		List<CarDTO> carsDTO = mongoTemplate.findAll(CarDTO.class, "cars");
-		List<Car> cars = new ArrayList<>();
-        //System.out.println("After find all");
-		for(CarDTO carDTO : carsDTO) {
-			Car newCar = new Car(new CarTitle(carDTO.getTitle()), 
-					new CarDescription(carDTO.getDescription()),
-					new CarBrand(carDTO.getBrand()),
-					new CarPrice(carDTO.getPrice()), 
-					new CarUrl(carDTO.getCarImageURL()),
-					new CarUrl(carDTO.getCarAnnouncementUrl()));
-			cars.add(newCar);
-		}
-		return cars;
+		return DatabaseCarToJSONCarConverter.convert_database_cars_to_json_response_cars(carsDTO);
 	}
 
 	@Override

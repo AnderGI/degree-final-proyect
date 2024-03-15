@@ -3,6 +3,8 @@ package com.example.coches.cars.domain.car;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Document(value = "car")
 final public class Car {
 	@Id

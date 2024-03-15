@@ -20,7 +20,7 @@ final public class CarDTO {
 	private String brand;
 	@JsonProperty("carImageURL")
 	private String carImageURL;
-	@JsonProperty("carAnnouncement")
+	@JsonProperty("carAnnouncementURL")
 	private String carAnnouncementUrl;
 	@JsonProperty("price")
 	private String price;

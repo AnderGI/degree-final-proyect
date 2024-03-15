@@ -2,6 +2,8 @@ package com.example.coches.cars.domain.car;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 final public class CarBrand {
 	private String value;
 	
