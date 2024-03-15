@@ -10,6 +10,7 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -28,10 +29,12 @@ import com.mongodb.client.MongoClients;
 
 @SpringBootApplication
 @EnableMongoRepositories
+@EnableDiscoveryClient
 public class CochesmsApplication {
 	static final String topicExchangeName = "spring-boot-exchange";
 	static final String queueName = "car_scrapping"; // Cambiar el nombre de la cola
 
+	/* RABBIT
 	@Bean
 	Queue queue() {
 		return new Queue(queueName, false);
@@ -60,7 +63,7 @@ public class CochesmsApplication {
     public MessageReceiver messageReceiver(@Autowired ObjectMapper objectMapper, @Autowired  CarRepository carRepository) {
     	return new RabbitMQMessageReceiver(objectMapper, carRepository);
     }
-    
+    */
     @Bean
     @Profile("mongodbrepository")
     public CarRepository mongoDBCarRepositoy() {
@@ -74,7 +77,7 @@ public class CochesmsApplication {
     }
     @Bean
     public MongoClient mongo() {
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://pruebas:4DFLAwybuA36DEZv@cars.svnrlal.mongodb.net/?retryWrites=true&w=majority&appName=cars");
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://<username>:<password>@cars.svnrlal.mongodb.net/cars?retryWrites=true&w=majority&appName=cars");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
           .applyConnectionString(connectionString)
           .build();
