@@ -77,7 +77,7 @@ public class CochesmsApplication {
     }
     @Bean
     public MongoClient mongo() {
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://user:p4ssw0rd@cars.svnrlal.mongodb.net/cars?retryWrites=true&w=majority&appName=cars");
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://user:p4ssw0rd@carsdevelop.h6ug8o8.mongodb.net/carsdevelop?retryWrites=true&w=majority&appName=carsdevelop");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
           .applyConnectionString(connectionString)
           .build();
@@ -87,7 +87,7 @@ public class CochesmsApplication {
 
     @Bean
     public MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongo(), "test");
+        return new MongoTemplate(mongo(), "carsdevelop");
     }
 	public static void main(String[] args) {
 		SpringApplication.run(CochesmsApplication.class, args);

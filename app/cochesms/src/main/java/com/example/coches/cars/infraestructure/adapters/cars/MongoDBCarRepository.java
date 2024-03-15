@@ -5,14 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.criteria.Criteria;
-import com.mongodb.client.MongoClient;
 
 @Repository 
 @Primary
@@ -31,9 +28,9 @@ public class MongoDBCarRepository implements CarRepository {
 	@Override
 	public List<Car> getCars() {
 		// TODO Auto-generated method stub
-		System.out.println("Find all");
+		//System.out.println("Find all");
 		List<Car> cars = mongoTemplate.findAll(Car.class);
-        System.out.println("After find all");
+        //System.out.println("After find all");
 		return cars;
 	}
 
