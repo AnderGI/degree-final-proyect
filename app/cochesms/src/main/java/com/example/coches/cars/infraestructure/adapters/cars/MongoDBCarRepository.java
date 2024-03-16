@@ -1,11 +1,11 @@
 package com.example.coches.cars.infraestructure.adapters.cars;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.coches.cars.application.DatabaseCarToJSONCarConverter.DatabaseCarToJSONCarConverter;
@@ -13,9 +13,6 @@ import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarDTO;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.criteria.Criteria;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository 
 @Primary
@@ -28,15 +25,17 @@ public class MongoDBCarRepository implements CarRepository {
 	@Override
 	public Car getCar(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		Car car= mongoTemplate.findById(id, Car.class);
+		return car;
 	}
 
 	@Override
 	public List<Car> getCars() {
 		// TODO Auto-generated method stub
-		//System.out.println("Find all");
-		List<CarDTO> carsDTO = mongoTemplate.findAll(CarDTO.class, "cars");
-		return DatabaseCarToJSONCarConverter.convert_database_cars_to_json_response_cars(carsDTO);
+		System.out.println(mongoTemplate.findAll(Car.class, "cars"));
+		//List<CarDTO> carsDTO = mongoTemplate.findAll(CarDTO.class, "cars");
+		//return DatabaseCarToJSONCarConverter.convert_database_cars_to_json_response_cars(carsDTO);
+		return mongoTemplate.findAll(Car.class, "cars");
 	}
 
 	@Override

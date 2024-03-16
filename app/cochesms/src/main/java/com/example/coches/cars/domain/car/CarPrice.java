@@ -60,12 +60,17 @@ import java.util.Objects;
 final public class CarPrice {
     private Double value;
     private static NumberFormat nfMoneda = NumberFormat.getInstance();
-    @JsonCreator
-    public CarPrice(String price) {
-        this.value = asignarPrecio(price);
-    }
 
-    private Double asignarPrecio(String price) {
+    // Para lo que venga de bbdd
+	@JsonCreator
+	public CarPrice(@JsonProperty("value") Double value) {
+		this.value = value;
+	}
+
+
+ 
+
+	private Double asignarPrecio(String price) {
 		// TODO Auto-generated method stub
     	if(price == null) return null;
     	Number n = null;

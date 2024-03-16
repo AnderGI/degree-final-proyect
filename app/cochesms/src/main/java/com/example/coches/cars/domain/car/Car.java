@@ -3,6 +3,7 @@ package com.example.coches.cars.domain.car;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(value = "car")
@@ -16,18 +17,21 @@ final public class Car {
 	private CarUrl carAnnouncementUrl;
 	private CarPrice price;
 
-	public Car(CarTitle title, CarDescription description, CarBrand brand, CarPrice precio, 
-			CarUrl carImageUrl,
-			CarUrl carAnnouncmentURL) {
-		this.id = new CarId();
-		this.title = title;
-		this.description = description;
-		this.brand = brand;
-		this.price = precio;
-		this.carImageURL = carImageUrl;
-		this.carAnnouncementUrl = carAnnouncmentURL;
-	}
-
+    @JsonCreator
+    public Car(@JsonProperty("title") CarTitle title,
+               @JsonProperty("description") CarDescription description,
+               @JsonProperty("brand") CarBrand brand,
+               @JsonProperty("price") CarPrice price,
+               @JsonProperty("carImageURL") CarUrl carImageURL,
+               @JsonProperty("carAnnouncementURL") CarUrl carAnnouncementUrl) {
+        this.id = new CarId();
+        this.title = title;
+        this.description = description;
+        this.brand = brand;
+        this.price = price;
+        this.carImageURL = carImageURL;
+        this.carAnnouncementUrl = carAnnouncementUrl;
+    }
 	// Name constructor https://codely.com/blog/constructores-semanticos
 	public static Car createCar(CarTitle title, CarDescription description, CarBrand brand, CarPrice precio,
 			CarUrl carImageUrl, CarUrl carAnnouncmentURL) {
@@ -75,10 +79,11 @@ final public class Car {
 	public void updateCarImageUrl(String url) {
 		this.carImageURL = new CarUrl(url);
 	}
-
-	public void updateCarPrice(String price) {
+/*
+	public void updateCarPrice(Double price) {
 		this.price = new CarPrice(price);
 	}
+	*/
 
 	@Override
 	public String toString() {

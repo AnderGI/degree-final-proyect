@@ -2,14 +2,16 @@ package com.example.coches.cars.domain.car;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 final public class CarDescription {
 	private String value;
-
-	public CarDescription(String titulo) {
-		this.value = this.asignarValor(titulo);
+	@JsonCreator
+	public CarDescription(@JsonProperty("value") String value) {
+		this.value = this.asignarValor(value);
 	}
+	
 
 	public String getValue() {
 		return this.value;
