@@ -3,6 +3,7 @@ package com.example.coches.cars.infraestructure.adapters.cars;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -32,10 +33,26 @@ public class CarRepositoryTest {
 	
 	@Test
 	void it_should_retreive_all_cars_as_a_list(){
-	
-		System.out.println(repository.getCars());
 		assertNotNull(repository.getCars()); 
+		assertEquals(repository.getCars().getClass(), ArrayList.class);
 	}
+	
+	@Test
+	void it_should_retrieve_a_existing_car_by_its_id() {
+		Car firstCar = repository.getCars().get(0);
+		Car retrievedFirstCar = repository.getCar(firstCar.getIdValue());
+		assertNotNull(retrievedFirstCar);
+		assertNotNull(retrievedFirstCar.getIdValue());
+		// Todos los campos iguales
+		assertEquals(firstCar.getIdValue(), retrievedFirstCar.getIdValue());
+		assertEquals(firstCar.getTitleValue(), retrievedFirstCar.getTitleValue());
+		assertEquals(firstCar.getDescriptionValue(), retrievedFirstCar.getDescriptionValue());
+		assertEquals(firstCar.getBrandValue(), retrievedFirstCar.getBrandValue());
+		assertEquals(firstCar.getCarPriceValue(), retrievedFirstCar.getCarPriceValue());
+		assertEquals(firstCar.getCarImageUrlValue(), retrievedFirstCar.getCarImageUrlValue());
+		assertEquals(firstCar.getCarAnnouncmentURLValue(), retrievedFirstCar.getCarAnnouncmentURLValue());
+	}
+	
 	/*
 		void it_should_save_a_new_car_with_all_values() {
 	    Car newCar = new Car(new CarTitle("Coche 2"),

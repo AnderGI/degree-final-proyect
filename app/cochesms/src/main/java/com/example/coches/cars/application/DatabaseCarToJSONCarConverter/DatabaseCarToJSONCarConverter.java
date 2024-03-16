@@ -49,7 +49,7 @@ final public class DatabaseCarToJSONCarConverter {
 					new CarTitle(validatedFields.get(0)), 
 					new CarDescription(validatedFields.get(1)), 
 					new CarBrand(validatedFields.get(2)),
-					new CarPrice(validatedFields.get(3)), 
+					new CarPrice(null), 
 					new CarUrl(validatedFields.get(4)), 
 					new CarUrl(validatedFields.get(5)));
 			cars.add(newCar);

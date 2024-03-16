@@ -29,7 +29,7 @@ final public class CarCreator {
 
 		for (CarDTO carModel : cars) {
 			Car car = Car.createCar(new CarTitle(carModel.getTitle()), new CarDescription(carModel.getDescription()),
-					new CarBrand(carModel.getBrand()), new CarPrice(carModel.getPrice()),
+					new CarBrand(carModel.getBrand()), new CarPrice(null),
 					new CarUrl(carModel.getCarImageURL()), new CarUrl(carModel.getCarAnnouncementUrl()));
 			repo.addCar(car);
 		}
