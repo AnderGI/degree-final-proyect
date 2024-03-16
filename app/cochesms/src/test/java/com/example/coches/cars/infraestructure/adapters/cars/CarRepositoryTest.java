@@ -23,20 +23,20 @@ import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
 
 @SpringBootTest
-@ActiveProfiles("mongodbrepository") 
+@ActiveProfiles("mongodbrepository")
 // testeamos el repositorio de mongodb
 // en ubbdd de pruebas -> Test de Integración
 public class CarRepositoryTest {
-	
+
 	@Autowired
 	private CarRepository repository;
-	
+
 	@Test
-	void it_should_retreive_all_cars_as_a_list(){
-		assertNotNull(repository.getCars()); 
+	void it_should_retreive_all_cars_as_a_list() {
+		assertNotNull(repository.getCars());
 		assertEquals(repository.getCars().getClass(), ArrayList.class);
 	}
-	
+
 	@Test
 	void it_should_retrieve_a_existing_car_by_its_id() {
 		Car firstCar = repository.getCars().get(0);
@@ -52,31 +52,21 @@ public class CarRepositoryTest {
 		assertEquals(firstCar.getCarImageUrlValue(), retrievedFirstCar.getCarImageUrlValue());
 		assertEquals(firstCar.getCarAnnouncmentURLValue(), retrievedFirstCar.getCarAnnouncmentURLValue());
 	}
-	
+
+	@Test
+	void it_should_retrieve_null_if_car_id_does_not_exists() {
+		Car nullableCar = repository.getCar("aaaaa");
+		assertEquals(nullableCar, null);
+	}
+
 	/*
-		void it_should_save_a_new_car_with_all_values() {
-	    Car newCar = new Car(new CarTitle("Coche 2"),
-	            new CarDescription("Descripcción del coche 2"),
-	            new CarBrand("bmw"), 
-	            new CarPrice(0.0),	         
-	            new CarUrl(null),
-	            new CarUrl(null));
-	    
-	    Car addedCar = repository.addCar(newCar);
-	    System.out.println(addedCar);
-	    assertNotNull(addedCar);
-	    assertNotNull(addedCar.getIdValue());
-	}
-	*/
-	// Other test Save cars with some null values 
-	
-	
-	void it_should_retrieve_a_car_if_it_exists() {
-		Car firstCar = repository.getCars().get(0);
-		String firstCarId = firstCar.getIdValue();
-		Car retrievedCar = repository.getCar(firstCarId);
-		assertNotNull(retrievedCar);
-		assertEquals(retrievedCar.getIdValue(), firstCarId);
-	}
-	
+	 * void it_should_save_a_new_car_with_all_values() { Car newCar = new Car(new
+	 * CarTitle("Coche 2"), new CarDescription("Descripcción del coche 2"), new
+	 * CarBrand("bmw"), new CarPrice(0.0), new CarUrl(null), new CarUrl(null));
+	 * 
+	 * Car addedCar = repository.addCar(newCar); System.out.println(addedCar);
+	 * assertNotNull(addedCar); assertNotNull(addedCar.getIdValue()); }
+	 */
+	// Other test Save cars with some null values
+
 }

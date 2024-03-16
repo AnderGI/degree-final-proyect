@@ -30,7 +30,6 @@ public class MongoDBCarRepository implements CarRepository {
 		// TODO Auto-generated method stub
 		
 		Query query = new Query();
-		System.out.println(id);
 		query.addCriteria(org.springframework.data.mongodb.core.query.Criteria.where("_id")
 				.is(new CarId(id)));
 		Car car= mongoTemplate.findOne(query, Car.class, "cars");
