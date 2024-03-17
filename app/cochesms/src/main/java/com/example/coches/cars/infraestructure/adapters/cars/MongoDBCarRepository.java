@@ -5,16 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.example.coches.cars.application.DatabaseCarToJSONCarConverter.DatabaseCarToJSONCarConverter;
 import com.example.coches.cars.domain.car.Car;
-import com.example.coches.cars.domain.car.CarDTO;
 import com.example.coches.cars.domain.car.CarId;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.criteria.Criteria;
+import com.mongodb.client.result.DeleteResult;
 
 @Repository 
 @Primary
@@ -55,7 +53,12 @@ public class MongoDBCarRepository implements CarRepository {
 	@Override
 	public Car deleteCar(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		Car toDeleteCar = getCar(id);
+		Query deletionQuery = new Query();
+		deletionQuery.query(org.springframework.data.mongodb.core.query.Criteria.where("_id")
+				.is(new CarId(id)));
+		DeleteResult deletedResult = mongoTemplate.remove(deletionQuery, Car.class, "cars");
+		return toDeleteCar;
 	}
 
 	@Override

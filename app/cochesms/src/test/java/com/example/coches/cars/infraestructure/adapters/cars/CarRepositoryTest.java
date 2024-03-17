@@ -89,14 +89,24 @@ public class CarRepositoryTest {
 		
 	}
 	
-	/*
-	 * void it_should_save_a_new_car_with_all_values() { Car newCar = new Car(new
-	 * CarTitle("Coche 2"), new CarDescription("Descripcción del coche 2"), new
-	 * CarBrand("bmw"), new CarPrice(0.0), new CarUrl(null), new CarUrl(null));
-	 * 
-	 * Car addedCar = repository.addCar(newCar); System.out.println(addedCar);
-	 * assertNotNull(addedCar); assertNotNull(addedCar.getIdValue()); }
-	 */
-	// Other test Save cars with some null values
+	
+	@Test
+	void it_should_delete_last_car_and_check_for_equality() {
+		List<Car> cars = repository.getCars();
+		Car lastCar = cars.get(cars.size() - 1);
+		Car deletedCar = repository.deleteCar(lastCar.getIdValue());
+		assertNotNull(deletedCar);
+		assertNotNull(deletedCar.getIdValue());
+		// Todos los campos iguales del coche escogido y del eliminado
+		assertEquals(deletedCar.getIdValue(), lastCar.getIdValue());
+		assertEquals(deletedCar.getTitleValue(), lastCar.getTitleValue());
+		assertEquals(deletedCar.getDescriptionValue(), lastCar.getDescriptionValue());
+		assertEquals(deletedCar.getBrandValue(), lastCar.getBrandValue());
+		assertEquals(deletedCar.getCarPriceValue(), lastCar.getCarPriceValue());
+		assertEquals(deletedCar.getCarImageUrlValue(), lastCar.getCarImageUrlValue());
+		assertEquals(deletedCar.getCarAnnouncmentURLValue(), lastCar.getCarAnnouncmentURLValue());
+		// Valorar si se ha eliminado
+		assertEquals(repository.getCar(deletedCar.getIdValue()), null);
+	}
 
 }
