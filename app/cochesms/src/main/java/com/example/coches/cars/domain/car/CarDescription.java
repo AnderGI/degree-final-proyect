@@ -26,6 +26,16 @@ final public class CarDescription {
 	}
 
 	@Override
+	public String toString() {
+		return value;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(value);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -35,10 +45,5 @@ final public class CarDescription {
 			return false;
 		CarDescription other = (CarDescription) obj;
 		return Objects.equals(value, other.value);
-	}
-
-	@Override
-	public String toString() {
-		return this.value;
 	}
 }

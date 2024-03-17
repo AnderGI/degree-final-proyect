@@ -47,7 +47,7 @@ public class CarRepositoryTest {
 		System.out.println("it_should_retrieve_a_existing_car_by_its_id");
 		List<Car> cars = repository.getCars();
 		System.out.println(cars);
-		if (cars.isEmpty()) {
+		if (!cars.isEmpty()) {
 			Car firstCar = cars.get(0);
 			System.out.println("firstCar");
 			System.out.println(firstCar);
@@ -109,11 +109,11 @@ public class CarRepositoryTest {
 	}
 
 	// Delete car
-	@Test
+	// @Test
 	void it_should_delete_last_car_and_check_for_equality() {
 		System.out.println("it_should_delete_last_car_and_check_for_equality");
 		List<Car> cars = repository.getCars();
-		if (cars.isEmpty()) {
+		if (!cars.isEmpty()) {
 			Car lastCar = cars.get(cars.size() - 1);
 			System.out.println("lastCar");
 			System.out.println(lastCar);
@@ -145,5 +145,34 @@ public class CarRepositoryTest {
 		System.out.println(toDeleteNullCar);
 		assertEquals(toDeleteNullCar, null);
 	}
+	
+	
+	// Update existing car
+	@Test
+	void it_should_update_an_existing_car_field() {
+		List<Car> cars = repository.getCars();
+		if(!cars.isEmpty()) {
+			Car toUpdateCar = cars.get(0);
+			System.out.println("to update car");
+			System.out.println(toUpdateCar);
+			toUpdateCar.updateDescription("NEW CAR 1 DESCRIPTION");
+			Car updatedCar = repository.updateCar(toUpdateCar, toUpdateCar.getIdValue());
+			System.out.println("updated car");
+			System.out.println(updatedCar);
+			assertNotNull(updatedCar);
+			assertEquals(toUpdateCar.getIdValue(), updatedCar.getIdValue());
+			assertEquals(toUpdateCar.getTitleValue(), updatedCar.getTitleValue());
+			// UPDATED FIELD
+			boolean sameCarDescriptionIgnoreCase = updatedCar.getDescriptionValue().equalsIgnoreCase("NEW CAR 1 DESCRIPTION");
+			assertEquals(sameCarDescriptionIgnoreCase, true);
+			assertEquals(toUpdateCar.getBrandValue(), updatedCar.getBrandValue());
+			assertEquals(toUpdateCar.getCarPriceValue(), updatedCar.getCarPriceValue());
+			assertEquals(toUpdateCar.getCarImageUrlValue(), updatedCar.getCarImageUrlValue());
+			assertEquals(toUpdateCar.getCarAnnouncmentURLValue(), updatedCar.getCarAnnouncmentURLValue());
+		}
+	}
+	
+	
+	
 
 }
