@@ -9,7 +9,7 @@ import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
-
+// RABBIT
 final public class CarCreator {
 	private CarRepository repo;
 
@@ -29,7 +29,7 @@ final public class CarCreator {
 
 		for (CarDTO carModel : cars) {
 			Car car = Car.createCar(new CarTitle(carModel.getTitle()), new CarDescription(carModel.getDescription()),
-					new CarBrand(carModel.getBrand()), new CarPrice(carModel.getPrice()),
+					new CarBrand(carModel.getBrand()), new CarPrice(null),
 					new CarUrl(carModel.getCarImageURL()), new CarUrl(carModel.getCarAnnouncementUrl()));
 			repo.addCar(car);
 		}

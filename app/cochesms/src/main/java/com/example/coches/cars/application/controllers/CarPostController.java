@@ -32,7 +32,7 @@ final public class CarPostController {
 		Car newCar = new Car(new CarTitle(car.getTitle()), 
 				new CarDescription(car.getDescription()),
 				new CarBrand(car.getBrand()),
-				new CarPrice(car.getPrice()), 
+				new CarPrice(null), 
 				new CarUrl(car.getCarImageURL()),
 				new CarUrl(car.getCarAnnouncementUrl()));
 		newCar = repo.addCar(newCar);

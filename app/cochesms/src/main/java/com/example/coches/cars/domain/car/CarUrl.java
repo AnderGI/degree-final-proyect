@@ -5,11 +5,15 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 final public class CarUrl {
 	private String value;
 
-	public CarUrl(String url) {
-		this.value = this.asignarValor(url);
+	@JsonCreator
+	public CarUrl(@JsonProperty("value") String value) {
+		this.value = this.asignarValor(value);
 	}
 
 	public String getValue() {
