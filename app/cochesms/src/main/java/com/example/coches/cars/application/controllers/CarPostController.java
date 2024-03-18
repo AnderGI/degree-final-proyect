@@ -26,19 +26,13 @@ final public class CarPostController {
 	
 
 	
-	@PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Car> addCar(@RequestBody CarDTO car){
-		// return 
-		Car newCar = new Car(new CarTitle(car.getTitle()), 
-				new CarDescription(car.getDescription()),
-				new CarBrand(car.getBrand()),
-				new CarPrice(null), 
-				new CarUrl(car.getCarImageURL()),
-				new CarUrl(car.getCarAnnouncementUrl()));
-		newCar = repo.addCar(newCar);
+	@PostMapping(path = "/cars",  consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Car> addCar(@RequestBody Car car){
+		// Validaciones ¿Value Objects? Deberian de hacerse allí
+		repo.addCar(car);
 		URI uri = null;
 		try {
-			uri = new URI("/cars/" + newCar.getIdValue());
+			uri = new URI("/cars/" + car.getIdValue());
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
