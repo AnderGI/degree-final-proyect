@@ -1,5 +1,7 @@
 package com.example.coches.cars.domain.car;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -7,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(value = "car")
-final public class Car {
+final public class Car implements Serializable{
 	@Id
 	private CarId id;
 	private CarTitle title;
@@ -16,7 +18,7 @@ final public class Car {
 	private CarUrl carImageURL;
 	private CarUrl carAnnouncementUrl;
 	private CarPrice price;
-
+/*
     @JsonCreator
     public Car(@JsonProperty("title") CarTitle title,
                @JsonProperty("description") CarDescription description,
@@ -25,6 +27,39 @@ final public class Car {
                @JsonProperty("carImageURL") CarUrl carImageURL,
                @JsonProperty("carAnnouncementURL") CarUrl carAnnouncementUrl) {
         this.id = new CarId();
+        this.title = title;
+        this.description = description;
+        this.brand = brand;
+        this.price = price;
+        this.carImageURL = carImageURL;
+        this.carAnnouncementUrl = carAnnouncementUrl;
+    }
+  */
+	   public Car() {
+	    }
+	 public Car(CarTitle title,
+	            CarDescription description,
+	            CarBrand brand,
+	            CarPrice price,
+	            CarUrl carImageURL,
+	            CarUrl carAnnouncementUrl) {
+	        this.id = new CarId();
+	        this.title = title;
+	        this.description = description;
+	        this.brand = brand;
+	        this.price = price;
+	        this.carImageURL = carImageURL;
+	        this.carAnnouncementUrl = carAnnouncementUrl;
+	    }
+    @JsonCreator
+    public Car(@JsonProperty("id") CarId id,
+    		   @JsonProperty("title") CarTitle title,
+               @JsonProperty("description") CarDescription description,
+               @JsonProperty("brand") CarBrand brand,
+               @JsonProperty("price") CarPrice price,
+               @JsonProperty("carImageURL") CarUrl carImageURL,
+               @JsonProperty("carAnnouncementURL") CarUrl carAnnouncementUrl) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.brand = brand;

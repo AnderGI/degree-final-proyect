@@ -22,6 +22,22 @@ public class CarPostRepositoryTest {
 
 	@Autowired
 	private CarRepository repository;
+	
+	// Return smae car that has been saved
+	@Test
+	void it_should_return_the_same_car_it_has_saved() {
+		System.out.println("it_should_return_the_same_car_it_has_saved");
+		 Car toAddCar =  new Car(new CarTitle("BMW M3"), 
+		            new CarDescription("Sedán deportivo de lujo"), 
+		            new CarBrand("BMW"), new CarPrice(70000.0), 
+		            new CarUrl("https://example.com/bmw-m3.jpg"), 
+		            new CarUrl("https://example.com/bmw-m3-listing"));	System.out.println("car");
+		Car addedCar = repository.addCar(toAddCar);
+		System.out.println("Added car" + addedCar);
+		// completar test
+	}
+	
+	
 	// Save car
 	@Test
 	void it_should_save_a_car_and_check_for_car_equality() {
@@ -53,4 +69,5 @@ public class CarPostRepositoryTest {
 		assertEquals(addedCar.getCarAnnouncmentURLValue(), car.getCarAnnouncmentURLValue());
 
 	}
+
 }
