@@ -45,6 +45,7 @@ final public class DatabaseCarToJSONCarConverter {
 			
 			// Crear el car en base a los campos de validatedFields
 			// IMPORTANTE mantener el ORDEN
+			/*
 			Car newCar = new Car(
 					new CarTitle(validatedFields.get(0)), 
 					new CarDescription(validatedFields.get(1)), 
@@ -53,7 +54,7 @@ final public class DatabaseCarToJSONCarConverter {
 					new CarUrl(validatedFields.get(4)), 
 					new CarUrl(validatedFields.get(5)));
 			cars.add(newCar);
-
+*/
 		}
 		return cars;
 	}

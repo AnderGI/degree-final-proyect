@@ -1,10 +1,13 @@
 package com.example.coches.cars.application.createCar;
 
+import java.util.UUID;
+
 import com.example.coches.cars.application.convertJsonToCar.JSONCarToModelCarConverter;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDTO;
 import com.example.coches.cars.domain.car.CarDescription;
+import com.example.coches.cars.domain.car.CarId;
 import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
@@ -28,7 +31,7 @@ final public class CarCreator {
 		}
 
 		for (CarDTO carModel : cars) {
-			Car car = Car.createCar(new CarTitle(carModel.getTitle()), new CarDescription(carModel.getDescription()),
+			Car car = Car.createCar(new CarId(UUID.randomUUID().toString()),new CarTitle(carModel.getTitle()), new CarDescription(carModel.getDescription()),
 					new CarBrand(carModel.getBrand()), new CarPrice(null),
 					new CarUrl(carModel.getCarImageURL()), new CarUrl(carModel.getCarAnnouncementUrl()));
 			repo.addCar(car);

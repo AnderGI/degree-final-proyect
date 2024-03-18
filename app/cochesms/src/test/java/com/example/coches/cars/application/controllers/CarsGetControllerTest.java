@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
+import com.example.coches.cars.domain.car.CarId;
 import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
@@ -62,14 +64,14 @@ public class CarsGetControllerTest {
 	@Test
 	void it_should_return_a_list_of_products_when_get() throws Exception {
 		List<Car> expectedCars = Arrays.asList(
-				new Car(new CarTitle("Chevrolet Camaro SS"), new CarDescription("Muscle car americano"),
+				new Car(new CarId(UUID.randomUUID().toString()),new CarTitle("Chevrolet Camaro SS"), new CarDescription("Muscle car americano"),
 						new CarBrand("Chevrolet"), new CarPrice(55000.0),
 						new CarUrl("https://example.com/chevrolet-camaro-ss.jpg"),
 						new CarUrl("https://example.com/chevrolet-camaro-ss-listing")),
-				new Car(new CarTitle("BMW M3"), new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"),
+				new Car(new CarId(UUID.randomUUID().toString()),new CarTitle("BMW M3"), new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"),
 						new CarPrice(70000.0), new CarUrl("https://example.com/bmw-m3.jpg"),
 						new CarUrl("https://example.com/bmw-m3-listing")),
-				new Car(new CarTitle("Audi R8"), new CarDescription("Supercar de alta gama"), new CarBrand("Audi"),
+				new Car(new CarId(UUID.randomUUID().toString()),new CarTitle("Audi R8"), new CarDescription("Supercar de alta gama"), new CarBrand("Audi"),
 						new CarPrice(150000.0), new CarUrl("https://example.com/audi-r8.jpg"),
 						new CarUrl("https://example.com/audi-r8-listing")));
 		repository.addCar(expectedCars.get(0));
@@ -95,7 +97,7 @@ public class CarsGetControllerTest {
 	void it_should_return_a_car_when_id_exists_in_request() throws Exception {
 		// Especificamos el use case
 		List<Car> cars = repository.getCars();
-		Car newCar = new Car(new CarTitle("Chevrolet Camaro SS"), new CarDescription("Muscle car americano"),
+		Car newCar = new Car(new CarId(UUID.randomUUID().toString()),new CarTitle("Chevrolet Camaro SS"), new CarDescription("Muscle car americano"),
 				new CarBrand("Chevrolet"), new CarPrice(55000.0),
 				new CarUrl("https://example.com/chevrolet-camaro-ss.jpg"),
 				new CarUrl("https://example.com/chevrolet-camaro-ss-listing"));

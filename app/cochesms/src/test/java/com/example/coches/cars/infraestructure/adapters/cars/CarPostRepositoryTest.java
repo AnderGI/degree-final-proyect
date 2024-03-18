@@ -3,6 +3,8 @@ package com.example.coches.cars.infraestructure.adapters.cars;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
+import com.example.coches.cars.domain.car.CarId;
 import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
@@ -27,7 +30,9 @@ public class CarPostRepositoryTest {
 	@Test
 	void it_should_return_the_same_car_it_has_saved() {
 		System.out.println("it_should_return_the_same_car_it_has_saved");
-		 Car toAddCar =  new Car(new CarTitle("BMW M3"), 
+		 Car toAddCar =  new Car(
+				 new CarId(UUID.randomUUID().toString()),
+				 new CarTitle("BMW M3"), 
 		            new CarDescription("Sedán deportivo de lujo"), 
 		            new CarBrand("BMW"), new CarPrice(70000.0), 
 		            new CarUrl("https://example.com/bmw-m3.jpg"), 
@@ -51,7 +56,7 @@ public class CarPostRepositoryTest {
 		CarUrl carAnnouncementUrl = new CarUrl("https://example.com/ford-mustang-gt-listing");
 
 		// Crear el objeto Car usando el constructor
-		Car car = new Car(title, description, brand, price, carImageURL, carAnnouncementUrl);
+		Car car = new Car(new CarId(UUID.randomUUID().toString()),title, description, brand, price, carImageURL, carAnnouncementUrl);
 		System.out.println("car");
 		System.out.println(car);
 		Car addedCar = repository.addCar(car);

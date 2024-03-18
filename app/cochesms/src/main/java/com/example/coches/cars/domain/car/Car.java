@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(value = "car")
 final public class Car implements Serializable{
-	@Id
+	
 	private CarId id;
 	private CarTitle title;
 	private CarDescription description;
@@ -36,21 +36,22 @@ final public class Car implements Serializable{
     }
   */
 	   public Car() {
-	    }
-	 public Car(CarTitle title,
+	    }/*
+	 public Car(CarId id,
+			 CarTitle title,
 	            CarDescription description,
 	            CarBrand brand,
 	            CarPrice price,
 	            CarUrl carImageURL,
 	            CarUrl carAnnouncementUrl) {
-	        this.id = new CarId();
+	        this.id = id;
 	        this.title = title;
 	        this.description = description;
 	        this.brand = brand;
 	        this.price = price;
 	        this.carImageURL = carImageURL;
 	        this.carAnnouncementUrl = carAnnouncementUrl;
-	    }
+	    }*/
     @JsonCreator
     public Car(@JsonProperty("id") CarId id,
     		   @JsonProperty("title") CarTitle title,
@@ -68,9 +69,9 @@ final public class Car implements Serializable{
         this.carAnnouncementUrl = carAnnouncementUrl;
     }
 	// Name constructor https://codely.com/blog/constructores-semanticos
-	public static Car createCar(CarTitle title, CarDescription description, CarBrand brand, CarPrice precio,
+	public static Car createCar(CarId id, CarTitle title, CarDescription description, CarBrand brand, CarPrice precio,
 			CarUrl carImageUrl, CarUrl carAnnouncmentURL) {
-		Car createdCar = new Car(title, description, brand, precio, carImageUrl, carAnnouncmentURL);
+		Car createdCar = new Car(id, title, description, brand, precio, carImageUrl, carAnnouncmentURL);
 
 		return createdCar;
 	}
