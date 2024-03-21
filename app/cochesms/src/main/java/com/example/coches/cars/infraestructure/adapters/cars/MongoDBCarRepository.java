@@ -92,6 +92,7 @@ public class MongoDBCarRepository implements CarRepository {
 	@Override
 	public Car addCar(Car car) {
 		// TODO Auto-generated method stub
+		// Validar que todos los campos del car sean correctos
 		Car addedCar = mongoTemplate.insert(car, "cars");
 		return addedCar;
 	}

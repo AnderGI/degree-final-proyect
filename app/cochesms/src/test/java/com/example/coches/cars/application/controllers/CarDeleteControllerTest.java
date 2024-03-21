@@ -41,37 +41,21 @@ public class CarDeleteControllerTest {
 
 	@Test
 	void it_should_delete_an_existing_car_from_car_id_path_variable() throws Exception {
-/*		 Having
-		// arraylist vacia
-		Car toAddCar1 = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"),
-				new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"), new CarPrice(70000.0),
-				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
-		Car toAddCar2 = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("Mercedes clase E W212"),
-				new CarDescription("Coche clásico de lujo"), new CarBrand("mercedes"), new CarPrice(7000.0),
-				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
-		repository.addCar(toAddCar1);
-		repository.addCar(toAddCar2);
-		String jsonString = CarToJsonConverter
-				.convert_car_to_json(toAddCar1, mapper).toString();
-		// When
-		when(repository.deleteCar(toAddCar1.getIdValue())).thenReturn(toAddCar1);
-		// Endpoint
-		mockMvc.perform(delete("/cars/{id}", toAddCar1.getIdValue())).andDo(print()).andExpectAll(status().isOk(),
-				content().contentType(MediaType.APPLICATION_JSON), content().json(jsonString));
-*/	
 		Car car1 = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"),
 				new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"), new CarPrice(70000.0),
 				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
+		
 		String jsonString = CarToJsonConverter
 				.convert_car_to_json(car1, mapper).toString();
-		mockMvc.perform(
-	            post("/cars") 
-	            .contentType(MediaType.APPLICATION_JSON)
-	            .content(jsonString)
-	    );
 		
-		
-		mockMvc.perform(delete("/cars/{id}",repository.getCars().get(0).getIdValue()).contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk());
+		  // Simular el comportamiento del repositorio para devolver el coche cuando se llame al método getCar
+        when(repository.getCar(car1.getIdValue())).thenReturn(car1);
+        
+        // Simular el comportamiento del repositorio para devolver el coche eliminado cuando se llame al método deleteCar
+        when(repository.deleteCar(car1.getIdValue())).thenReturn(car1);
+        mockMvc.perform(delete("/cars/{id}", car1.getIdValue())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    
 	}
 }
