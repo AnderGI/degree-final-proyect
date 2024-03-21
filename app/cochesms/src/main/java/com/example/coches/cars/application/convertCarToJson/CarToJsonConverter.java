@@ -1,51 +1,43 @@
 package com.example.coches.cars.application.convertCarToJson;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.example.coches.cars.domain.car.Car;
+import com.example.coches.cars.domain.convertCarToObjectNode.CarAnnouncmentURLToObjectNodeConverter;
+import com.example.coches.cars.domain.convertCarToObjectNode.CarBrandToObjectNodeConverter;
+import com.example.coches.cars.domain.convertCarToObjectNode.CarDescriptionToObjectNodeConverter;
+import com.example.coches.cars.domain.convertCarToObjectNode.CarFieldToObjectNodeConverter;
+import com.example.coches.cars.domain.convertCarToObjectNode.CarIdToObjectNodeConverter;
+import com.example.coches.cars.domain.convertCarToObjectNode.CarImageURLToObjectNodeConverter;
+import com.example.coches.cars.domain.convertCarToObjectNode.CarPriceToObjectNodeConverter;
+import com.example.coches.cars.domain.convertCarToObjectNode.CarTitleToObjectNodeConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 final public class CarToJsonConverter {
 
+    private static Map<String, CarFieldToObjectNodeConverter> convertersMap = new HashMap<>();
+    static {
+        convertersMap.put("id", new CarIdToObjectNodeConverter());
+        convertersMap.put("title", new CarTitleToObjectNodeConverter());
+        convertersMap.put("description", new CarDescriptionToObjectNodeConverter());
+        convertersMap.put("brand", new CarBrandToObjectNodeConverter());
+        convertersMap.put("price", new CarPriceToObjectNodeConverter());
+        convertersMap.put("carImageURL", new CarImageURLToObjectNodeConverter());
+        convertersMap.put("carAnnouncementURL", new CarAnnouncmentURLToObjectNodeConverter());
+    }
+	
 	public static ObjectNode convert_car_to_json(Car car, ObjectMapper mapper) {
-		// Crear un objeto ObjectNode para construir el JSON
+		
 		ObjectNode jsonNode = mapper.createObjectNode();
-
-		// Crear un objeto ObjectNode para el campo 'id'
-		ObjectNode idNode = mapper.createObjectNode();
-		idNode.put("value", car.getIdValue());
-		jsonNode.set("id", idNode);
-
-		// Crear un objeto ObjectNode para el campo 'title'
-		ObjectNode titleNode = mapper.createObjectNode();
-		titleNode.put("value", car.getTitleValue());
-		jsonNode.set("title", titleNode);
-
-		// Crear un objeto ObjectNode para el campo 'description'
-		ObjectNode descriptionNode = mapper.createObjectNode();
-		descriptionNode.put("value", car.getDescriptionValue());
-		jsonNode.set("description", descriptionNode);
-
-		// Crear un objeto ObjectNode para el campo 'brand'
-		ObjectNode brandNode = mapper.createObjectNode();
-		brandNode.put("value", car.getBrandValue());
-		jsonNode.set("brand", brandNode);
-
-		// Crear un objeto ObjectNode para el campo 'price'
-		ObjectNode priceNode = mapper.createObjectNode();
-		priceNode.put("value", car.getCarPriceValue());
-		jsonNode.set("price", priceNode);
-
-		// Crear un objeto ObjectNode para el campo 'image url'
-		ObjectNode imageNode = mapper.createObjectNode();
-		imageNode.put("value", car.getCarImageUrlValue());
-		jsonNode.set("carImageURL", imageNode);
-
-		// Crear un objeto ObjectNode para el campo 'announcment url'
-		ObjectNode announcementNode = mapper.createObjectNode();
-		announcementNode.put("value", car.getCarAnnouncmentURLValue());
-		jsonNode.set("carAnnouncementURL", announcementNode);
+		// OCP
+		for(Entry<String, CarFieldToObjectNodeConverter> entry : convertersMap.entrySet()) {
+			jsonNode.set(entry.getKey(), 
+					entry.getValue().convertCarFieltToObjectNode(car, mapper));
+		}
+		
 		
 		return jsonNode;
 	}
