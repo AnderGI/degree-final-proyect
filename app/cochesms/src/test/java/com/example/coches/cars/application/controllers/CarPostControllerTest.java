@@ -64,9 +64,8 @@ public class CarPostControllerTest {
 	    )
 	    .andDo(print())
 	    .andExpectAll(
-	            status().isCreated()//,
-	            // Problema lo tengo en que me genera dos ids distintos 
-	            //header().string("Location", "/cars/" + toAddCar.getIdValue())
+	            status().isCreated(),
+	            header().string("Location", "/cars/" + toAddCar.getIdValue())
 	    );
 	}
 

@@ -3,17 +3,15 @@ package com.example.coches.cars.domain.car;
 import java.util.Objects;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 final public class CarId {
 	private String value;
 	
-	public CarId() {
-		this.value = UUID.randomUUID().toString();
-	}
-	
-	public CarId(String id) {
-		this.value = id;
+	@JsonCreator
+	public CarId(@JsonProperty("value") String value) {
+		this.value = value;
 	}
 	
 	public String getCarIdValue() {
