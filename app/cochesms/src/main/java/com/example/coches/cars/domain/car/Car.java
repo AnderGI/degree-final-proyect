@@ -1,6 +1,7 @@
 package com.example.coches.cars.domain.car;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(value = "car")
-final public class Car implements Serializable{
-	
+final public class Car implements Serializable {
+
 	private CarId id;
 	private CarTitle title;
 	private CarDescription description;
@@ -18,62 +19,22 @@ final public class Car implements Serializable{
 	private CarUrl carImageURL;
 	private CarUrl carAnnouncementUrl;
 	private CarPrice price;
-/*
-    @JsonCreator
-    public Car(@JsonProperty("title") CarTitle title,
-               @JsonProperty("description") CarDescription description,
-               @JsonProperty("brand") CarBrand brand,
-               @JsonProperty("price") CarPrice price,
-               @JsonProperty("carImageURL") CarUrl carImageURL,
-               @JsonProperty("carAnnouncementURL") CarUrl carAnnouncementUrl) {
-        this.id = new CarId();
-        this.title = title;
-        this.description = description;
-        this.brand = brand;
-        this.price = price;
-        this.carImageURL = carImageURL;
-        this.carAnnouncementUrl = carAnnouncementUrl;
-    }
-  */
-	   public Car() {
-	    }/*
-	 public Car(CarId id,
-			 CarTitle title,
-	            CarDescription description,
-	            CarBrand brand,
-	            CarPrice price,
-	            CarUrl carImageURL,
-	            CarUrl carAnnouncementUrl) {
-	        this.id = id;
-	        this.title = title;
-	        this.description = description;
-	        this.brand = brand;
-	        this.price = price;
-	        this.carImageURL = carImageURL;
-	        this.carAnnouncementUrl = carAnnouncementUrl;
-	    }*/
-    @JsonCreator
-    public Car(@JsonProperty("id") CarId id,
-    		   @JsonProperty("title") CarTitle title,
-               @JsonProperty("description") CarDescription description,
-               @JsonProperty("brand") CarBrand brand,
-               @JsonProperty("price") CarPrice price,
-               @JsonProperty("carImageURL") CarUrl carImageURL,
-               @JsonProperty("carAnnouncementURL") CarUrl carAnnouncementUrl) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.brand = brand;
-        this.price = price;
-        this.carImageURL = carImageURL;
-        this.carAnnouncementUrl = carAnnouncementUrl;
-    }
-	// Name constructor https://codely.com/blog/constructores-semanticos
-	public static Car createCar(CarId id, CarTitle title, CarDescription description, CarBrand brand, CarPrice precio,
-			CarUrl carImageUrl, CarUrl carAnnouncmentURL) {
-		Car createdCar = new Car(id, title, description, brand, precio, carImageUrl, carAnnouncmentURL);
 
-		return createdCar;
+	public Car() {
+	}
+
+	@JsonCreator
+	public Car(@JsonProperty("id") CarId id, @JsonProperty("title") CarTitle title,
+			@JsonProperty("description") CarDescription description, @JsonProperty("brand") CarBrand brand,
+			@JsonProperty("price") CarPrice price, @JsonProperty("carImageURL") CarUrl carImageURL,
+			@JsonProperty("carAnnouncementURL") CarUrl carAnnouncementUrl) {
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.brand = brand;
+		this.price = price;
+		this.carImageURL = carImageURL;
+		this.carAnnouncementUrl = carAnnouncementUrl;
 	}
 
 	public String getIdValue() {
@@ -115,17 +76,36 @@ final public class Car implements Serializable{
 	public void updateCarImageUrl(String url) {
 		this.carImageURL = new CarUrl(url);
 	}
-/*
-	public void updateCarPrice(Double price) {
-		this.price = new CarPrice(price);
+	
+	public void updateCarPrice(Double value) {
+		this.price = new CarPrice(value);
 	}
-	*/
-
+	
 	@Override
 	public String toString() {
 		return "Car [id=" + id + ", title=" + title + ", description=" + description + ", brand=" + brand
 				+ ", carImageURL=" + carImageURL + ", carAnnouncementUrl=" + carAnnouncementUrl + ", price=" + price
 				+ "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	// Mirara por su value que es como esta establecido para todos los value objects
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		return Objects.equals(id, other.id);
+	}
+	
+	
 
 }
