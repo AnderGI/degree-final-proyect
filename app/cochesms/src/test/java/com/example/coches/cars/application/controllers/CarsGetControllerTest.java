@@ -20,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
+import com.example.coches.cars.application.convertCarToJson.CarToJsonConverter;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -108,8 +109,8 @@ public class CarsGetControllerTest {
 		// Endpoint
 		mockMvc.perform(get("/cars/{id}", newCar.getIdValue()).accept(MediaType.APPLICATION_JSON)).andDo(print())
 				.andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				//.andExpect(content().json(mapper.writeValueAsString(newCar)
-				//))
+				.andExpect(content().json(CarToJsonConverter
+						.convert_car_to_json(newCar, mapper).toString()))
 				;
 	}
 
