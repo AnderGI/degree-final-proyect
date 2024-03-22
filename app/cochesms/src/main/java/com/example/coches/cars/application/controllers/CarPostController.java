@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.coches.cars.application.convertCarToJson.CarToJsonConverter;
+import com.example.coches.cars.application.saveCar.CarSaver;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 
@@ -33,7 +34,9 @@ final public class CarPostController {
 	@PostMapping(path = "/cars", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ObjectNode> addCar(@RequestBody Car car) {
 		// Validaciones ¿Value Objects? Deberian de hacerse allí
-		System.out.println(car);
+		Car validCar = CarSaver.validateCar(car);
+		if(validCar == null) return ResponseEntity.badRequest().build();
+		
 		Car addedCar = repo.addCar(car);
 		URI uri = null;
 		try {

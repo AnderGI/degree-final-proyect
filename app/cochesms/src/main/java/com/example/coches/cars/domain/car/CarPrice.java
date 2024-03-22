@@ -64,23 +64,17 @@ final public class CarPrice {
     // Para lo que venga de bbdd
 	@JsonCreator
 	public CarPrice(@JsonProperty("value") Double value) {
-		this.value = value;
+		this.value = asignarPrecio(value);
 	}
 
 
  
 
-	private Double asignarPrecio(String price) {
+	private Double asignarPrecio(Double price) {
 		// TODO Auto-generated method stub
-    	if(price == null) return null;
-    	Number n = null;
-    	try {
-    		n = nfMoneda.parse(price);
-    	}catch(ParseException exc) {
-    		return null;
-    	}
-    	
-		return n.doubleValue();
+    	if(price <= 0) return null;
+
+		return price;
 	}
 
 	public Double getCarPriceValue() {
