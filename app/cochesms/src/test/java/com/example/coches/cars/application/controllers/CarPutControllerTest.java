@@ -66,4 +66,31 @@ public class CarPutControllerTest {
 	    .andDo(print())
 	    .andExpectAll(status().isOk());
 	}
+	
+	@Test
+	void it_should_return_null_when_inexistent_car() throws Exception{
+		String fakeId = "aaaaaaaaaaaaa";
+	    Car updatedCar =  new Car(new CarId(UUID.randomUUID().toString()), 
+	    		new CarTitle("ACTUALIZADO"), 
+	            new CarDescription("ACTUALIZADO"), 
+	            new CarBrand("BMW"), new CarPrice(70000.0), 
+	            new CarUrl("https://example.com/bmw-m3.jpg"), 
+	            new CarUrl("https://example.com/bmw-m3-listing"));
+	    // Convertir el ObjectNode a una cadena JSON
+        String jsonString = CarToJsonConverter
+        		.convert_car_to_json(updatedCar, mapper).toString();
+		
+		when(repository.updateCar(any(Car.class), eq(fakeId))).thenReturn(null);
+		
+		mockMvc.perform(
+				put("/cars/{id}", fakeId)
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(CarToJsonConverter.convert_car_to_json(updatedCar, mapper).toString())
+		).andDo(print())
+		.andExpectAll(
+				status().isNotFound()
+		);
+		
+	}
 }
