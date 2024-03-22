@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  eureka:
+    image: andergi/eureka
+    container_name: eureka
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - netcars
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user # Cambia por el usuario de MongoDB
+      - MONGO_INITDB_ROOT_PASSWORD=p4ssw0rd # Cambia por la contraseña de MongoDB
+    ports:
+      - "27017:27017"
+    networks:
+      - netcars # Conecta el servicio a la misma red que el servicio eureka
+
+  coches:
+    image: andergi/coches
+    container_name: coches
+    mem_limit: 700m
+    ports:
+      - "8081:8081"
+    networks:
+      - netcars
+
+networks:
+  netcars:
