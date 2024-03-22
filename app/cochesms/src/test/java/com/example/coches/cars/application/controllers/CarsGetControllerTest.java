@@ -55,12 +55,13 @@ public class CarsGetControllerTest {
 		when(repository.getCars()).thenReturn(expectedCars);
 		
 		// Realizamos la accion al endpoint especificado
-		mockMvc.perform(get("/cars").accept(MediaType.APPLICATION_JSON)).andDo(print()) // Mostrar por consola
-				.andExpectAll(
-						status().isOk(),
-						content().contentType(MediaType.APPLICATION_JSON),
-						content().json(mapper.writeValueAsString(expectedCars))
-						);
+		mockMvc.perform(get("/cars").accept(MediaType.APPLICATION_JSON))
+		.andDo(print())
+		.andExpectAll(
+				status().isOk(),
+				content().contentType(MediaType.APPLICATION_JSON),
+				content().json(mapper.writeValueAsString(expectedCars))
+		);
 	}
 
 	@Test

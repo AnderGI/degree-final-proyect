@@ -41,6 +41,36 @@ public class CarPostControllerTest {
 	private CarRepository repository;
 	
 	@Test
+	void it_should_return_a_car_when_car_is_added() throws Exception{
+		  Car toAddCar =  new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"), 
+		            new CarDescription("Sedán deportivo de lujo"), 
+		            new CarBrand("BMW"), new CarPrice(70000.0), 
+		            new CarUrl("https://example.com/bmw-m3.jpg"), 
+		            new CarUrl("https://example.com/bmw-m3-listing"));
+		  String carToJson = CarToJsonConverter.convert_car_to_json(toAddCar, mapper).toString();
+		  
+		  // Mocking
+		  when(repository.addCar(toAddCar)).thenReturn(toAddCar);
+	
+	
+		    // Ejecutar el endpoint
+		    mockMvc.perform(
+		    	    post("/cars")
+		    	    .contentType(MediaType.APPLICATION_JSON)
+		    	    .accept(MediaType.APPLICATION_JSON)      
+		    	    .content(carToJson)
+		    )
+		    .andDo(print())
+		    .andExpectAll(
+		            status().isCreated(),
+		            header().string("Location", "/cars/" + toAddCar.getIdValue()),
+		            content().json(carToJson)
+		    );
+
+	}
+	
+
+	
 	void it_should_add_a_new_car_if_car_info_is_correct() throws Exception {
 	    Car toAddCar =  new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"), 
 	            new CarDescription("Sedán deportivo de lujo"), 
@@ -59,7 +89,7 @@ public class CarPostControllerTest {
 	    // Ejecutar el endpoint
 	    mockMvc.perform(
 	            post("/cars") 
-	            .contentType(MediaType.APPLICATION_JSON)
+	            .accept(MediaType.APPLICATION_JSON)
 	            .content(jsonString)
 	    )
 	    .andDo(print())
@@ -67,6 +97,10 @@ public class CarPostControllerTest {
 	            status().isCreated(),
 	            header().string("Location", "/cars/" + toAddCar.getIdValue())
 	    );
+	}
+	
+	void it_should_add_a_new_car_if_car_info_is_incorrect() throws Exception {
+		
 	}
 
 }
