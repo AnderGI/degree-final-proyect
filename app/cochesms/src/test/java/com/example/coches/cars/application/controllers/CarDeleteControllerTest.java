@@ -53,9 +53,34 @@ public class CarDeleteControllerTest {
         
         // Simular el comportamiento del repositorio para devolver el coche eliminado cuando se llame al método deleteCar
         when(repository.deleteCar(car1.getIdValue())).thenReturn(car1);
-        mockMvc.perform(delete("/cars/{id}", car1.getIdValue())
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+        
+        // Ejecutamos el endpoint
+        mockMvc
+        .perform(
+        		delete("/cars/{id}", car1.getIdValue()
+        )
+        .contentType(MediaType.APPLICATION_JSON))
+        .andExpectAll(status().isOk());
     
+	}
+	
+	@Test
+	void it_should_return_not_not_found_for_deleting_a_with_non_existing_id() throws Exception{
+		// Especificamos el fake id
+		String fakeCarId = "hhhhhhhhhhh";
+		
+		// Especificamos el mockeo
+		when(repository.deleteCar(fakeCarId)).thenReturn(null);
+		
+		// Ejecutamos el endpoint
+		mockMvc.perform(
+				delete("/cars/{id}", fakeCarId)
+				.contentType(MediaType.APPLICATION_JSON)
+		)
+		.andDo(print())
+		.andExpectAll(
+				status().isNotFound()
+		);
+		
 	}
 }
