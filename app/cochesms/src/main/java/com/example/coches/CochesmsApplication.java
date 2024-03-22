@@ -17,10 +17,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.example.coches.cars.domain.car.CarRepository;
-import com.example.coches.cars.domain.messagereceiver.MessageReceiver;
 import com.example.coches.cars.infraestructure.adapters.cars.InMemoryCarRepository;
 import com.example.coches.cars.infraestructure.adapters.cars.MongoDBCarRepository;
-import com.example.coches.cars.infraestructure.adapters.messagereceivers.RabbitMQMessageReceiver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
@@ -31,39 +29,6 @@ import com.mongodb.client.MongoClients;
 @EnableMongoRepositories
 @EnableDiscoveryClient
 public class CochesmsApplication {
-	static final String topicExchangeName = "spring-boot-exchange";
-	static final String queueName = "car_scrapping"; // Cambiar el nombre de la cola
-
-	/* RABBIT
-	@Bean
-	Queue queue() {
-		return new Queue(queueName, false);
-	}
-
-	@Bean
-	TopicExchange exchange() {
-		return new TopicExchange(topicExchangeName);
-	}
-
-	@Bean
-	Binding binding(Queue queue, TopicExchange exchange) {
-		return BindingBuilder.bind(queue).to(exchange).with("foo.bar.#");
-	}
-
-	@Bean
-	SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, @Autowired MessageReceiver receiver) {
-		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-		container.setConnectionFactory(connectionFactory);
-		container.setQueueNames(queueName);
-		container.setMessageListener(new MessageListenerAdapter(receiver, "receiveMessage"));
-		return container;
-	}
-    
-    @Bean
-    public MessageReceiver messageReceiver(@Autowired ObjectMapper objectMapper, @Autowired  CarRepository carRepository) {
-    	return new RabbitMQMessageReceiver(objectMapper, carRepository);
-    }
-    */
     @Bean
     @Profile("mongodbrepository")
     public CarRepository mongoDBCarRepositoy() {
