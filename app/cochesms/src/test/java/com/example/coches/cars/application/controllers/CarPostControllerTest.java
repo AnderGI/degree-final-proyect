@@ -1,5 +1,6 @@
 package com.example.coches.cars.application.controllers;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -39,34 +40,69 @@ public class CarPostControllerTest {
 	// Mockeamos una instancia del bean CarRepository para no utilizar el mismo
 	@MockBean
 	private CarRepository repository;
-	
+
+	@Test
+	void it_should_return_a_car_when_car_is_added() throws Exception {
+		Car toAddCar = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"),
+				new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"), new CarPrice(70000.0),
+				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
+		String carToJson = CarToJsonConverter.convert_car_to_json(toAddCar, mapper).toString();
+
+		// Mocking
+		when(repository.addCar(toAddCar)).thenReturn(toAddCar);
+
+		// Ejecutar el endpoint
+		mockMvc.perform(post("/cars").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+				.content(carToJson)).andDo(print()).andExpectAll(status().isCreated(),
+						header().string("Location", "/cars/" + toAddCar.getIdValue()), content().json(carToJson));
+
+	}
+
 	@Test
 	void it_should_add_a_new_car_if_car_info_is_correct() throws Exception {
-	    Car toAddCar =  new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"), 
-	            new CarDescription("Sedán deportivo de lujo"), 
-	            new CarBrand("BMW"), new CarPrice(70000.0), 
-	            new CarUrl("https://example.com/bmw-m3.jpg"), 
-	            new CarUrl("https://example.com/bmw-m3-listing"));
-  
-        
-        // Convertir el ObjectNode a una cadena JSON
-        String jsonString = CarToJsonConverter
-        		.convert_car_to_json(toAddCar, mapper).toString();
-	    
-	    // When
-	    when(repository.addCar(toAddCar)).thenReturn(toAddCar);
-	    
-	    // Ejecutar el endpoint
-	    mockMvc.perform(
-	            post("/cars") 
-	            .contentType(MediaType.APPLICATION_JSON)
-	            .content(jsonString)
-	    )
-	    .andDo(print())
-	    .andExpectAll(
-	            status().isCreated(),
-	            header().string("Location", "/cars/" + toAddCar.getIdValue())
-	    );
+		Car toAddCar = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"),
+				new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"), new CarPrice(70000.0),
+				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
+
+		// Convertir el ObjectNode a una cadena JSON
+		String jsonString = CarToJsonConverter.convert_car_to_json(toAddCar, mapper).toString();
+
+		// When
+		when(repository.addCar(toAddCar)).thenReturn(toAddCar);
+
+		// Ejecutar el endpoint
+		mockMvc.perform(
+				post("/cars")
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(jsonString))
+				.andDo(print())
+				.andExpectAll(
+						status().isCreated(), 
+						header().string("Location", "/cars/" + toAddCar.getIdValue()));
+	}
+
+	@Test
+	void it_should_not_add_a_new_car_if_car_info_is_incorrect() throws Exception {
+		// Precio es cero y url de imagen esta vacia
+		Car toAddCar = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"),
+				new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"), new CarPrice(0.0), new CarUrl(""),
+				new CarUrl("https://example.com/bmw-m3-listing"));
+		String jsonString = CarToJsonConverter.convert_car_to_json(toAddCar, mapper).toString();
+		// when
+		when(repository.addCar(toAddCar)).thenReturn(null);
+		
+		
+		// Endpoint
+		mockMvc.perform(
+				post("/cars")
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)
+				.content(jsonString)
+		).andDo(print())
+		.andExpect(
+				status().isBadRequest()
+		);
 	}
 
 }

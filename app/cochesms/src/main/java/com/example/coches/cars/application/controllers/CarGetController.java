@@ -24,19 +24,18 @@ final public class CarGetController {
 	private CarRepository repo;
 	@Autowired
 	private ObjectMapper mapper;
+	
 	@GetMapping("/cars")
 	public List<ObjectNode> getCars(){
-		List<ObjectNode> nodes = new ArrayList<>();
+		List<ObjectNode> carObjectNodes = new ArrayList<>();
 		for(Car car: repo.getCars()) {	
-			nodes.add(CarToJsonConverter.convert_car_to_json(car, mapper));
+			carObjectNodes.add(CarToJsonConverter.convert_car_to_json(car, mapper));
 		}
-		// return 
-		return nodes;
+		return carObjectNodes;
 	}
 	@GetMapping("/cars/{id}")
 	public ResponseEntity<ObjectNode> getCar(@PathVariable String id) {
 	    Car requestedCar = repo.getCar(id);
-	    
 	    if (requestedCar == null) {
 	        return ResponseEntity.notFound().build();
 	    }	    
