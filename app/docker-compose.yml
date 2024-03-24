@@ -8,6 +8,16 @@ services:
       - "8761:8761"
     networks:
       - netcars
+  gateway:
+    image: andergi/gateway:latest
+    container_name: gateway
+    mem_limit: 700m
+    ports:
+      - "8090:8090"
+    networks:
+      - netcars
+    depends_on:
+      - "eureka"
   mongodb:
     image: mongo:latest
     container_name: mongodb
