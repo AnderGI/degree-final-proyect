@@ -1,6 +1,5 @@
-package com.example.coches.cars.application.controllers;
+package com.example.coches.cars.application.controllers.post;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -17,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.coches.cars.application.convertCarToJson.CarToJsonConverter;
+import com.example.coches.cars.application.controllers.CarPostController;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -26,11 +25,11 @@ import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
+import com.example.coches.cars.domain.convert_car_model_to_json_model.CarToJsonConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @WebMvcTest
-public class CarPostControllerTest {
+public class AddCarUnitTester {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
@@ -46,7 +45,7 @@ public class CarPostControllerTest {
 		Car toAddCar = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"),
 				new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"), new CarPrice(70000.0),
 				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
-		String carToJson = CarToJsonConverter.convert_car_to_json(toAddCar, mapper).toString();
+		String carToJson = CarToJsonConverter.convert(toAddCar, mapper).toString();
 
 		// Mocking
 		when(repository.addCar(toAddCar)).thenReturn(toAddCar);
@@ -65,7 +64,7 @@ public class CarPostControllerTest {
 				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
 
 		// Convertir el ObjectNode a una cadena JSON
-		String jsonString = CarToJsonConverter.convert_car_to_json(toAddCar, mapper).toString();
+		String jsonString = CarToJsonConverter.convert(toAddCar, mapper).toString();
 
 		// When
 		when(repository.addCar(toAddCar)).thenReturn(toAddCar);
@@ -88,7 +87,7 @@ public class CarPostControllerTest {
 		Car toAddCar = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"),
 				new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"), new CarPrice(0.0), new CarUrl(""),
 				new CarUrl("https://example.com/bmw-m3-listing"));
-		String jsonString = CarToJsonConverter.convert_car_to_json(toAddCar, mapper).toString();
+		String jsonString = CarToJsonConverter.convert(toAddCar, mapper).toString();
 		// when
 		when(repository.addCar(toAddCar)).thenReturn(null);
 		

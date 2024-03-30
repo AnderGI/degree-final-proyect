@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import com.example.coches.cars.application.saveCar.CarSaver;
+import com.example.coches.cars.application.save_car.CarSaver;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -19,6 +19,8 @@ import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.domain.criteria.Criteria;
+import com.example.coches.cars.domain.criteria.Filter;
+import com.example.coches.cars.domain.criteria.FilterOperator;
 import com.mongodb.client.result.DeleteResult;
 
 @Repository 
@@ -95,9 +97,33 @@ public class MongoDBCarRepository implements CarRepository {
 	}
 
 	@Override
-	public List<Car> findByCriteria(Criteria criteria) {
+	public List<Car> matching(Criteria criteria) {
 		// TODO Auto-generated method stub
-		return null;
+		Query query = new Query();
+		for(Filter filter : criteria.getFilters()) {
+			// Violacion temporal de OCP
+			// Casos donde sea igual
+			if(filter.getOperator().getOperatorValue()
+					.equals(FilterOperator.EQUAL)) {
+				query.addCriteria(org.springframework.data.mongodb.core.query.Criteria
+						.where(filter.getField().getFieldValue() + ".value")
+						.is(filter.getValue().getFilterValue()));
+			}
+			// Casos para mayor
+			else if (filter.getOperator().getOperatorValue()
+				.equals(FilterOperator.GREATER_THAN)){
+				System.out.println("gt");
+				query.addCriteria(org.springframework.data.mongodb.core.query.Criteria
+						.where("price.value").gt(Double.parseDouble(
+								filter.getValue().getFilterValue()
+								)
+							)
+				);
+				
+			}
+			// Casos para menor
+		}
+		return mongoTemplate.find(query, Car.class, "cars");
 	}
 
 }

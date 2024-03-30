@@ -1,4 +1,4 @@
-package com.example.coches.cars.application.convertCarToJson;
+package com.example.coches.cars.domain.convert_car_model_to_json_model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +17,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 final public class CarToJsonConverter {
-
-    private static Map<String, CarFieldToObjectNodeConverter> convertersMap = new HashMap<>();
+	// Genero un mapa dependiente de las propiedades del car que se quieran enviar por json
+    // Key -> Nombre de la propiedad del car model 
+	// ** (hay que tener en cuenta que son value objects)
+	// Value -> Convertidor específico para cada propiedad
+	// ** como el proceso soolo es dependiente de una propiedad genero una interfaz
+	// y aplico OCP para facilitar el desacoplamiento
+	private static Map<String, CarFieldToObjectNodeConverter> convertersMap = new HashMap<>();
     static {
         convertersMap.put("id", new CarIdToObjectNodeConverter());
         convertersMap.put("title", new CarTitleToObjectNodeConverter());
@@ -28,11 +33,13 @@ final public class CarToJsonConverter {
         convertersMap.put("carImageURL", new CarImageURLToObjectNodeConverter());
         convertersMap.put("carAnnouncementURL", new CarAnnouncmentURLToObjectNodeConverter());
     }
-	
-	public static ObjectNode convert_car_to_json(Car car, ObjectMapper mapper) {
-		
+    
+	public static ObjectNode convert(Car car, ObjectMapper mapper) {
+		// Nodo raíz
 		ObjectNode jsonNode = mapper.createObjectNode();
-		// OCP
+		// Cada convertidor crea un nodo a partir del objectmapper ya instanciado
+		// y coge el valor que necesite para generar el nodo que representa el value object
+		// {"campo": {"value": valor }}
 		for(Entry<String, CarFieldToObjectNodeConverter> entry : convertersMap.entrySet()) {
 			jsonNode.set(entry.getKey(), 
 					entry.getValue().convertCarFieltToObjectNode(car, mapper));

@@ -11,5 +11,5 @@ public interface CarRepository {
 	Car updateCar(Car car, String id);
 	Car deleteCar(String id);
 	Car addCar(Car car);
-	List<Car> findByCriteria(Criteria criteria); //Specification / Criteria Pattern 
+	List<Car> matching(Criteria criteria); 
 }

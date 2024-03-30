@@ -58,7 +58,7 @@ public class InMemoryCarRepository implements CarRepository {
 	}
 
 	@Override
-	public List<Car> findByCriteria(Criteria criteria) {
+	public List<Car> matching(Criteria criteria) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,23 +1,20 @@
-package com.example.coches.cars.application.controllers;
+package com.example.coches.cars.application.controllers.delete;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.coches.cars.application.convertCarToJson.CarToJsonConverter;
+import com.example.coches.cars.application.controllers.CarDeleteController;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -26,10 +23,11 @@ import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
+import com.example.coches.cars.domain.convert_car_model_to_json_model.CarToJsonConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
-public class CarDeleteControllerTest {
+public class DeleteCarUnitTester {
 	@Autowired
 	private MockMvc mockMvc;
 	@MockBean
@@ -46,7 +44,7 @@ public class CarDeleteControllerTest {
 				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
 		
 		String jsonString = CarToJsonConverter
-				.convert_car_to_json(car1, mapper).toString();
+				.convert(car1, mapper).toString();
 		
 		  // Simular el comportamiento del repositorio para devolver el coche cuando se llame al método getCar
         when(repository.getCar(car1.getIdValue())).thenReturn(car1);

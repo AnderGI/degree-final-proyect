@@ -1,4 +1,4 @@
-package com.example.coches.cars.application.saveCar;
+package com.example.coches.cars.application.save_car;
 
 import com.example.coches.cars.domain.car.Car;
 

@@ -1,5 +1,8 @@
 package com.example.coches.cars.domain.criteria;
 
+import lombok.Data;
+
+@Data
 final public class Filter {
 	private FilterField field;
 	private FilterOperator operator;
@@ -9,6 +12,12 @@ final public class Filter {
 		this.field = field;
 		this.operator = operator;
 		this.value = value;
+	}
+
+	@Override
+	public String toString() {
+		return "Filter [field=" + field.getFieldValue() + ", operator=" 
+	+ operator.getOperatorValue() + ", value=" + value.getFilterValue() + "]";
 	}
 
 }

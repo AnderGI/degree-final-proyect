@@ -8,4 +8,11 @@ final public class Order {
 		this.orderBy = orderBy;
 		this.orderType = orderType;
 	}
+	
+	public static Order fromPrimitives(String orderBy, String orderType) {
+		return new Order(
+				new OrderBy(orderBy), 
+				new OrderType(orderType == null ? OrderType.NONE : orderType)
+		);
+	}
 }

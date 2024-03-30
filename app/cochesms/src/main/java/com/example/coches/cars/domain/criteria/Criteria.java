@@ -1,13 +1,36 @@
 package com.example.coches.cars.domain.criteria;
 
+import java.util.List;
 
 final public class Criteria {
-	private Filters filtros;
-	private Order ordenacion;
+	private Filters filters;
+	private Order order;
 	
 	public Criteria(Filters filtros, Order order) {
-		this.filtros = filtros;
-		this.ordenacion = order;
+		this.filters = filtros;
+		this.order = order;
 	}
+	
+	
+	
+	public List<Filter> getFilters() {
+		return this.filters.getFiltersList();
+	}
+
+	public static Criteria fromPrimitives(String filters, String orderBy, String orderType) {
+		return new Criteria(
+			Filters.fromPrimitives(filters), // esto se pasa como url encoded
+			Order.fromPrimitives(orderBy, orderType) // estos dos como strings normales
+		);
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Criteria [filters=" + filters + ", order=" + order + "]";
+	}
+	
+	
 	
 }

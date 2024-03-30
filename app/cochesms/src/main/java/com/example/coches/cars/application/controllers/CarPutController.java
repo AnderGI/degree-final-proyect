@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.coches.cars.application.convertCarToJson.CarToJsonConverter;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarRepository;
+import com.example.coches.cars.domain.convert_car_model_to_json_model.CarToJsonConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -26,7 +26,7 @@ public class CarPutController {
 	        if (updatedCar == null) {
 	            return ResponseEntity.notFound().build();
 	        }
-	        return ResponseEntity.ok(CarToJsonConverter.convert_car_to_json(updatedCar, mapper));
+	        return ResponseEntity.ok(CarToJsonConverter.convert(updatedCar, mapper));
 	}
 	
 }

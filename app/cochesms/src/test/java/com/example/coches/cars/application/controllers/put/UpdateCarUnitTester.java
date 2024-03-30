@@ -1,10 +1,11 @@
-package com.example.coches.cars.application.controllers;
+package com.example.coches.cars.application.controllers.put;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.UUID;
 
@@ -14,10 +15,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.coches.cars.application.convertCarToJson.CarToJsonConverter;
+import com.example.coches.cars.application.controllers.CarPutController;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -26,10 +25,11 @@ import com.example.coches.cars.domain.car.CarPrice;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
+import com.example.coches.cars.domain.convert_car_model_to_json_model.CarToJsonConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
-public class CarPutControllerTest {
+public class UpdateCarUnitTester {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
@@ -51,7 +51,7 @@ public class CarPutControllerTest {
 	            new CarUrl("https://example.com/bmw-m3-listing"));
 	    // Convertir el ObjectNode a una cadena JSON
         String jsonString = CarToJsonConverter
-        		.convert_car_to_json(updatedCar, mapper).toString();
+        		.convert(updatedCar, mapper).toString();
 	    // Especificamos lo que tiene que pasar cuando se haga el update
 	    when(repository.updateCar(any(Car.class), eq(updatedCar.getIdValue())))
 	    .thenReturn(updatedCar);
@@ -78,7 +78,7 @@ public class CarPutControllerTest {
 	            new CarUrl("https://example.com/bmw-m3-listing"));
 	    // Convertir el ObjectNode a una cadena JSON
         String jsonString = CarToJsonConverter
-        		.convert_car_to_json(updatedCar, mapper).toString();
+        		.convert(updatedCar, mapper).toString();
 		
 		when(repository.updateCar(any(Car.class), eq(fakeId))).thenReturn(null);
 		
@@ -86,7 +86,7 @@ public class CarPutControllerTest {
 				put("/cars/{id}", fakeId)
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(CarToJsonConverter.convert_car_to_json(updatedCar, mapper).toString())
+				.content(CarToJsonConverter.convert(updatedCar, mapper).toString())
 		).andDo(print())
 		.andExpectAll(
 				status().isNotFound()

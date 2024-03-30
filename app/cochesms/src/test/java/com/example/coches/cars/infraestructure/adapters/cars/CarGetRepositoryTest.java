@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,15 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarRepository;
+import com.example.coches.cars.domain.criteria.Criteria;
+import com.example.coches.cars.domain.criteria.Filter;
+import com.example.coches.cars.domain.criteria.FilterField;
+import com.example.coches.cars.domain.criteria.FilterOperator;
+import com.example.coches.cars.domain.criteria.FilterValue;
+import com.example.coches.cars.domain.criteria.Filters;
+import com.example.coches.cars.domain.criteria.Order;
+import com.example.coches.cars.domain.criteria.OrderBy;
+import com.example.coches.cars.domain.criteria.OrderType;
 
 @SpringBootTest
 @ActiveProfiles("mongodbrepository")
@@ -63,5 +73,45 @@ public class CarGetRepositoryTest {
 		Car nullableCar = repository.getCar("aaaaa");
 		System.out.println(nullableCar);
 		assertEquals(nullableCar, null);
+	}
+
+	@Test
+	void it_should_return_a_list_of_cars_by_an_specific_car_title_criteria() {
+		System.out.println("it_should_return_a_list_of_cars_by_an_specific_criteria");
+
+		Criteria criteria = Criteria.fromPrimitives(
+				// String que representa la codificacionm de un array con
+				// {
+				//  "field":"brand",
+				//  "operator":"=",
+				//  "value":"bmw"
+				// }
+				"%5B%0D%0A%7B%0D%0A++%22field%22%3A%22brand%22%2C%0D%0A++%22operator%22%3A%22%3D%22%2C%0D%0A++%22value%22%3A%22bmw%22%0D%0A%7D%0D%0A%5D", 
+				"price", 
+				"asc");
+		
+		List<Car> cars = repository.matching(criteria);
+		for (Car toTestCar : cars) {
+			assertEquals(toTestCar.getBrandValue(), "bmw");
+		}
+	}
+	
+	@Test
+	void it_should_return_a_List_of_cars_by_an_specific_price_criteria() {
+		System.out.println("it_should_return_a_List_of_cars_by_an_specific_price_criteria");
+		// [
+		//  {
+		//    "field":"price",
+		//    "operator":">",
+		//    "value":"50000"
+		//  }
+		// ]
+		Criteria criteria = Criteria.fromPrimitives(
+				"%5B%0D%0A%7B%0D%0A++%22field%22%3A%22price%22%2C%0D%0A++%22operator%22%3A%22%3E%22%2C%0D%0A++%22value%22%3A%2250000%22%0D%0A%7D%0D%0A%5D",
+				"title", "asc");
+		List<Car> cars = repository.matching(criteria);
+		for (Car toTestCar : cars) {
+			assertEquals(toTestCar.getCarPriceValue() > 50000, true);
+		}
 	}
 }
