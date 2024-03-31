@@ -21,6 +21,7 @@ import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.domain.criteria.Criteria;
 import com.example.coches.cars.domain.criteria.Filter;
 import com.example.coches.cars.domain.criteria.FilterOperator;
+import com.example.coches.cars.domain.criteria_filters.MongoQueryCriteriaCreatorFactory;
 import com.mongodb.client.result.DeleteResult;
 
 @Repository 
@@ -101,15 +102,20 @@ public class MongoDBCarRepository implements CarRepository {
 		// TODO Auto-generated method stub
 		Query query = new Query();
 		for(Filter filter : criteria.getFilters()) {
-			// Violacion temporal de OCP
-			// Casos donde sea igual
+		
+			MongoQueryCriteriaCreatorFactory factory = new MongoQueryCriteriaCreatorFactory();
+			query.addCriteria(
+					factory.getMongoCriteriaCreator(filter).createQuery(filter)
+			);
+		
+			/*
 			if(filter.getOperator().getOperatorValue()
 					.equals(FilterOperator.EQUAL)) {
 				query.addCriteria(org.springframework.data.mongodb.core.query.Criteria
 						.where(filter.getField().getFieldValue() + ".value")
 						.is(filter.getValue().getFilterValue()));
 			}
-			// Casos para mayor
+			
 			else if (filter.getOperator().getOperatorValue()
 				.equals(FilterOperator.GREATER_THAN)){
 				System.out.println("gt");
@@ -121,7 +127,7 @@ public class MongoDBCarRepository implements CarRepository {
 				);
 				
 			}
-			// Casos para menor
+			*/
 		}
 		return mongoTemplate.find(query, Car.class, "cars");
 	}
