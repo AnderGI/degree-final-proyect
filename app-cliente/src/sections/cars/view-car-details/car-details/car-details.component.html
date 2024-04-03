@@ -1,0 +1,40 @@
+<main class="d-flex flex-row">
+  <section class="col-8">
+    <article>
+      <header>
+        <h1>{{ this.car.title.value }}</h1>
+      </header>
+      <main>
+        <section>
+          <ul>
+            @for (feature of this.getAllCarDetails(); track $index) {
+            <li>{{ feature }}</li>
+            }
+          </ul>
+        </section>
+        <section>
+          <p>{{ this.car.price.value | currency : "EUR" }}</p>
+        </section>
+      </main>
+      <footer>
+        <div>
+          {{ this.car.brand.value }}
+        </div>
+        <div>
+          <a [href]="this.car.carAnnouncementURL.value" target="_blank"
+            >Announcment</a
+          >
+        </div>
+        <div>
+          <a [routerLink]="['/cars']">Volver</a>
+        </div>
+      </footer>
+    </article>
+  </section>
+  <section class="col-4">
+    <img
+      src="{{ this.car.carImageURL.value }}"
+      alt="{{ this.car.title.value }}"
+    />
+  </section>
+</main>

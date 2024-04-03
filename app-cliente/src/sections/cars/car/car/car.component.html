@@ -1,1 +1,6 @@
-<p>car works!</p>
+<article [attr.data-id]="car.id.value">
+  <div>
+    <img [src]="car.carImageURL.value" />
+  </div>
+  <a [routerLink]="['/car', car.id.value]" class="btn btn-primary">Ver más</a>
+</article>

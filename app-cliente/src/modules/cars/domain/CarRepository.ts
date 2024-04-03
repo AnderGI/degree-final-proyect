@@ -3,4 +3,5 @@ import { Car } from "./Car";
 
 export interface CarRepository {
     getCar : (id:String) => Observable<Car>,
+    getAllCars: () => Observable<Car[]>
 }

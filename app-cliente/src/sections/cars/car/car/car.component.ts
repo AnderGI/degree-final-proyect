@@ -1,17 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ApiCarService } from '../../../../modules/cars/infraestructure/api-car.service';
 import { getCarById } from '../../../../modules/cars/application/get/getCar/getCarById';
+import { Car } from '../../../../modules/cars/domain/Car';
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-car',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterLink],
   templateUrl: './car.component.html',
   styleUrl: './car.component.css'
 })
 export class CarComponent {
-  constructor(private apiRepo : ApiCarService) {
-    getCarById(apiRepo, "aa7052b6-31b2-428d-bca9-21b5111e195e")
-    .then(data => console.log(data))
+  @Input() public car!:Car;
+  constructor(private apiRepo : ApiCarService, private router:Router) {
+   
+  }
+
+  ver(){
+    this.router.navigate(['/cars', this.car.id.value])
   }
 }

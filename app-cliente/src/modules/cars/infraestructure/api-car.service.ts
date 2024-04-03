@@ -14,4 +14,8 @@ export class ApiCarService implements CarRepository{
   getCar(id:String) : Observable<Car>{
     return this.cliete.get<Car>(`http://localhost:8090/cars/${id}`)
   }
+
+  getAllCars() : Observable<Car[]> {
+    return this.cliete.get<Car[]>("http://localhost:8090/cars");
+  }
 }

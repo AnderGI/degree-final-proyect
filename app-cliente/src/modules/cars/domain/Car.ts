@@ -4,7 +4,7 @@ export interface Car {
 	description : CarDescription,
 	brand : CarBrand,
 	carImageURL: CarUrl,
-	carAnnouncementUrl : CarUrl,
+	carAnnouncementURL : CarUrl,
 	price : CarPrice
 }
 
@@ -29,5 +29,5 @@ interface CarUrl {
 }
 
 interface CarPrice {
-    value : Number
+    value : number
 }
