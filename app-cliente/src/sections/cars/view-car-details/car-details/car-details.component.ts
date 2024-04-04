@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Car } from '../../../../modules/cars/domain/Car';
+import { Car } from '../../../../modules/cars/domain/car/Car';
 import { ApiCarService } from '../../../../modules/cars/infraestructure/api-car.service';
 import { getCarById } from '../../../../modules/cars/application/get/getCar/getCarById';
 import { CurrencyPipe, JsonPipe } from '@angular/common';
@@ -25,6 +25,6 @@ export class CarDetailsComponent {
   }
 
   getAllCarDetails():String[]{
-    return this.car.description.value.split(' | ').map(feature => feature.replace(feature[0], feature[0].toUpperCase()))
+    return this.car.description.value.split(' | ').map((feature :String )=> feature.replace(feature[0], feature[0].toUpperCase()))
   }
 }
