@@ -34,18 +34,19 @@ export class CochesFiltroComponent {
       {
         "field":"brand",
         "operator":"=",
-        "value":"bmw"
+        "value":brand.value
       },
       {
         "field":"price",
         "operator":"<",
-        "value":50000
+        "value":parseInt(price.value)
       }
       ]
-    console.log(this.filtro.getRawValue())
+
     getCarsMatchingCriteria(this.api, JSON.stringify(filters)).then(data => {      
       this.cars = data
-    this.router.navigate(['/car', this.cars[0].id.value])
+      console.log(data)
+    this.router.navigate(['/cars'], {queryParams : {cars: JSON.stringify(this.cars)}})
       
     })
     

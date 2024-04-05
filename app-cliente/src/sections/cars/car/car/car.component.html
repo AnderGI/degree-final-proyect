@@ -6,9 +6,13 @@
   <div class="wrapper">
     <h1>{{ car.title.value }}</h1>
     <p>{{ car.description.value }}</p>
+    <p class="price">{{ this.car.price.value | currency : "EUR" }}</p>
     <div class="button-wrapper">
-      <a [routerLink]="['/car', car.id.value]" class="btn btn-primary"
-        >Ver más</a
+      <a
+        [href]="this.car.carAnnouncementURL.value"
+        target="_blank"
+        class="btn btn-primary"
+        >Ver anuncio</a
       >
     </div>
   </div>

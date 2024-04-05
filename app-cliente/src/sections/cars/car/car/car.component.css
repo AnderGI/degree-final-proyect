@@ -52,6 +52,11 @@ p {
   text-transform: uppercase;
 }
 
+p.price {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
 .button-wrapper {
   margin-top: 18px;
 }

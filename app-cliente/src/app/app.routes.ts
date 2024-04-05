@@ -5,6 +5,5 @@ import { CarDetailsComponent } from '../sections/cars/view-car-details/car-detai
 
 export const routes: Routes = [
     {path:'cars', component:ListCarsComponent},
-    {path:'car/:id', component: CarDetailsComponent},
     {path:'**', redirectTo:'cars'}
 ];
