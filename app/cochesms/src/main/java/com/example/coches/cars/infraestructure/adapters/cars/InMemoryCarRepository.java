@@ -70,4 +70,10 @@ public class InMemoryCarRepository implements CarRepository {
 		return cars.indexOf(car);
 	}
 
+	@Override
+	public List<String> getAllBrands() {
+		// TODO Auto-generated method stub
+		return cars.stream().map(car -> car.getBrandValue()).toList();
+	}
+
 }

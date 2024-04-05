@@ -56,5 +56,10 @@ final public class CarGetController {
 		}
 		return ResponseEntity.ok(CarToJsonConverter.convert(requestedCar, mapper));
 	}
+	
+	@GetMapping("/cars/brands")
+	public List<String> getAllCarBrands(){
+		return repo.getAllBrands();
+	}
 
 }

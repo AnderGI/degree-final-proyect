@@ -108,28 +108,15 @@ public class MongoDBCarRepository implements CarRepository {
 					factory.getMongoCriteriaCreator(filter).createQuery(filter)
 			);
 		
-			/*
-			if(filter.getOperator().getOperatorValue()
-					.equals(FilterOperator.EQUAL)) {
-				query.addCriteria(org.springframework.data.mongodb.core.query.Criteria
-						.where(filter.getField().getFieldValue() + ".value")
-						.is(filter.getValue().getFilterValue()));
-			}
-			
-			else if (filter.getOperator().getOperatorValue()
-				.equals(FilterOperator.GREATER_THAN)){
-				System.out.println("gt");
-				query.addCriteria(org.springframework.data.mongodb.core.query.Criteria
-						.where("price.value").gt(Double.parseDouble(
-								filter.getValue().getFilterValue()
-								)
-							)
-				);
-				
-			}
-			*/
 		}
 		return mongoTemplate.find(query, Car.class, "cars");
+	}
+
+	@Override
+	public List<String> getAllBrands() {
+		// TODO Auto-generated method stub
+		return getCars().stream()
+				.map(car -> car.getBrandValue()).toList();
 	}
 
 }

@@ -12,4 +12,5 @@ public interface CarRepository {
 	Car deleteCar(String id);
 	Car addCar(Car car);
 	List<Car> matching(Criteria criteria); 
+	List<String> getAllBrands();
 }
