@@ -6,4 +6,5 @@ export interface CarRepository {
     getCar : (id:String) => Observable<Car>,
     getAllCars: () => Observable<Car[]>
     matching: (filters:string) => Observable<Car[]>;
+    getAllCarBrands: () => Observable<String[]>;
 }

@@ -1,6 +1,15 @@
-<article [attr.data-id]="car.id.value">
-  <div>
+<article class="container" [attr.data-id]="car.id.value">
+  <div class="banner-image">
     <img [src]="car.carImageURL.value" />
   </div>
-  <a [routerLink]="['/car', car.id.value]" class="btn btn-primary">Ver más</a>
+
+  <div class="wrapper">
+    <h1>{{ car.title.value }}</h1>
+    <p>{{ car.description.value }}</p>
+    <div class="button-wrapper">
+      <a [routerLink]="['/car', car.id.value]" class="btn btn-primary"
+        >Ver más</a
+      >
+    </div>
+  </div>
 </article>

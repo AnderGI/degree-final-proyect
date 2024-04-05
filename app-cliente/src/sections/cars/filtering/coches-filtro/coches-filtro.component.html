@@ -7,10 +7,9 @@
       name="marca"
       formControlName="brand"
     >
-      <option value="audi">Audi</option>
-      <option value="bmw">Bmw</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="uncategorized">Otras</option>
+      @for (brand of carBrands; track $index) {
+      <option value="{{ brand }}">{{ brand }}</option>
+      }
     </select>
   </section>
   <section class="form-group">

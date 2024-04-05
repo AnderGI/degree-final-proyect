@@ -55,4 +55,8 @@ export class ApiCarService implements CarRepository{
     return this.cliete.get<Car[]>(`http://localhost:8090/cars/criteria`, {params});
   }
 
+  getAllCarBrands(): Observable<String[]> {
+    return this.cliete.get<String[]>('http://localhost:8090/cars/brands');
+  }
+
 }

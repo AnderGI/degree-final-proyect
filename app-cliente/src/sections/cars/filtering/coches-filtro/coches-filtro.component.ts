@@ -4,6 +4,7 @@ import { getCarsMatchingCriteria } from '../../../../modules/cars/application/ge
 import { ApiCarService } from '../../../../modules/cars/infraestructure/api-car.service';
 import { Router } from '@angular/router';
 import { Car } from '../../../../modules/cars/domain/car/Car';
+import { getAllCarBrands } from '../../../../modules/cars/application/get/getAllCarBrands/getAllCarBrands';
 
 @Component({
   selector: 'app-coches-filtro',
@@ -15,11 +16,14 @@ import { Car } from '../../../../modules/cars/domain/car/Car';
 export class CochesFiltroComponent {
   public filtro!:FormGroup;
   private cars!:Car[];
+  public carBrands!:String[];
   constructor(private api:ApiCarService, private router:Router){
     this.filtro = new FormGroup({
       'brand' :  new FormControl(),
       'price' : new FormControl()
     })
+
+    getAllCarBrands(api).then(data => this.carBrands = data)
   }
 
   filtrar(){
