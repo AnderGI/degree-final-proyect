@@ -73,7 +73,9 @@ public class InMemoryCarRepository implements CarRepository {
 	@Override
 	public List<String> getAllBrands() {
 		// TODO Auto-generated method stub
-		return cars.stream().map(car -> car.getBrandValue()).toList();
+		return cars.stream().map(car -> car.getBrandValue())
+				.distinct()
+				.toList();
 	}
 
 }

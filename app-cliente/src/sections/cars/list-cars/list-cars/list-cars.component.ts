@@ -17,11 +17,11 @@ export class ListCarsComponent {
   public cars!:Car[];
   constructor(private apiRepo:ApiCarService, private route: ActivatedRoute){
     this.route.queryParams.subscribe(params => {
-      if (params['cars']) {
-        this.cars = JSON.parse(params['cars']);
+      const {cars} = params
+      if (cars) {
+        this.cars = JSON.parse(cars);
       } else {
         getAllCars(apiRepo).then(data => {
-          console.log(data)
           this.cars = data
         })
       }

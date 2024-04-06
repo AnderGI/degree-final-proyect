@@ -116,7 +116,9 @@ public class MongoDBCarRepository implements CarRepository {
 	public List<String> getAllBrands() {
 		// TODO Auto-generated method stub
 		return getCars().stream()
-				.map(car -> car.getBrandValue()).toList();
+				.map(car -> car.getBrandValue())
+				.distinct()
+				.toList();
 	}
 
 }

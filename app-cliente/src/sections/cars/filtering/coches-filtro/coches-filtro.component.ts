@@ -20,7 +20,7 @@ export class CochesFiltroComponent {
   constructor(private api:ApiCarService, private router:Router){
     this.filtro = new FormGroup({
       'brand' :  new FormControl(),
-      'price' : new FormControl()
+      'minprice' : new FormControl()
     })
 
     getAllCarBrands(api).then(data => this.carBrands = data)
@@ -28,7 +28,7 @@ export class CochesFiltroComponent {
 
   filtrar(){
     const {controls} = this.filtro;
-    const {brand, price} = controls 
+    const {brand, minprice} = controls 
     // '[{"field":"brand","operator":"=","value":"bmw"}]'
     const filters = [
       {
@@ -38,14 +38,13 @@ export class CochesFiltroComponent {
       },
       {
         "field":"price",
-        "operator":"<",
-        "value":parseInt(price.value)
+        "operator":">",
+        "value":parseInt(minprice.value)
       }
       ]
 
     getCarsMatchingCriteria(this.api, JSON.stringify(filters)).then(data => {      
       this.cars = data
-      console.log(data)
     this.router.navigate(['/cars'], {queryParams : {cars: JSON.stringify(this.cars)}})
       
     })

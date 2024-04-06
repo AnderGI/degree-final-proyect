@@ -1,5 +1,9 @@
 <section>
-  @for (car of cars; track $index) {
+  @if (cars.length === 0) {
+  <div class="alert alert-info m-5 text-center font-weight-bold" role="alert">
+    No se han encontrado coches que cumplan con esos filtros
+  </div>
+  }@else { @for (car of cars; track $index) {
   <app-car [car]="car"></app-car>
-  }
+  } }
 </section>
