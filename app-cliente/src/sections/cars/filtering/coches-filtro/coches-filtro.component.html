@@ -5,7 +5,7 @@
       class="select w-100"
       id="marcas"
       name="marca"
-      formControlName="brand"
+      [formControlName]="this.formControlNames.BRAND"
     >
       @for (brand of carBrands; track $index) {
       <option value="{{ brand }}">{{ brand }}</option>
@@ -18,7 +18,7 @@
       class="select w-100"
       id="pminimo"
       name="pminimo"
-      formControlName="minprice"
+      [formControlName]="this.formControlNames.MIN_PRICE"
     >
       <option value="1000">1000 €</option>
       <option value="2000">2000 €</option>

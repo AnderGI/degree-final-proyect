@@ -1,4 +1,4 @@
-import { Observable, firstValueFrom } from "rxjs";
+import { firstValueFrom } from "rxjs";
 import { Car } from "../../../domain/car/Car";
 import { CarRepository } from "../../../domain/car/CarRepository";
 

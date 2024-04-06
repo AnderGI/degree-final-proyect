@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { CarRepository } from '../domain/car/CarRepository';
 import { Observable } from 'rxjs';
 import { Car } from '../domain/car/Car';
-import { Criteria, Filter } from '../domain/criteria/Criteria';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +19,7 @@ export class ApiCarService implements CarRepository{
     return this.cliete.get<Car[]>("http://localhost:8090/cars");
   }
 
+  // Criteria
   matching(filters:string ): Observable<Car[]>{
     // http://localhost:8090/cars/criteria?filters=jsonEncriptadoParaParametrosUrl&orderBy=eq&orderType=asc
     /*

@@ -9,7 +9,7 @@ export interface Car {
 }
 
 interface CarId {
-    value : String // esto seria un string pero de un UUID, lo ids se generarán en el cliente
+    value : String // esto seria un string pero de un UUID, lo ids se generarán en el cliente por parte del usuario
 }
 
 interface CarTitle {
