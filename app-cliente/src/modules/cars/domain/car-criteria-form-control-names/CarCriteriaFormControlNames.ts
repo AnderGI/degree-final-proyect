@@ -2,54 +2,44 @@
 // los filters (field, operator) y el order (type y by)
 
 import { FormGroup } from "@angular/forms";
-import { Filter, FilterFieldValue, FilterOperatorValue } from "../criteria/Criteria";
+import { Filter, FilterField, FilterFieldValue, FilterOperator, FilterOperatorValue, FilterValue } from "../criteria/Criteria";
 
-const formControlNames = {
-    BRAND : "brand",
-    MIN_PRICE : "minprice"
-  }
 const fromFormControlToFilterMap: Map<string, { field: FilterFieldValue, operator: FilterOperatorValue }> = new Map([
-    [formControlNames.BRAND, {
+    ["brand", {
       field : FilterFieldValue.BRAND,
       operator : FilterOperatorValue.EQUAL
     }],
-    [formControlNames.MIN_PRICE, {
+    ["minprice", {
       field : FilterFieldValue.PRICE,
       operator : FilterOperatorValue.GREATER_THAN
     }],
 ]);
 
-export async function createFilterFromFormControlData(filtro:FormGroup){
-    const filtroRawValue = filtro.getRawValue()
-    /*
-    const filters = [
-        {
-          "field":"brand",
-          "operator":"=",
-          "value":brand.value
-        },
-        {
-          "field":"price",
-          "operator":">",
-          "value":parseInt(minprice.value)
-        }
-        ]
-        */
-       const filters = [];
+export async function createFilterFromFormControlData(filtro:FormGroup) : Promise<Filter[]>{
+    const filtroRawValue = filtro.getRawValue() // {brand:'', minprice:''}
+    const filters: Filter[] = [];
     // objeto con key del formControl -> relacion con formControlNames
     // y el valor que el usuario haya puesto
     for(const [key, value] of Object.entries(filtroRawValue)){
-        const mapEntry = fromFormControlToFilterMap.get(key);
-        if (mapEntry) {
-            const { field, operator } = mapEntry;
-            filters.push({
-                "field": field,
-                "operator": operator,
-                "value": value
-            });
-        }
+       filters.push(createFilter([key, value as string]));
     }
-    console.log(filters);
-    
+   console.log(filters)
+    return filters;
 }
 
+function createFilter([key, value]: [string, string]): Filter{
+    const mapEntry = fromFormControlToFilterMap.get(key);
+    let filter!:Filter;
+    if (mapEntry) {
+        const { field, operator } = mapEntry;
+    filter = {
+            "field": field as unknown as FilterField,
+            "operator": operator as unknown as FilterOperator,
+            "value": value as unknown as FilterValue
+        }
+        
+    }
+    console.log(filter)
+    return filter;
+    
+}
