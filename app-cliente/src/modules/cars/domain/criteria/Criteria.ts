@@ -1,7 +1,9 @@
-export interface Criteria {
-    filters: Filter[];
-    order: Order;
+export interface CriteriaJSON {
+    filters : Filter[],
+    orderBy : string,
+    orderType : string
 }
+
 
 export interface Filter{
     field: FilterField;
@@ -32,23 +34,4 @@ export interface FilterOperator{
 
 export interface FilterValue{
     value: string;
-}
-
-export interface Order{
-    orderBy: OrderBy;
-	orderType: OrderType;
-}
-
-export interface OrderBy{
-    value: string;
-}
-
-export enum OrderTypeValue {
-    ASC = "asc",
-	DESC = "desc",
-	NONE = "none",
-}
-
-export interface OrderType{
-    value : OrderTypeValue; // habria que hacer lo mismo que con el filteroperator, hay constantes
 }

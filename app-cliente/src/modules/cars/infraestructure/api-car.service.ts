@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CarRepository } from '../domain/car/CarRepository';
 import { Observable } from 'rxjs';
 import { Car } from '../domain/car/Car';
+import { CriteriaJSON } from '../domain/criteria/Criteria';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ApiCarService implements CarRepository{
   }
 
   // Criteria
-  matching(filters:string ): Observable<Car[]>{
+  matching(criteriaJson:CriteriaJSON): Observable<Car[]>{
     // http://localhost:8090/cars/criteria?filters=jsonEncriptadoParaParametrosUrl&orderBy=eq&orderType=asc
     /*
       {
@@ -35,13 +36,10 @@ export class ApiCarService implements CarRepository{
         orderType: 'asc'
       }
     */
-   //const {order, filters}: Criteria = criteria
-   // no es necesario codificar el filters, probablemente cambiar el endpoitn tambien
-   const orderBy = 'eq';
-   const orderType = 'asc';
+   const {filters, orderBy, orderType} = criteriaJson;
 
    let params = new HttpParams()
-   .set('filters', filters)
+   .set('filters', JSON.stringify(filters))
    .set('orderBy', orderBy)
   .set('orderType', orderType);
     return this.cliete.get<Car[]>(`http://localhost:8090/cars/criteria`, {params});
