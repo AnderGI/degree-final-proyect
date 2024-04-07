@@ -15,15 +15,14 @@ const fromFormControlToFilterMap: Map<string, { field: FilterFieldValue, operato
     }],
 ]);
 
-export async function createFilterFromFormControlData(filtro:FormGroup) : Promise<Filter[]>{
-    const filtroRawValue = filtro.getRawValue() // {brand:'', minprice:''}
+export async function createFilterFromFormControlData({brand , minprice}: {brand:string, minprice:string}) : Promise<Filter[]>{
+    const filtersObj = {brand, minprice};
     const filters: Filter[] = [];
-    // objeto con key del formControl -> relacion con formControlNames
-    // y el valor que el usuario haya puesto
-    for(const [key, value] of Object.entries(filtroRawValue)){
+    for(const [key, value] of Object.entries(filtersObj)){
+      if(key != 'ordertype'){
        filters.push(createFilter([key, value as string]));
-    }
-   console.log(filters)
+      }
+      }
     return filters;
 }
 
@@ -32,14 +31,12 @@ function createFilter([key, value]: [string, string]): Filter{
     let filter!:Filter;
     if (mapEntry) {
         const { field, operator } = mapEntry;
-    filter = {
-            "field": field as unknown as FilterField,
-            "operator": operator as unknown as FilterOperator,
-            "value": value as unknown as FilterValue
+        filter = {
+                "field": field as unknown as FilterField,
+                "operator": operator as unknown as FilterOperator,
+                "value": value as unknown as FilterValue
         }
-        
-    }
-    console.log(filter)
+    }   
     return filter;
     
 }

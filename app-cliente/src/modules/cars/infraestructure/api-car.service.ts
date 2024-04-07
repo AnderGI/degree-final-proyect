@@ -26,22 +26,14 @@ export class ApiCarService implements CarRepository{
       {
         filters : [
           {
-            field: '',
-            operator: '', constantes cuidado
-            value: '' podria ir el input del user
+            "field":"brand",
+            "operator":"=",
+            "value":"bmw"
           }
         ],
         orderBy: 'eq',
         orderType: 'asc'
       }
-
-      [
-{
-  "field":"brand",
-  "operator":"=",
-  "value":"bmw"
-}
-]
     */
    //const {order, filters}: Criteria = criteria
    // no es necesario codificar el filters, probablemente cambiar el endpoitn tambien

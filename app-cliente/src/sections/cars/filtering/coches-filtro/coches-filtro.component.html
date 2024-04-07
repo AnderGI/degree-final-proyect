@@ -1,43 +1,67 @@
-<form class="col-12 py-3" [formGroup]="filtro" (ngSubmit)="filtrar()">
-  <section class="form-group">
-    <label for="marcas">Marcas</label>
-    <select
-      class="select w-100"
-      id="marcas"
-      name="marca"
-      [formControlName]="this.formControlNames.BRAND"
-    >
-      @for (brand of carBrands; track $index) {
-      <option value="{{ brand }}">{{ brand }}</option>
-      }
-    </select>
+<form
+  class="col-12 py-3"
+  [formGroup]="filtro"
+  (ngSubmit)="filtrar()"
+  id="criteriaForm"
+>
+  <section class="filters">
+    <section class="form-group">
+      <label for="marcas">Marcas</label>
+      <select
+        class="select w-100 filter"
+        id="marcas"
+        name="marca"
+        [formControlName]="this.formControlNames.BRAND"
+        data-field="brand"
+      >
+        @for (brand of carBrands; track $index) {
+        <option value="{{ brand }}">{{ brand }}</option>
+        }
+      </select>
+    </section>
+    <section class="form-group">
+      <label for="pminimo">Precio mínimo:</label>
+      <select
+        class="select w-100 filter"
+        id="pminimo"
+        name="pminimo"
+        data-field="price"
+        [formControlName]="this.formControlNames.MIN_PRICE"
+      >
+        <option value="1000">1000 €</option>
+        <option value="2000">2000 €</option>
+        <option value="4000">4000 €</option>
+        <option value="6000">6000 €</option>
+        <option value="8000">8000 €</option>
+        <option value="10000">10000 €</option>
+        <option value="20000">20000 €</option>
+        <option value="30000">30000 €</option>
+        <option value="40000">40000 €</option>
+        <option value="50000">50000 €</option>
+        <option value="60000">60000 €</option>
+        <option value="70000">70000 €</option>
+        <option value="80000">80000 €</option>
+        <option value="90000">90000 €</option>
+        <option value="1000000">100000 €</option>
+      </select>
+    </section>
   </section>
   <section class="form-group">
-    <label for="pminimo">Precio mínimo:</label>
+    <label for="ordertype">Ordernar por : </label>
     <select
-      class="select w-100"
-      id="pminimo"
-      name="pminimo"
-      [formControlName]="this.formControlNames.MIN_PRICE"
+      class="select w-100 orderType"
+      id="ordertype"
+      name="ordertype"
+      [formControlName]="this.formControlNames.ORDER_TYPE"
     >
-      <option value="1000">1000 €</option>
-      <option value="2000">2000 €</option>
-      <option value="4000">4000 €</option>
-      <option value="6000">6000 €</option>
-      <option value="8000">8000 €</option>
-      <option value="10000">10000 €</option>
-      <option value="20000">20000 €</option>
-      <option value="30000">30000 €</option>
-      <option value="40000">40000 €</option>
-      <option value="50000">50000 €</option>
-      <option value="60000">60000 €</option>
-      <option value="70000">70000 €</option>
-      <option value="80000">80000 €</option>
-      <option value="90000">90000 €</option>
-      <option value="1000000">100000 €</option>
+      <option value="none" selected>Selecciona una opción</option>
+      <option value="asc">Más barato</option>
+      <option value="desc">Más barato</option>
     </select>
   </section>
+
   <section class="form-group mt-4">
-    <button type="submit">Buscar</button>
+    <!--Solo se validara para el campo de marca ya que los otros tienen uno por defecto-->
+    <button type="submit" [hidden]="!this.filtro.valid">Buscar</button>
   </section>
 </form>
