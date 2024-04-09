@@ -1,36 +1,54 @@
-# Proyecto de Plataforma de Compra y Venta de Coches Clásicos y de Calidad
+# Proyecto de Plataforma de Compra y Venta de Coches Clásicos
 
 ## Descripción:
-Este proyecto busca desarrollar una plataforma web que permita a los usuarios comprar y vender coches clásicos y de alta calidad.
+Este proyecto busca desarrollar una plataforma que, mediante el uso de scrapping, visualize y centralize ofertas, anuncios y apuestas de coches clásicos. 
 
-## Tecnologías Utilizadas:
-- <strong>Backend</strong>: Se utilizarán tecnologías como Node.js, Typescript, Vanilla JS y Spring Boot para desarrollar microservicios que gestionen la lógica de negocio y la persistencia de datos.
-- <strong>Frontend</strong>: Se empleará Angular, Typescript, Vanilla JS para crear interfaces de usuario interactivas y atractivas.
-- <strong>Base de Datos</strong>: Se utilizarán diferentes bases de datos para gestionar la persistencia de estos. Hasta el momento:
-  - MongoDB para almacenar y gestionar los datos de los coches, se utilizará esta base de datos porque habrá campos cambiantes.
-  - El uso de alguna base de datos relacional para gestionar usuarios.
-- <strong>Web Scraping</strong>: Se empleará la librería Puppeteer de NodeJS para realizar el scraping de diferentes páginas web y obtener información sobre coches clásicos disponibles en el mercado en diferentes páginas web.
-- <strong>Comunicación entre Microservicios</strong>: Se utilizará RabbitMQ para facilitar la comunicación entre los distintos microservicios y garantizar la coherencia de los datos.
-
-## Funcionalidades Posibles ha añadir:
-- <strong>Búsqueda y Filtros Avanzados</strong>: Los usuarios podrán buscar coches clásicos por marca, modelo, año, etc.
-- <strong>Listado de Coches</strong>: Se mostrará un listado de coches clásicos disponibles para la venta, con detalles como imágenes, descripciones, precios, etc.
-- <strong>Registro y Autenticación de Usuarios</strong>: Los usuarios podrán registrarse, iniciar sesión y gestionar sus cuentas.
-
-## Posibles Funcionalidades
-- <strong>Subida de Coches por Usuarios</strong>: Los usuarios podrán subir sus propios coches clásicos para venderlos en la plataforma.
-- <strong>Recursos Informativos</strong>: Se ofrecerá una sección de recursos informativos donde los usuarios podrán encontrar videos, artículos y otros contenidos relacionados con coches clásicos.
-- <strong>Notificaciones y Mensajería</strong>: Los usuarios recibirán notificaciones sobre nuevos coches disponibles, ofertas especiales, etc.
-
-## Utilización posible de diferentes patrones y arquitectura
-- Arquitectura Hexagoanl
+## Objetivo
+El principal objetivo de este proyecto es aprender y poner en practica lo siguiente:
+- Patrón SOLID
 - Patrón Value Object
+- Arquitectura hexagonal
 - Patrón Criteria
 
+>[!IMPORTANT]
+>Teniendo en cuenta los objetivos especificados, el backend y los módulos del front-end de la aplicación sera a lo que primordialmente se le dará énfasis, dejando a un lado el aspecto visual de la misma.
 
-### Recursos para RabbitMQ
+## Tecnologías utilizadas:
+- <strong>Backend</strong>: SpringBoot y NodeJS.
+- <strong>Frontend</strong>: Angular con Typescript.
+- <strong>Lenguajes</strong>: Java y Javascript.
+- <strong>Base de Datos</strong>: MongoDB
+- <strong>DevOps</strong>: Docker usando docker-comnpose.
+
+## Web Scrapping
+Se empleará la librería Puppeteer de NodeJS para realizar el scraping de diferentes páginas web y obtener información sobre coches clásicos disponibles en el mercado en diferentes páginas web.
+
+## Comunicación entre Microservicios
+Se utilizará RabbitMQ para facilitar la comunicación entre los distintos microservicios.
+
+## Funcionalidades existentes:
+- Renderizado de todos los coches, con su información detallada.
+- Uso del patrón criteria para el filtrado por varios campos (actualmente por marca y precio mínimo de los coches).
+
+## Funcionalidades ha añadir:
+- Siguiendo con el patrón criteria, se buscará generar un filtrado por ordern ascendente o descendente según precio.
+- Implementar un sistema que permita la comunicación entre el scrapper de NodeJS y el gateway creado en SpringBoot.
+- Al ser una página con interacción de usuarios, se implementaría un sistema de autenticación mediante JWT. Posiblemente haciendo esto en el gateway.
+- Los usuario podrán hacer uso de la funcionalidad de crear, actualizar y eliminar posibles anuncios.
+
+## Recursos para RabbitMQ
 -How to Use RabbitMQ with NodeJS to Send and Receive Messages [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-use-rabbitmq-with-nodejs/)
 - How to Consume/Publish RabbitMQ queue in NodeJS [Medium](https://medium.com/@rafael.guzman/how-to-consume-publish-rabbitmq-message-in-nodejs-cb68b5a6484c)
 
-
-
+## Endpoints
+### Acceso al Gateway : 
+```
+http://localhost:8090
+```
+### Acceso al microservicio de coches
+```
+http://localhost:8090/cars
+```
+### Casos de uso por acciones HTTP 
+<strong>GET:</strong>
+- Todos los coches: <code>http://localhost:8090/cars</code>
