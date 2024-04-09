@@ -54,4 +54,6 @@ http://localhost:8090
 - Todos los coches: <code>/cars</code>
 - Buscar coche por id (UUID): <code>/cars/{id}</code>
 - Buscar coche por id (UUID): <code>/cars/brands</code>
-- Filtrar coches mediante criteria: <code>/cars/criteria?filters?jsonDelCampoFiltersCodificado&orderBy=campoDelCochePorElQueSeVaAOrdenar&orderType=criterioDeOrdenacion
+- Filtrar coches mediante criteria: <code>/cars/criteria?filters?jsonDelCampoFiltersCodificado&orderBy=campoDelCochePorElQueSeVaAOrdenar&orderType=criterioDeOrdenacion</code>
+>[!TIP]
+>Ejemplo del uso del patrón criteria
