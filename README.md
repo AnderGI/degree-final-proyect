@@ -47,8 +47,11 @@ http://localhost:8090
 ```
 ### Acceso al microservicio de coches
 ```
-http://localhost:8090/cars
+/cars
 ```
-### Casos de uso por acciones HTTP 
+### Endpoints por acciones HTTP 
 <strong>GET:</strong>
-- Todos los coches: <code>http://localhost:8090/cars</code>
+- Todos los coches: <code>/cars</code>
+- Buscar coche por id (UUID): <code>/cars/{id}</code>
+- Buscar coche por id (UUID): <code>/cars/brands</code>
+- Filtrar coches mediante criteria: <code>/cars/criteria?filters?jsonDelCampoFiltersCodificado&orderBy=campoDelCochePorElQueSeVaAOrdenar&orderType=criterioDeOrdenacion
