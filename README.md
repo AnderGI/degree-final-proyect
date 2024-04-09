@@ -132,3 +132,19 @@ Y el valor de orderBy y Z el valor de orderType.
 >[!NOTE]
 >En la request body se le pasarçn los nuevos campos a actualizar siguiendo el mismo patrón que en el post.
 
+
+## Uso del scrapper de NodeJS
+>[!NOTE] 
+>Este microservicio scrapeara la página de (soulauto)[https://soulauto.com/], renderizará los resultado por pantalla y lo publicara en una cola de rabbit llamada car_scrapping.
+Pasos para ejecutar el microservicio:
+```
+cd ./app
+cd ./scrapperms
+node app.cjs
+```
+
+## Ejecutar docker-compose 
+```
+cd ./app
+docker-compose up
+```
