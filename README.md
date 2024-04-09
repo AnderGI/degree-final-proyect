@@ -50,7 +50,11 @@ http://localhost:8090
 /cars
 ```
 ### Endpoints por acciones HTTP 
-<strong>GET:</strong>
+
+>[!IMPORTANT]
+>Por las casuísticas del proyecto, de momento solo será lógico usar las acciones tanto get como post de cara a poder generar algún tipo de front-end. Las demás acciones, aún estando testadas no tienen sentido en el contexto de esta aplicación si no hay usuarios de por medio.
+
+### GET
 - Todos los coches: <code>/cars</code>
 - Buscar coche por id (UUID): <code>/cars/{id}</code>
 - Buscar coche por id (UUID): <code>/cars/brands</code>
@@ -86,3 +90,45 @@ X tendrá en valor del array de filters codifciado para pasarlo a un parámetro 
 [{"field"="brand","operator"="=","value"="bmw"},{"field"="price","operator"=">","value"="200000"}]
 ```
 Y el valor de orderBy y Z el valor de orderType.
+
+### POST
+- Añadir nuevo coches:
+  ```
+  POST http://localhost:8090/cars
+  Content-type: application/json
+
+  {
+    "id": {
+        "value": "f4d19d12-b2e8-4245-95db-dcec4c06b398"
+      },
+    "title": {
+        "value": "1966 MERCEDES 230SL PAGODA"
+      },
+    "description": {
+        "value": "Dos propietarios | Hardtop | Bajo kilometraje"
+      },
+    "brand": {
+        "value": "mercedes-benz"
+      },
+    "carImageURL": {
+        "value": "https://soulauto.com/wp-content/uploads/2024/02/00_00_M12-copia-420x280.jpg?x10431"
+      },
+    "carAnnouncementURL": {
+        "value": "https://soulauto.com/1966-mercedes-benz-230sl-pagoda-2/"
+      },
+    "price": {
+        "value": "38750"
+      }
+  }
+  ```
+>[!NOTE]
+>Utilizo esta estructura con objetos con la propiedad de value anidada para poder hacer uso del patron criteria y unir este JSON con el coche del dominio.
+
+### DELETE
+- Eliminar coche según id: <code>/cars/{id}</code>
+
+### PUT
+- Actualizar coche existente: <code>/cars/{id}</code>
+>[!NOTE]
+>En la request body se le pasarçn los nuevos campos a actualizar siguiendo el mismo patrón que en el post.
+
