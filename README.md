@@ -57,3 +57,32 @@ http://localhost:8090
 - Filtrar coches mediante criteria: <code>/cars/criteria?filters?jsonDelCampoFiltersCodificado&orderBy=campoDelCochePorElQueSeVaAOrdenar&orderType=criterioDeOrdenacion</code>
 >[!TIP]
 >Ejemplo del uso del patrón criteria
+```
+GET http://localhost:8090/cars/criteria?filters=X&orderBy=Y&orderType=Z
+```
+
+Siendo este un JSON que represente un criteria
+```
+{
+  "filters":[
+    {
+      "field"="brand",
+      "operator"="=",
+      "value"="bmw"
+    },
+
+    {
+      "field"="price",
+      "operator"=">",
+      "value"="200000"
+    },
+  ],
+  "orderBy":"price",
+  "orderType":"eq"
+}
+```
+X tendrá en valor del array de filters codifciado para pasarlo a un parámetro de URL: 
+```
+[{"field"="brand","operator"="=","value"="bmw"},{"field"="price","operator"=">","value"="200000"}]
+```
+Y el valor de orderBy y Z el valor de orderType.
