@@ -1,4 +1,4 @@
-package com.example.coches.cars.domain.convertCarToObjectNode;
+package com.example.coches.cars.domain.convert_car_to_object_node;
 
 import com.example.coches.cars.domain.car.Car;
 import com.fasterxml.jackson.databind.ObjectMapper;

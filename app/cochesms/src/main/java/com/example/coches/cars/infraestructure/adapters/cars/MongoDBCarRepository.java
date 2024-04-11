@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import com.example.coches.cars.application.save_car.CarSaver;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -27,6 +26,7 @@ import com.example.coches.cars.domain.criteria.OrderBy;
 import com.example.coches.cars.domain.criteria.OrderType;
 import com.example.coches.cars.domain.criteria_filters.MongoQueryCriteriaCreatorFactory;
 import com.example.coches.cars.domain.criteria_order.FromCriteriaOrderSortCreatorFactory;
+import com.example.coches.cars.domain.validate_car.CarValidator;
 import com.mongodb.client.result.DeleteResult;
 
 @Repository 
@@ -64,7 +64,7 @@ public class MongoDBCarRepository implements CarRepository {
 	    // Verificar el car en este caso tendria que verificar todos los campos que != null
 	    // A nivel de UI habria un formulario que impedirira enviar campos con valores vacios
 	    
-	    Car toValidateCar = CarSaver.validateCar(car);
+	    Car toValidateCar = CarValidator.validateCar(car);
 	    
 	    if(toValidateCar == null) return null;
 	   

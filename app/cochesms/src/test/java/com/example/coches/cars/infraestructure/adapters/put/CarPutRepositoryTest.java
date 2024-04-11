@@ -25,12 +25,8 @@ public class CarPutRepositoryTest {
 		List<Car> cars = repository.getCars();
 		if(!cars.isEmpty()) {
 			Car toUpdateCar = cars.get(0);
-			System.out.println("to update car");
-			System.out.println(toUpdateCar);
 			toUpdateCar.updateDescription("NEW CAR 1 DESCRIPTION");
 			Car updatedCar = repository.updateCar(toUpdateCar, toUpdateCar.getIdValue());
-			System.out.println("updated car");
-			System.out.println(updatedCar);
 			assertNotNull(updatedCar);
 			assertEquals(toUpdateCar.getIdValue(), updatedCar.getIdValue());
 			assertEquals(toUpdateCar.getTitleValue(), updatedCar.getTitleValue());

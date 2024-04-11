@@ -5,14 +5,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.example.coches.cars.domain.car.Car;
-import com.example.coches.cars.domain.convertCarToObjectNode.CarAnnouncmentURLToObjectNodeConverter;
-import com.example.coches.cars.domain.convertCarToObjectNode.CarBrandToObjectNodeConverter;
-import com.example.coches.cars.domain.convertCarToObjectNode.CarDescriptionToObjectNodeConverter;
-import com.example.coches.cars.domain.convertCarToObjectNode.CarFieldToObjectNodeConverter;
-import com.example.coches.cars.domain.convertCarToObjectNode.CarIdToObjectNodeConverter;
-import com.example.coches.cars.domain.convertCarToObjectNode.CarImageURLToObjectNodeConverter;
-import com.example.coches.cars.domain.convertCarToObjectNode.CarPriceToObjectNodeConverter;
-import com.example.coches.cars.domain.convertCarToObjectNode.CarTitleToObjectNodeConverter;
+import com.example.coches.cars.domain.convert_car_to_object_node.CarAnnouncmentURLToObjectNodeConverter;
+import com.example.coches.cars.domain.convert_car_to_object_node.CarBrandToObjectNodeConverter;
+import com.example.coches.cars.domain.convert_car_to_object_node.CarDescriptionToObjectNodeConverter;
+import com.example.coches.cars.domain.convert_car_to_object_node.CarFieldToObjectNodeConverter;
+import com.example.coches.cars.domain.convert_car_to_object_node.CarIdToObjectNodeConverter;
+import com.example.coches.cars.domain.convert_car_to_object_node.CarImageURLToObjectNodeConverter;
+import com.example.coches.cars.domain.convert_car_to_object_node.CarPriceToObjectNodeConverter;
+import com.example.coches.cars.domain.convert_car_to_object_node.CarTitleToObjectNodeConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
