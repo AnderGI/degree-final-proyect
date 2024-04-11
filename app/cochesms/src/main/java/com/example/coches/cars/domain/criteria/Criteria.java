@@ -23,7 +23,14 @@ final public class Criteria {
 			Order.fromPrimitives(orderBy, orderType) // estos dos como strings normales
 		);
 	}
+	
+	public String getOrderByValue() {
+		return this.order.getOrderBy().getOrderByValue();
+	}
 
+	public String getOrderTypeValue() {
+		return this.order.getOrderType().getOrderTyppeValue();
+	}
 
 
 	@Override

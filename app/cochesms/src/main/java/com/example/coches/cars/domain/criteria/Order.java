@@ -15,4 +15,12 @@ final public class Order {
 				new OrderType(orderType == null ? OrderType.NONE : orderType)
 		);
 	}
+	
+	public OrderBy getOrderBy() {
+		return orderBy;
+	}
+	
+	public OrderType getOrderType() {
+		return this.orderType;
+	}
 }

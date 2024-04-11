@@ -106,12 +106,59 @@ public class CarGetRepositoryTest {
 		//    "value":"50000"
 		//  }
 		// ]
+		String PRICE_GREATER_THAN_50000_FILTER = "%5B%0D%0A%7B%0D%0A++%22field%22%3A%22price%22%2C%0D%0A++%22operator%22%3A%22%3E%22%2C%0D%0A++%22value%22%3A%2250000%22%0D%0A%7D%0D%0A%5D";
 		Criteria criteria = Criteria.fromPrimitives(
-				"%5B%0D%0A%7B%0D%0A++%22field%22%3A%22price%22%2C%0D%0A++%22operator%22%3A%22%3E%22%2C%0D%0A++%22value%22%3A%2250000%22%0D%0A%7D%0D%0A%5D",
+				PRICE_GREATER_THAN_50000_FILTER,
 				"title", "asc");
 		List<Car> cars = repository.matching(criteria);
 		for (Car toTestCar : cars) {
 			assertEquals(toTestCar.getCarPriceValue() > 50000, true);
 		}
 	}
+	
+	@Test
+	void it_should_return_a_list_of_cars_by_descending_ordering_of_price() {
+		String PRICE_GREATER_THAN_50000_FILTER = "%5B%0D%0A%7B%0D%0A++%22field%22%3A%22price%22%2C%0D%0A++%22operator%22%3A%22%3E%22%2C%0D%0A++%22value%22%3A%2250000%22%0D%0A%7D%0D%0A%5D";
+		Criteria order_by_price_desc = Criteria.fromPrimitives(PRICE_GREATER_THAN_50000_FILTER,
+				"price", "desc");
+		List<Car> cars = repository.matching(order_by_price_desc);
+		
+		// Para testear que todos los elementos de manera consecutiva 
+		// estén ordenados por precio en descendentes
+		// Desde el primero hasta el penúltimo comparamos precio
+		// el priemro con el segundo ... hasta el penúltimo con el último
+		for(int firstIndex = 0; firstIndex < cars.size() - 2; firstIndex++) {
+			int next = firstIndex + 1;
+			Car first = cars.get(firstIndex);
+			System.out.println(first);
+			Car second = cars.get(next);
+			boolean is_first_price_higher_or_equal_than_second = 
+					first.getCarPriceValue() >= second.getCarPriceValue();
+			assertEquals(is_first_price_higher_or_equal_than_second, true);
+		}
+	}
+	
+	
+	@Test
+	void it_should_return_a_list_of_cars_by_ascending_ordering_of_price() {
+		String PRICE_GREATER_THAN_50000_FILTER = "%5B%0D%0A%7B%0D%0A++%22field%22%3A%22price%22%2C%0D%0A++%22operator%22%3A%22%3E%22%2C%0D%0A++%22value%22%3A%2250000%22%0D%0A%7D%0D%0A%5D";
+		Criteria order_by_price_desc = Criteria.fromPrimitives(PRICE_GREATER_THAN_50000_FILTER,
+				"price", "asc");
+		List<Car> cars = repository.matching(order_by_price_desc);
+		
+		// Para testear que todos los elementos de manera consecutiva 
+		// estén ordenados por precio en descendentes
+		// Desde el primero hasta el penúltimo comparamos precio
+		// el priemro con el segundo ... hasta el penúltimo con el último
+		for(int firstIndex = 0; firstIndex < cars.size() - 2; firstIndex++) {
+			int next = firstIndex + 1;
+			Car first = cars.get(firstIndex);
+			System.out.println(first);
+			Car second = cars.get(next);
+			boolean is_first_price_lower_or_equal_than_second = 
+					first.getCarPriceValue() <= second.getCarPriceValue();
+			assertEquals(is_first_price_lower_or_equal_than_second, true);
+		}
+	}
+	
 }

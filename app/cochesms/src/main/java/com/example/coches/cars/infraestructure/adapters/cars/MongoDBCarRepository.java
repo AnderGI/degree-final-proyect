@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -21,6 +22,8 @@ import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.domain.criteria.Criteria;
 import com.example.coches.cars.domain.criteria.Filter;
 import com.example.coches.cars.domain.criteria.FilterOperator;
+import com.example.coches.cars.domain.criteria.OrderBy;
+import com.example.coches.cars.domain.criteria.OrderType;
 import com.example.coches.cars.domain.criteria_filters.MongoQueryCriteriaCreatorFactory;
 import com.mongodb.client.result.DeleteResult;
 
@@ -101,14 +104,25 @@ public class MongoDBCarRepository implements CarRepository {
 	public List<Car> matching(Criteria criteria) {
 		// TODO Auto-generated method stub
 		Query query = new Query();
+		// Esto es para filtros
 		for(Filter filter : criteria.getFilters()) {
 		
 			MongoQueryCriteriaCreatorFactory factory = new MongoQueryCriteriaCreatorFactory();
 			query.addCriteria(
 					factory.getMongoCriteriaCreator(filter).createQuery(filter)
 			);
-		
 		}
+		
+		// Esto para la ordenación
+		// OrderType
+		// De momento por casos de uso, solo habra un ordering y sera por defector por el campo precio
+		if(criteria.getOrderTypeValue().equalsIgnoreCase(OrderType.ASC)) {
+			query.with(Sort.by(Sort.Direction.ASC, "price.value"));
+		}else if(criteria.getOrderTypeValue().equalsIgnoreCase(OrderType.DESC)) {
+			query.with(Sort.by(Sort.Direction.DESC, "price.value"));
+		}
+		
+		
 		return mongoTemplate.find(query, Car.class, "cars");
 	}
 
