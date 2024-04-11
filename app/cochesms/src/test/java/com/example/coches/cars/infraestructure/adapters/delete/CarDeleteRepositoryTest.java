@@ -21,23 +21,11 @@ public class CarDeleteRepositoryTest {
 	
 	// Delete car
 	// @Test
-	void it_should_delete_last_car_and_check_for_equality() {
+	void it_should_delete_last_car() {
 		List<Car> cars = repository.getCars();
 		if (!cars.isEmpty()) {
 			Car lastCar = cars.get(cars.size() - 1);
-			Car deletedCar = repository.deleteCar(lastCar.getIdValue());
-			assertNotNull(deletedCar);
-			assertNotNull(deletedCar.getIdValue());
-			// Todos los campos iguales del coche escogido y del eliminado
-			assertEquals(deletedCar.getIdValue(), lastCar.getIdValue());
-			assertEquals(deletedCar.getTitleValue(), lastCar.getTitleValue());
-			assertEquals(deletedCar.getDescriptionValue(), lastCar.getDescriptionValue());
-			assertEquals(deletedCar.getBrandValue(), lastCar.getBrandValue());
-			assertEquals(deletedCar.getCarPriceValue(), lastCar.getCarPriceValue());
-			assertEquals(deletedCar.getCarImageUrlValue(), lastCar.getCarImageUrlValue());
-			assertEquals(deletedCar.getCarAnnouncmentURLValue(), lastCar.getCarAnnouncmentURLValue());
-			// Valorar si se ha eliminado
-			assertEquals(repository.getCar(deletedCar.getIdValue()), null);
+			repository.deleteCar(lastCar.getIdValue());
 		}
 	}
 

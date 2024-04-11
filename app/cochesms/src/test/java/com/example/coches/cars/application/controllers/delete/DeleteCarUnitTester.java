@@ -42,43 +42,27 @@ public class DeleteCarUnitTester {
 		Car car1 = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("BMW M3"),
 				new CarDescription("Sedán deportivo de lujo"), new CarBrand("BMW"), new CarPrice(70000.0),
 				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
-		
-		String jsonString = CarToJsonConverter
-				.convert(car1, mapper).toString();
-		
-		  // Simular el comportamiento del repositorio para devolver el coche cuando se llame al método getCar
-        when(repository.getCar(car1.getIdValue())).thenReturn(car1);
-        
-        // Simular el comportamiento del repositorio para devolver el coche eliminado cuando se llame al método deleteCar
-        when(repository.deleteCar(car1.getIdValue())).thenReturn(car1);
-        
-        // Ejecutamos el endpoint
-        mockMvc
-        .perform(
-        		delete("/cars/{id}", car1.getIdValue()
-        )
-        .contentType(MediaType.APPLICATION_JSON))
-        .andExpectAll(status().isOk());
-    
+
+		String jsonString = CarToJsonConverter.convert(car1, mapper).toString();
+
+		// Simular el comportamiento del repositorio para devolver el coche cuando se
+		// llame al método getCar
+		when(repository.getCar(car1.getIdValue())).thenReturn(car1);
+
+		// Ejecutamos el endpoint
+		mockMvc.perform(delete("/cars/{id}", car1.getIdValue()).contentType(MediaType.APPLICATION_JSON))
+				.andExpectAll(status().isOk());
+
 	}
-	
+
 	@Test
-	void it_should_return_not_not_found_for_deleting_a_with_non_existing_id() throws Exception{
+	void it_should_return_not_not_found_for_deleting_a_with_non_existing_id() throws Exception {
 		// Especificamos el fake id
 		String fakeCarId = "hhhhhhhhhhh";
-		
-		// Especificamos el mockeo
-		when(repository.deleteCar(fakeCarId)).thenReturn(null);
-		
+
 		// Ejecutamos el endpoint
-		mockMvc.perform(
-				delete("/cars/{id}", fakeCarId)
-				.contentType(MediaType.APPLICATION_JSON)
-		)
-		.andDo(print())
-		.andExpectAll(
-				status().isNotFound()
-		);
-		
+		mockMvc.perform(delete("/cars/{id}", fakeCarId).contentType(MediaType.APPLICATION_JSON)).andDo(print())
+				.andExpectAll(status().isNotFound());
+
 	}
 }
