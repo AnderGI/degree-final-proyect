@@ -14,16 +14,24 @@ export function createJsonCriteriaFromHtmlForm(form:HTMLFormElement):CriteriaJSO
     // value -> el valor por defecto o el del usuario
     const formData = new FormData(form);
     const filters:Filter[] = [];
+    let orderType = '';
+    let orderBy = 'price';
     formData.forEach((value, key) => {
       const filterCreator = htmlPropToFilter[key];
+      if(key === 'ordertype') orderType = (value as string)
       if (filterCreator) {
         // Crea el filtro y agrégalo a la lista
         filters.push(filterCreator(value as string));
       }
     })
+    console.log({
+      filters,
+      orderType,
+      orderBy
+  })
     return {
         filters,
-        'orderType': 'none',
-        'orderBy':'eq'
+        orderType,
+        orderBy
     }
 }
