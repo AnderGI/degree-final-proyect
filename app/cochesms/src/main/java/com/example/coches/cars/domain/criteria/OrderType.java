@@ -11,7 +11,7 @@ final public class OrderType {
 		this.value = value;
 	}
 	
-	public String getOrderTyppeValue() {
+	public String getOrderTypeValue() {
 		return this.value;
 	}
 }

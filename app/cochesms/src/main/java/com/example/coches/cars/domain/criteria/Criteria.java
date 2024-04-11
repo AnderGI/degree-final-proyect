@@ -24,14 +24,9 @@ final public class Criteria {
 		);
 	}
 	
-	public String getOrderByValue() {
-		return this.order.getOrderBy().getOrderByValue();
+	public Order getOrder() {
+		return this.order;
 	}
-
-	public String getOrderTypeValue() {
-		return this.order.getOrderType().getOrderTyppeValue();
-	}
-
 
 	@Override
 	public String toString() {
