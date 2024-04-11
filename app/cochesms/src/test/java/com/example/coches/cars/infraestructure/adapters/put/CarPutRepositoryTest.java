@@ -1,4 +1,4 @@
-package com.example.coches.cars.infraestructure.adapters.cars;
+package com.example.coches.cars.infraestructure.adapters.put;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

@@ -1,4 +1,4 @@
-package com.example.coches.cars.infraestructure.adapters.cars;
+package com.example.coches.cars.infraestructure.adapters.delete;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -22,15 +22,10 @@ public class CarDeleteRepositoryTest {
 	// Delete car
 	// @Test
 	void it_should_delete_last_car_and_check_for_equality() {
-		System.out.println("it_should_delete_last_car_and_check_for_equality");
 		List<Car> cars = repository.getCars();
 		if (!cars.isEmpty()) {
 			Car lastCar = cars.get(cars.size() - 1);
-			System.out.println("lastCar");
-			System.out.println(lastCar);
 			Car deletedCar = repository.deleteCar(lastCar.getIdValue());
-			System.out.println("deletedCar");
-			System.out.println(deletedCar);
 			assertNotNull(deletedCar);
 			assertNotNull(deletedCar.getIdValue());
 			// Todos los campos iguales del coche escogido y del eliminado
@@ -49,11 +44,8 @@ public class CarDeleteRepositoryTest {
 	// Delete car with non existing id -> null
 	@Test
 	void it_should_return_null_if_non_existing_id_is_used_for_deletion() {
-		System.out.println("it_should_return_null_if_non_existing_id_is_used_for_deletion");
 		String nonExistingId = "bbbbbbb";
 		Car toDeleteNullCar = repository.getCar(nonExistingId);
-		System.out.println("toDeleteNullCar");
-		System.out.println(toDeleteNullCar);
 		assertEquals(toDeleteNullCar, null);
 	}
 }
