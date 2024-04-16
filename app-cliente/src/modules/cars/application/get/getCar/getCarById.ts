@@ -12,7 +12,7 @@ Lo que va a recibir es el CarId
 Antes de implementarlo ---> TESTING!!!!!
 export function getCarById(repository:getCar) {
   return async function({id:CarId}):Promise<Car>{
-     return firstValueFrom(repository.getCar(id));
+     return firstValueFrom(repository(id));
   }
 }
 */
