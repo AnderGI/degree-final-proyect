@@ -10,7 +10,7 @@ export interface CarRepository {
 }
 
 // Cambiar a funcional
-// const type getCar = (id:String) => Promise<Car>;
+// const type getCar = ({id:CarId}) => Promise<Car>;
 // const type getAllCars = () => Promise<Car[]>;
 // const type matching = (criteria:CriteriaJSON) => Promise<Car[]>
 // const type getAllCarBrands = () => Promise<CarBrand[]> esto habría que cambiarlo a algo más semantico type CarBrand
