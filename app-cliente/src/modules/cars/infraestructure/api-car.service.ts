@@ -71,7 +71,14 @@ export class GetCarByIdHttpClientService {
       return async function ({id:CarId}) {
         await firstValueFrom(this.cliete.get<Car>(GET_CAR_BY_ID_ENDPOINT + id.value))
       }
-    }
+  }
+
+  // Solucion de ChatGPT probablemente mejor
+  getCar: getCar = async ({id:CarId}) => {
+    const GET_CAR_BY_ID_ENDPOINT: string = "http://localhost:8090/cars/";
+    return  await firstValueFrom(this.cliete.get<Car>(`${GET_CAR_BY_ID_ENDPOINT}${id.value}`));
+    
+  }
 
 }
 
