@@ -8,3 +8,9 @@ export interface CarRepository {
     matching: (criteriaJson:CriteriaJSON) => Observable<Car[]>; // en vez de filters tendriamos el criteria
     getAllCarBrands: () => Observable<String[]>;
 }
+
+// Cambiar a funcional
+// const type getCar = (id:String) => Promise<Car>;
+// const type getAllCars = () => Promise<Car[]>;
+// const type matching = (criteria:Criteria) => Promise<Car[]>
+// const type getAllCarBrands = () => Promise<String[]> esto habría que cambiarlo a algo más semantico type CarBrand
