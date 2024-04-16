@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { Car } from "./Car";
+import { Car, CarBrand, CarId } from "./Car";
 import { CriteriaJSON } from "../criteria/Criteria";
 
 export interface CarRepository {
@@ -8,3 +8,12 @@ export interface CarRepository {
     matching: (criteriaJson:CriteriaJSON) => Observable<Car[]>; // en vez de filters tendriamos el criteria
     getAllCarBrands: () => Observable<String[]>;
 }
+
+// Coge el CarId
+export type GetCar = ({value}: CarId) => Promise<Car>; 
+
+export type GetAllCars = () => Promise<Car[]>;
+
+export type GetAllCarBrands = () => Promise<CarBrand[]>;
+
+export type GetCarsMatchingCriteria = (criteria:CriteriaJSON) => Promise<Car[]>; 
