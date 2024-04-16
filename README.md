@@ -163,3 +163,5 @@ export type saveCourse = (course:Course) => Promise<void>
 2. Añadir testing
 
 3. Añadir currying al repository, basicamente es crear una funcion tipo createCourse que reciba el repository y devueñva a su vez un función anónima que recibe el course : ```createCourse(repository)({parametros del course})```
+
+4.- Añadir value objects
