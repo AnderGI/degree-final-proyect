@@ -162,7 +162,8 @@ export type saveCourse = (course:Course) => Promise<void>
 
 2. Añadir testing [Jest con angular](https://medium.com/@philip.mutua/setting-up-jest-in-your-angular-16-project-3638ef65f3a3)
    Los test unitarios vamos a hacerlos sin tener en cuenta los componentes (mockeamos una implementacion especifica creando una funcion a mano que sea del typeGetCar, o de cualquiera de los otros),
-   Mirar la seria de videos de FunFunFunctions de Javscript Unit Testing para más info 
+   Mirar la seria de videos de FunFunFunctions de Javscript Unit Testing para más info
+   Aún asi, si se pueden realizar los tests con Jasmine y los mocks aunque sea a mano, también puede ser una alternativa.
 
 4. Añadir currying al repository, basicamente es crear una funcion tipo createCourse que reciba el repository y devueñva a su vez un función anónima que recibe el course : ```createCourse(repository)({parametros del course})```
 
