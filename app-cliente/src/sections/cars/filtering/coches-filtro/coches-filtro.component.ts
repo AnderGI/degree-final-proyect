@@ -30,6 +30,9 @@ export class CochesFiltroComponent {
     getAllCarBrands(api).then(data => this.carBrands = data)
   }
 
+  // Podria hacer una interface con los tipos que recogemos del formulario
+  // Esa interface extiende de HtmlFromControllsCollection
+  // el método filtrar recogeria el form pasado por el html de angular
   async filtrar(){
     // primero recoger los valores de los elementos html
     const criteriaForm = document.getElementById("criteriaForm") as HTMLFormElement
