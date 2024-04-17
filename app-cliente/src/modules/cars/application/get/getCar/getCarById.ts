@@ -15,4 +15,11 @@ export function getCarById(repository:getCar) {
      return firstValueFrom(repository(id));
   }
 }
+
+
+
+Implementar tests
+https://medium.com/@philip.mutua/setting-up-jest-in-your-angular-16-project-3638ef65f3a3
+
+
 */
