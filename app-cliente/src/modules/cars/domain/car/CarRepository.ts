@@ -10,7 +10,4 @@ export interface CarRepository {
 }
 
 // Coge el CarId
-
-export type GetAllCarBrands = () => Promise<CarBrand[]>;
-
 export type GetCarsMatchingCriteria = (criteria:CriteriaJSON) => Promise<Car[]>; 
