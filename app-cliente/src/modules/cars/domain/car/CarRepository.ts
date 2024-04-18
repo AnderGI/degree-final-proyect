@@ -10,9 +10,6 @@ export interface CarRepository {
 }
 
 // Coge el CarId
-export type GetCar = ({value}: CarId) => Promise<Car>; 
-
-export type GetAllCars = () => Promise<Car[]>;
 
 export type GetAllCarBrands = () => Promise<CarBrand[]>;
 

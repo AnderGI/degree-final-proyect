@@ -1,9 +1,6 @@
-import { Car, CarId } from "../../../../../modules/cars/domain/car/Car";
-import { GetCar } from "../../../../../modules/cars/domain/car/CarRepository";
+import { Car, CarId } from "./Car";
 
-// Realmente solo me interesaria saber que el Car que se devuelve tiene e mismo CarId
-// Podria utilizar el tipo Partial pero eso modificaria el use case a testear
-// Habia pensado en hacer algo itermedio pero creo que es mas lio que otra cosa
+export type GetCar = ({value}: CarId) => Promise<Car>; 
 
 export const MockGetCar:GetCar = async ({value}:CarId) => {
     return Promise.resolve({

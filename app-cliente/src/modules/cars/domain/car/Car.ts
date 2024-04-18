@@ -8,8 +8,9 @@ export interface Car {
 	price : CarPrice
 }
 
+type CarIdUUIDTemplate = `${string}-${string}-${string}-${string}-${string}`
 export interface CarId {
-    value : String // esto seria un string pero de un UUID, lo ids se generarán en el cliente por parte del usuario
+    value : CarIdUUIDTemplate // esto seria un string pero de un UUID, lo ids se generarán en el cliente por parte del usuario
 }
 
 interface CarTitle {

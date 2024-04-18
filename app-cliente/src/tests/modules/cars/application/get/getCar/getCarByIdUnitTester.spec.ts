@@ -1,13 +1,13 @@
+import { randomUUID } from "crypto"
 import { getCar } from "../../../../../../modules/cars/application/get/getCar/getCarById"
 import { Car, CarId } from "../../../../../../modules/cars/domain/car/Car"
-import { MockGetCar } from "../../../domain/car/MockCarRepository"
+import { MockGetCar } from "../../../../../../modules/cars/domain/car/GetCarRepository"
+
 
 describe('Get car by id', () => {
     it('It should return a car with same id as the mock api call', async () => {
         const fakeCarId:CarId = {
-            // esto tendria que modificarlo para aunque sea en tiempo de compilacion
-            // typescript lo valide como un uuid string-string-string-string-string
-            value : 'jabsjdfb' 
+            value : randomUUID()
         }
 
         const data:Car = await getCar(MockGetCar)(fakeCarId);
