@@ -1,4 +1,5 @@
-import { randomUUID } from "crypto";
+
+import { mockRandomUUUID } from "../utils/getRandomUUID";
 import { Car } from "./Car";
 
 
@@ -6,7 +7,7 @@ export type GetAllCars = () => Promise<Car[]>;
 
 export const fakeCarsArray:Car[] = [{
     id :  {
-        value : randomUUID()
+        value : mockRandomUUUID()
     },
     title : {
         value : 'III'
@@ -29,7 +30,7 @@ export const fakeCarsArray:Car[] = [{
 },
 {
     id :  {
-        value : randomUUID()
+        value : mockRandomUUUID()
     },
     title : {
         value : 'III'
