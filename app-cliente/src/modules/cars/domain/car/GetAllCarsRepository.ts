@@ -55,3 +55,7 @@ export const fakeCarsArray:Car[] = [{
 export const MockGetAllCars: GetAllCars = async () => {
     return Promise.resolve(fakeCarsArray)
 }
+
+export const MockGetAllCarsEmpty: GetAllCars = async () => {
+    return Promise.resolve([]);
+}

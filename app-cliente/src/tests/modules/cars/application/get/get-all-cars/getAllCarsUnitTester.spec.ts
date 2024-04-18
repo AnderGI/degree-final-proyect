@@ -1,9 +1,9 @@
 import { getAll } from "../../../../../../modules/cars/application/get/getAllCars/getAllCars"
 import { Car } from "../../../../../../modules/cars/domain/car/Car"
-import { MockGetAllCars } from "../../../../../../modules/cars/domain/car/GetAllCarsRepository"
+import { MockGetAllCars, MockGetAllCarsEmpty } from "../../../../../../modules/cars/domain/car/GetAllCarsRepository"
 import { fakeCarsArray } from "../../../../../../modules/cars/domain/car/GetAllCarsRepository"
 describe('Get all cars', () => {
-    it('It should return an array of cars', async () => {
+    it('It should return an exact expected array of cars', async () => {
         const cars:Car[] = await getAll(MockGetAllCars)()
         cars.forEach((car, index, cars) => {
             // Agregar alguna funcion de utilidad que haga un deep equality de los values de los VO de Car
@@ -15,5 +15,10 @@ describe('Get all cars', () => {
             expect(cars[index].carImageURL.value).toBe(fakeCarsArray[index].carImageURL.value)
             expect(cars[index].price.value).toBe(fakeCarsArray[index].price.value)
         });
+    })
+
+    it('It should return an empty array of cars if is empty', async () => {
+        const emptyArray:Car[] = await getAll(MockGetAllCarsEmpty)();
+        expect(emptyArray.length).toBe(0);
     })
 })
