@@ -6,12 +6,12 @@ export async function getCarById(repository: CarRepository, id: String) : Promis
     return firstValueFrom(repository.getCar(id));
 }
 
-
 // Currying
 export function getCar(repository:GetCar){
     return async function ({id}:Car) {
         return await repository(id);
     }
 }
+
 
 

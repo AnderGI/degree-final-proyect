@@ -11,3 +11,13 @@ import { CriteriaJSON } from "../../../domain/criteria/Criteria";
 export async function getCarsMatchingCriteria(apiRepo: CarRepository, criteriaJSON:CriteriaJSON): Promise<Car[]>{
     return firstValueFrom(apiRepo.matching(criteriaJSON));
 } 
+
+
+/*
+Currying pero primero hacer los test TDD
+export function getCarsMatchingCriteria(repository:matching){
+  return async function(criteria:CriteriaJSON){
+    return await matching(criteria)
+  }
+}
+*/

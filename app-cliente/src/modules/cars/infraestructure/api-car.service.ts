@@ -50,3 +50,39 @@ export class ApiCarService implements CarRepository{
   }
 
 }
+
+/*
+Lo que habría que hacer modificar las funciones del servie (y hacer más semático su nombre) y que estos devuelvan el tipo
+Probablemente hacer un service por cada type
+Una solucion algo más liosa por ser angular un framework más ligado a clases y POO que a funcionañ
+
+Para get car
+@Injectable({
+  providedIn: 'root'
+})
+export class GetCarByIdHttpClientService {
+
+  constructor(private cliete:HttpClient) { }
+  
+  getCar() : getCar {
+  // Tipo a devolver
+  // const type getCar = ({id:CarId}) => Promise<Car>;
+    const GET_CAR_BY_ID_ENDPOINT: string = "http://localhost:8090/cars/";
+      return async function ({id:CarId}) {
+        await firstValueFrom(this.cliete.get<Car>(GET_CAR_BY_ID_ENDPOINT + id.value))
+      }
+  }
+
+  // Solucion de ChatGPT probablemente mejor
+  getCar: getCar = async ({id:CarId}) => {
+    const GET_CAR_BY_ID_ENDPOINT: string = "http://localhost:8090/cars/";
+    return  await firstValueFrom(this.cliete.get<Car>(`${GET_CAR_BY_ID_ENDPOINT}${id.value}`));
+    
+  }
+
+}
+
+
+
+
+*/
