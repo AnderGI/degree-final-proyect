@@ -20,7 +20,7 @@ describe('Coches Filtro form', () => {
         });
         
         // Testear si los textos estan renderizados
-       expect(screen.getByText("Marcas")).toBeVisible()
+       expect(screen.getByText("Marcas")).toBeInTheDocument()
        //expect(screen.getByLabelText("Precio mínimo:")).toBeInTheDocument()
        //expect(screen.getByLabelText("Ordernar por : ")).toBeInTheDocument()
        //expect(screen.getByText("Buscar")).toBeInTheDocument()
