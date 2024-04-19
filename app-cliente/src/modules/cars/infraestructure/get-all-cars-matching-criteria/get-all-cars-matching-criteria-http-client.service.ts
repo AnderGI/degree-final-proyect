@@ -1,9 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GetCarsMatchingCriteria } from '../../domain/car/CarRepository';
+
 import { CriteriaJSON } from '../../domain/criteria/Criteria';
 import { firstValueFrom } from 'rxjs';
 import { Car } from '../../domain/car/Car';
+import { GetCarsMatchingCriteria } from '../../domain/car/GetCarsMatchingCriteriaRepository';
 
 @Injectable({
   providedIn: 'root'

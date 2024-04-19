@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GetAllCarBrands } from '../../domain/car/CarRepository';
 import { firstValueFrom } from 'rxjs';
 import { CarBrand } from '../../domain/car/Car';
+import { GetAllCarBrands } from '../../domain/car/GetCarBrandsRepository';
 
 @Injectable({
   providedIn: 'root'
