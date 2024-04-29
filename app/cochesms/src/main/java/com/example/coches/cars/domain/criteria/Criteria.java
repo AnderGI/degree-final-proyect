@@ -23,8 +23,10 @@ final public class Criteria {
 			Order.fromPrimitives(orderBy, orderType) // estos dos como strings normales
 		);
 	}
-
-
+	
+	public Order getOrder() {
+		return this.order;
+	}
 
 	@Override
 	public String toString() {

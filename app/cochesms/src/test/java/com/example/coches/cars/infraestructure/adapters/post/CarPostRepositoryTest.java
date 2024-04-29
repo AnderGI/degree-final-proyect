@@ -1,4 +1,4 @@
-package com.example.coches.cars.infraestructure.adapters.cars;
+package com.example.coches.cars.infraestructure.adapters.post;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -29,16 +29,14 @@ public class CarPostRepositoryTest {
 	// Return smae car that has been saved
 	@Test
 	void it_should_return_the_same_car_it_has_saved() {
-		System.out.println("it_should_return_the_same_car_it_has_saved");
 		 Car toAddCar =  new Car(
 				 new CarId(UUID.randomUUID().toString()),
 				 new CarTitle("BMW M3"), 
 		            new CarDescription("Sedán deportivo de lujo"), 
 		            new CarBrand("BMW"), new CarPrice(70000.0), 
 		            new CarUrl("https://example.com/bmw-m3.jpg"), 
-		            new CarUrl("https://example.com/bmw-m3-listing"));	System.out.println("car");
+		            new CarUrl("https://example.com/bmw-m3-listing"));	
 		Car addedCar = repository.addCar(toAddCar);
-		System.out.println("Added car" + addedCar);
 		// completar test
 	}
 	
@@ -46,7 +44,6 @@ public class CarPostRepositoryTest {
 	// Save car
 	@Test
 	void it_should_save_a_car_and_check_for_car_equality() {
-		System.out.println("it_should_save_a_car_and_check_for_car_equality");
 		// Crear los objetos necesarios para pasar al constructor de Car
 		CarTitle title = new CarTitle("Ford Mustang GT");
 		CarDescription description = new CarDescription("Potente y deportivo");
@@ -57,11 +54,7 @@ public class CarPostRepositoryTest {
 
 		// Crear el objeto Car usando el constructor
 		Car car = new Car(new CarId(UUID.randomUUID().toString()),title, description, brand, price, carImageURL, carAnnouncementUrl);
-		System.out.println("car");
-		System.out.println(car);
 		Car addedCar = repository.addCar(car);
-		System.out.println("addedCar");
-		System.out.println(addedCar);
 		assertNotNull(addedCar);
 		assertNotNull(addedCar.getIdValue());
 		// Todos los campos iguales

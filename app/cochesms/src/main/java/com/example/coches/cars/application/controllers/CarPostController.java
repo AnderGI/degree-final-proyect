@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.coches.cars.application.save_car.CarSaver;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.convert_car_model_to_json_model.CarToJsonConverter;
+import com.example.coches.cars.domain.validate_car.CarValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -28,7 +28,7 @@ final public class CarPostController {
 	@PostMapping(path = "/cars", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ObjectNode> addCar(@RequestBody Car car) {
 		// Validaciones ¿Value Objects? Deberian de hacerse allí
-		Car validCar = CarSaver.validateCar(car);
+		Car validCar = CarValidator.validateCar(car);
 		if(validCar == null) return ResponseEntity.badRequest().build();
 		
 		Car addedCar = repo.addCar(car);

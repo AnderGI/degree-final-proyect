@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { Car } from "./Car";
+import { Car, CarBrand, CarId } from "./Car";
 import { CriteriaJSON } from "../criteria/Criteria";
 
 export interface CarRepository {
@@ -9,8 +9,11 @@ export interface CarRepository {
     getAllCarBrands: () => Observable<String[]>;
 }
 
-// Cambiar a funcional
-// const type getCar = ({id:CarId}) => Promise<Car>;
-// const type getAllCars = () => Promise<Car[]>;
-// const type matching = (criteria:CriteriaJSON) => Promise<Car[]>
-// const type getAllCarBrands = () => Promise<CarBrand[]> esto habría que cambiarlo a algo más semantico type CarBrand
+// Coge el CarId
+export type GetCar = ({value}: CarId) => Promise<Car>; 
+
+export type GetAllCars = () => Promise<Car[]>;
+
+export type GetAllCarBrands = () => Promise<CarBrand[]>;
+
+export type GetCarsMatchingCriteria = (criteria:CriteriaJSON) => Promise<Car[]>; 

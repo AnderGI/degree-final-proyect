@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import com.example.coches.cars.application.save_car.CarSaver;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -21,7 +21,12 @@ import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.domain.criteria.Criteria;
 import com.example.coches.cars.domain.criteria.Filter;
 import com.example.coches.cars.domain.criteria.FilterOperator;
+import com.example.coches.cars.domain.criteria.Order;
+import com.example.coches.cars.domain.criteria.OrderBy;
+import com.example.coches.cars.domain.criteria.OrderType;
 import com.example.coches.cars.domain.criteria_filters.MongoQueryCriteriaCreatorFactory;
+import com.example.coches.cars.domain.criteria_order.FromCriteriaOrderSortCreatorFactory;
+import com.example.coches.cars.domain.validate_car.CarValidator;
 import com.mongodb.client.result.DeleteResult;
 
 @Repository 
@@ -59,7 +64,7 @@ public class MongoDBCarRepository implements CarRepository {
 	    // Verificar el car en este caso tendria que verificar todos los campos que != null
 	    // A nivel de UI habria un formulario que impedirira enviar campos con valores vacios
 	    
-	    Car toValidateCar = CarSaver.validateCar(car);
+	    Car toValidateCar = CarValidator.validateCar(car);
 	    
 	    if(toValidateCar == null) return null;
 	   
@@ -79,14 +84,13 @@ public class MongoDBCarRepository implements CarRepository {
 
 
 	@Override
-	public Car deleteCar(String id) {
+	public void deleteCar(String id) {
 		// TODO Auto-generated method stub
 		Car toDeleteCar = getCar(id);
 		Query deletionQuery = new Query();
 		deletionQuery.query(org.springframework.data.mongodb.core.query.Criteria.where("_id")
 				.is(new CarId(id)));
-		DeleteResult deletedResult = mongoTemplate.remove(deletionQuery, Car.class, "cars");
-		return toDeleteCar;
+		
 	}
 
 	@Override
@@ -101,14 +105,23 @@ public class MongoDBCarRepository implements CarRepository {
 	public List<Car> matching(Criteria criteria) {
 		// TODO Auto-generated method stub
 		Query query = new Query();
+		// Esto es para filtros
 		for(Filter filter : criteria.getFilters()) {
 		
 			MongoQueryCriteriaCreatorFactory factory = new MongoQueryCriteriaCreatorFactory();
 			query.addCriteria(
 					factory.getMongoCriteriaCreator(filter).createQuery(filter)
 			);
-		
 		}
+		
+		// Esto para la ordenación
+		// OrderType
+		// De momento por casos de uso, solo habra un ordering y sera por defector por el campo precio
+		Order order = criteria.getOrder();
+		FromCriteriaOrderSortCreatorFactory sortCreatorFactory = new FromCriteriaOrderSortCreatorFactory(order);
+		query.with(sortCreatorFactory.create_sort_from_criteria_order());
+		
+		
 		return mongoTemplate.find(query, Car.class, "cars");
 	}
 

@@ -9,7 +9,7 @@ public interface CarRepository {
 	Car getCar(String id);
 	List<Car> getCars();
 	Car updateCar(Car car, String id);
-	Car deleteCar(String id);
+	void deleteCar(String id);
 	Car addCar(Car car);
 	List<Car> matching(Criteria criteria); 
 	List<String> getAllBrands();

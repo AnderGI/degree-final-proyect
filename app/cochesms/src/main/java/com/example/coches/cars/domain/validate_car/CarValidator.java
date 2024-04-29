@@ -1,8 +1,8 @@
-package com.example.coches.cars.application.save_car;
+package com.example.coches.cars.domain.validate_car;
 
 import com.example.coches.cars.domain.car.Car;
 
-final public class CarSaver {
+final public class CarValidator {
 	public static Car validateCar(Car carToValidate) {
 		// De momento todos los campos son obligatorios
 		// y si no hay uno devuelve null

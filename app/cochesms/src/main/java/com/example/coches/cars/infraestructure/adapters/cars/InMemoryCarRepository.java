@@ -40,14 +40,13 @@ public class InMemoryCarRepository implements CarRepository {
 	}
 
 	@Override
-	public Car deleteCar(String id) {
+	public void deleteCar(String id) {
 		// TODO Auto-generated method stub
 		Integer indexOfCarToDelete = getIndexOfCarFromId(id);
-		if (indexOfCarToDelete == null)
-			return null;
-		Car toRemove = cars.get(indexOfCarToDelete);
-		cars.remove(indexOfCarToDelete);
-		return toRemove;
+		if (indexOfCarToDelete != null) {
+			Car toRemove = cars.get(indexOfCarToDelete);
+			cars.remove(indexOfCarToDelete);
+		}
 	}
 
 	@Override
@@ -73,9 +72,7 @@ public class InMemoryCarRepository implements CarRepository {
 	@Override
 	public List<String> getAllBrands() {
 		// TODO Auto-generated method stub
-		return cars.stream().map(car -> car.getBrandValue())
-				.distinct()
-				.toList();
+		return cars.stream().map(car -> car.getBrandValue()).distinct().toList();
 	}
 
 }

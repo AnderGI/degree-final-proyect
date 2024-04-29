@@ -10,4 +10,8 @@ final public class OrderType {
 	public OrderType(String value) {
 		this.value = value;
 	}
+	
+	public String getOrderTypeValue() {
+		return this.value;
+	}
 }
