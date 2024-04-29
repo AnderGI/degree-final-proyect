@@ -15,7 +15,7 @@
         data-field="brand"
       >
         @for (brand of carBrands; track $index) {
-        <option value="{{ brand }}">{{ brand }}</option>
+        <option value="{{ brand.value }}">{{ brand }}</option>
         }
       </select>
     </section>
@@ -47,7 +47,7 @@
     </section>
   </section>
   <section class="form-group">
-    <label for="ordertype">Ordernar por : </label>
+    <label for="ordertype">Ordernar por:</label>
     <select
       class="select w-100 orderType"
       id="ordertype"
