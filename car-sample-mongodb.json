@@ -1,0 +1,74 @@
+[
+    {
+    "id": {"value":"c5143d87-bc57-4fed-a6b5-569daea5e3eb"},
+    "title": {"value":"1980 MERCEDES 450SL (R107)"},
+    "description": {"value":"Matriculado como histórico | Versión americana | Hardtop"},
+    "brand": {"value":"mercedes-benz"},
+    "carImageURL": {"value":"https://soulauto.com/wp-content/uploads/2024/04/00_01_Mercedes-450SL_01-0527-420x280.jpg?x29230"},
+    "carAnnouncement": {"value":"https://soulauto.com/1980-mercedes-450sl-r107/"},
+    "price": {"value":"4800"}
+    },
+    {
+    "id": {"value":"e62533c4-c9b0-40ab-bb75-7f1174c81a9c"},
+    "title": {"value":"2020 KTM 1290 SUPER DUKE GT"},
+    "description": {"value":"Único propietario | Bajo kilometraje | Estética rotunda"},
+    "brand": {"value":"ktm"},
+    "carImageURL": {"value":"https://soulauto.com/wp-content/uploads/2024/04/00_01_Ktm_SuperDuke_02-0021-420x280.jpg?x29230"},
+    "carAnnouncement": {"value":"https://soulauto.com/2020-ktm-1290-super-duke-gt/"},
+    "price": {"value":"8000"}
+    },
+    {
+    "id": {"value":"2e36013b-0d58-46fd-a879-0a137eab3a31"},
+    "title": {"value":"1927 FIAT 509"},
+    "description": {"value":"Restaurado | Motor reconstruido | Pieza histórica"},
+    "brand": {"value":"fiat"},
+    "carImageURL": {"value":"https://soulauto.com/wp-content/uploads/2024/04/00_01_Fiat-509_01-0529-420x315.jpg?x29230"},
+    "carAnnouncement": {"value":"https://soulauto.com/1927-fiat-509/"},
+    "price": {"value":"500"}
+    },
+    {
+    "id": {"value":"52edcdbb-e8f2-4de6-bb1a-373b24bde678"},
+    "title": {"value":"1994 RENAULT LAGUNA V6"},
+    "description": {"value":"Un propietario anterior | Inusual kilometraje | Completamente original"},
+    "brand": {"value":"renault"},
+    "carImageURL": {"value":"https://soulauto.com/wp-content/uploads/2024/04/00_01_Laguna-V6_Reserva-Rebajada-420x280.jpg?x29230"},
+    "carAnnouncement": {"value":"https://soulauto.com/1994-renault-laguna-v6-2/"},
+    "price": {"value":"550"}
+    },
+    {
+    "id": {"value":"09ed3318-e1c9-4d3d-b881-0b1a9be166d3"},
+    "title": {"value":"1986 PORSCHE 944 TURBO"},
+    "description": {"value":"Nacional | Primera serie | Valor al alza"},
+    "brand": {"value":"porsche"},
+    "carImageURL": {"value":"https://soulauto.com/wp-content/uploads/2024/04/00_01_Porsche944_S_01-0528-420x280.jpg?x29230"},
+    "carAnnouncement": {"value":"https://soulauto.com/1986-porsche-944-turbo-3/"},
+    "price": {"value":"12250"}
+    },
+    {
+    "id": {"value":"52e63e1d-bf56-4a40-b007-65735bc55aa9"},
+    "title": {"value":"2016 MASERATI GHIBLI III"},
+    "description": {"value":"Nacional | Libro de mantenimiento sellado | Exclusivo"},
+    "brand": {"value":"maserati"},
+    "carImageURL": {"value":"https://soulauto.com/wp-content/uploads/2024/04/00_01_Maserati-Ghibli-V6-DS_01-0530-420x280.jpg?x29230"},
+    "carAnnouncement": {"value":"https://soulauto.com/2016-maserati-ghibli-iii/"},
+    "price": {"value":"3700"}
+    },
+    {
+    "id":{"value": "3c72c79a-17e1-40a0-8ed2-1fb36ecd7009"},
+    "title": {"value":"2021 PORSCHE PANAMERA 4S E-HYBRID"},
+    "description": {"value":"Nacional | PDK | Llantas Turbo design 21”"},
+    "brand": {"value":"porsche"},
+    "carImageURL": {"value":"https://soulauto.com/wp-content/uploads/2024/04/00_00_Panamera4SHybrid_01-0175_ResReb-420x280.jpg?x29230"},
+    "carAnnouncement": {"value":"https://soulauto.com/2021-porsche-panamera-4s-e-hybrid-2/"},
+    "price": {"value":"34750"}
+    },
+    {
+    "id": {"value":"2c7e1b12-8d2e-4cfe-a1e2-5e74eb34377d"},
+    "title": {"value":"1971 MORRIS MINI 850L CABRIO"},
+    "description": {"value":"Nacional | Original versión cabrio | Motor 1000c.c"},
+    "brand": {"value":"mini"},
+    "carImageURL": {"value":"https://soulauto.com/wp-content/uploads/2024/04/00_00_M_Res_Reb-420x280.jpg?x29230"},
+    "carAnnouncement": {"value":"https://soulauto.com/1971-morris-mini-850l-cabrio-2/"},
+    "price": {"value":"100"}
+    }
+    ]
