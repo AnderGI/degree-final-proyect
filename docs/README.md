@@ -1,28 +1,5 @@
 # Proyecto de Plataforma de Compra y Venta de Coches Clásicos
 
-
-## Comunicación entre Microservicios
-
-Se utilizará RabbitMQ para facilitar la comunicación entre los distintos microservicios.
-
-## Funcionalidades existentes:
-
-- Renderizado de todos los coches, con su información detallada.
-- Uso del patrón criteria para el filtrado por varios campos (actualmente por marca y precio mínimo de los coches).
-
-## Funcionalidades ha añadir:
-
-- Siguiendo con el patrón criteria, se buscará generar un filtrado por ordern ascendente o descendente según precio.
-- Implementar un sistema que permita la comunicación entre el scrapper de NodeJS y el gateway creado en SpringBoot.
-- Al ser una página con interacción de usuarios, se implementaría un sistema de autenticación mediante JWT. Posiblemente haciendo esto en el gateway.
-- Los usuario podrán hacer uso de la funcionalidad de crear, actualizar y eliminar posibles anuncios.
-
-## Recursos para RabbitMQ
-
--How to Use RabbitMQ with NodeJS to Send and Receive Messages [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-use-rabbitmq-with-nodejs/)
-
-- How to Consume/Publish RabbitMQ queue in NodeJS [Medium](https://medium.com/@rafael.guzman/how-to-consume-publish-rabbitmq-message-in-nodejs-cb68b5a6484c)
-
 ## Endpoints
 
 ### Acceso al Gateway :
@@ -48,8 +25,9 @@ http://localhost:8090
 - Buscar coche por id (UUID): <code>/cars/{id}</code>
 - Buscar coche por id (UUID): <code>/cars/brands</code>
 - Filtrar coches mediante criteria: <code>/cars/criteria?filters?jsonDelCampoFiltersCodificado&orderBy=campoDelCochePorElQueSeVaAOrdenar&orderType=criterioDeOrdenacion</code>
-  > [!TIP]
-  > Ejemplo del uso del patrón criteria
+
+> [!NOTE]
+> Ejemplo del uso del patrón criteria
 
 ```
 GET http://localhost:8090/cars/criteria?filters=X&orderBy=Y&orderType=Z
@@ -77,13 +55,14 @@ Siendo este un JSON que represente un criteria
 }
 ```
 
-X tendrá en valor del array de filters codifciado para pasarlo a un parámetro de URL:
+- X = array de filters codifciado para pasarlo a un parámetro de URL:
 
 ```
 [{"field"="brand","operator"="=","value"="bmw"},{"field"="price","operator"=">","value"="200000"}]
 ```
 
-Y el valor de orderBy y Z el valor de orderType.
+- Y =  valor de orderBy 
+- Z =  valor de orderType.
 
 ### POST
 
@@ -118,8 +97,8 @@ Y el valor de orderBy y Z el valor de orderType.
   }
   ```
 
-  > [!NOTE]
-  > Utilizo esta estructura con objetos con la propiedad de value anidada para poder hacer uso del patron criteria y unir este JSON con el coche del dominio.
+> [!NOTE]
+> Utilizo esta estructura con objetos con la propiedad de value anidada para poder hacer uso del patron criteria y unir este JSON con el coche del dominio.
 
 ### DELETE
 
@@ -128,8 +107,9 @@ Y el valor de orderBy y Z el valor de orderType.
 ### PUT
 
 - Actualizar coche existente: <code>/cars/{id}</code>
-  > [!NOTE]
-  > En la request body se le pasarçn los nuevos campos a actualizar siguiendo el mismo patrón que en el post.
+
+> [!NOTE]
+> En la request body se le pasaran los nuevos campos a actualizar siguiendo el mismo patrón que en el post.
 
 ## Uso del scrapper de NodeJS
 
@@ -150,31 +130,35 @@ cd ./app
 docker-compose up
 ```
 
-### Cosas a realizar
-
-1.- Intentar migrar el repository de un interface con sus funciones a funciones específicas exportadas como types :
-
-```
-export interface CarRepository {
-  saveCourse : (course:Course) => Promise<void>
-}
-
-export type saveCourse = (course:Course) => Promise<void>
-```
-
-2. Añadir testing [Jest con angular](https://medium.com/@philip.mutua/setting-up-jest-in-your-angular-16-project-3638ef65f3a3)
-   Los test unitarios vamos a hacerlos sin tener en cuenta los componentes (mockeamos una implementacion especifica creando una funcion a mano que sea del typeGetCar, o de cualquiera de los otros),
-   Mirar la seria de videos de FunFunFunctions de Javscript Unit Testing para más info
-   Aún asi, si se pueden realizar los tests con Jasmine y los mocks aunque sea a mano, también puede ser una alternativa.
-
-3. Añadir currying al repository, basicamente es crear una funcion tipo createCourse que reciba el repository y devueñva a su vez un función anónima que recibe el course : `createCourse(repository)({parametros del course})`
-
-4.- Añadir value objects
-
-### BBDD
+## BBDD
 
 Para la base de datos he empleado MongoDb. Mas concentramente el servicio que MongoDb provee en la nube de MongoDb atlas para evitar tener que instalar toda la base de datos en el mismo equipo.
 
-Como la aplicación deberia de funcionar junto con un scrapper hecho en NodeJS, los datos, hasta el momento han sido metidos a mano mediante peticiones POST y usando POSTMAN. La idea es que una vez quede bien implementado en scrapper en conjunto con el resto de la aplicación, sea este el que, al arrancar la app scrapee distintas páginas web y extraiga datos de los coches. Estos se enviarían a una cola de rabbitmq como un evento. El microservicio de coches estaría escuchando ese evento y de ahí construiría el resto de la app, guardando los coches que se le pasan en la cola en la base de datos, en este caso de MongoDB.
+Como la aplicación deberia de funcionar junto con un scrapper hecho en NodeJS, los datos, hasta el momento han sido metidos a mano mediante peticiones POST y usando POSTMAN. La idea es que una vez quede bien implementado el scrapper en conjunto con el resto de la aplicación, sea este el que, al arrancar la app scrapee distintas páginas web y extraiga datos de los coches. Estos se enviarían a una cola de rabbitmq como un evento. El microservicio de coches estaría escuchando ese evento y de ahí construiría el resto de la app, guardando los coches que se le pasan en la cola en la base de datos, en este caso de MongoDB.
 
 Para poder ver el funcionamiento de scrapper, es necesario ejecutar, dentro de la carpeta de ./app/scrapperms el comando de node app.cjs. Esto abre un servidor en el puerto 3001 de localhost y una vez accedido a el se renderizaran como json todos los coche scrapeados. Este formato representa las entidades de dominio de coche del microservicio de coches y además representa el mismo formato en el que serían enviados a la cola de rabbit (como un array de jsons).
+
+## Programación funcional en el frontend
+
+Aún habiendo usado Angular en el frontend y siendo este un framework algo opinionado, he decidido implementar este paradigma frente a POO. He divido la aplicación en modules (código de dominio, aplicación e infraestructura) y sections (los componentes). De esta manera, y aún siendo algo complicado desacoplarse completamente del framework o libreria, especialmente en el frontend, se consigue modularizar algo mas la app. Para implementar el paradigma de la programación funcional he utilizado typescript, que proporciona ciertas utilidades en tiempo de desarrollo al ser un lenguaje de tipado fuerte y estático. Algunas caracteristicas de este paradigma implementado en typescript son:
+- Uso de [currying](https://javascript.info/currying-partials) un casos de uso de la capa de <code>/modules/application</code>
+- Patrón repository mediante el uso de types para definir las cabeceras (y por tanto los contratos de las funciones). Por ejemplo:
+```
+export type GetCar = ({value}: CarId) => Promise<Car>; 
+export type GetAllCars = () => Promise<Car[]>;
+export type GetAllCarBrands = () => Promise<CarBrand[]>;
+export type GetCarsMatchingCriteria = (criteria:CriteriaJSON) => Promise<Car[]>; 
+```
+- Para el uso de las implementaciones de los repositorios, ha sido necesario usar, classes de tipo service y poder usar los patrones de inyección de dependencias que Angular provee. Aún así, estos servicios representan clases con métodos únicos que respetan la firma del repositorio que "implementan":
+```
+export class GetAllCarServiceHttpClientService {
+
+  
+  constructor(private client:HttpClient) { }
+
+  getAllCars:GetAllCars = async () => {
+    const GET_ALL_CARS_ENDPOINT = "http://localhost:8090/cars";
+    return firstValueFrom(this.client.get<Car[]>(`${GET_ALL_CARS_ENDPOINT}`));
+  }
+}
+```
