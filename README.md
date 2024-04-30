@@ -42,3 +42,8 @@ El principal objetivo de este proyecto es aprender y poner en practica lo siguie
 - [ ] Implementar un sistema que permita la comunicación entre el scrapper de NodeJS y el gateway creado en SpringBoot.
 - [ ] Al ser una página con interacción de usuarios, se implementaría un sistema de autenticación mediante JWT. Posiblemente haciendo esto en el gateway.
 - [ ] Los usuario podrán hacer uso de la funcionalidad de crear, actualizar y eliminar posibles anuncios, que también quedarán renderizadas en la página.
+
+## Recursos 
+### Recursos para RabbitMQ
+- How to Use RabbitMQ with NodeJS to Send and Receive Messages [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-use-rabbitmq-with-nodejs/)
+- How to Consume/Publish RabbitMQ queue in NodeJS [Medium](https://medium.com/@rafael.guzman/how-to-consume-publish-rabbitmq-message-in-nodejs-cb68b5a6484c)
