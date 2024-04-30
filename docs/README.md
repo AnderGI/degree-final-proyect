@@ -1,32 +1,5 @@
 # Proyecto de Plataforma de Compra y Venta de Coches Clásicos
 
-## Descripción:
-
-Este proyecto busca desarrollar una plataforma que, mediante el uso de scrapping, visualize y centralize ofertas, anuncios y apuestas de coches clásicos.
-
-## Objetivo
-
-El principal objetivo de este proyecto es aprender y poner en practica lo siguiente:
-
-- Patrón SOLID
-- Patrón Value Object
-- Arquitectura hexagonal
-- Patrón Criteria
-
-> [!IMPORTANT]
-> Teniendo en cuenta los objetivos especificados, el backend y los módulos del front-end de la aplicación sera a lo que primordialmente se le dará énfasis, dejando a un lado el aspecto visual de la misma.
-
-## Tecnologías utilizadas:
-
-- <strong>Backend</strong>: SpringBoot y NodeJS.
-- <strong>Frontend</strong>: Angular con Typescript.
-- <strong>Lenguajes</strong>: Java y Javascript.
-- <strong>Base de Datos</strong>: MongoDB
-- <strong>DevOps</strong>: Docker usando docker-comnpose.
-
-## Web Scrapping
-
-Se empleará la librería Puppeteer de NodeJS para realizar el scraping de diferentes páginas web y obtener información sobre coches clásicos disponibles en el mercado en diferentes páginas web.
 
 ## Comunicación entre Microservicios
 
