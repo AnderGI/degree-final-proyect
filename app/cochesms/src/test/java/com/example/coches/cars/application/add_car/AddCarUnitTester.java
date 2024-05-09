@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import com.example.coches.cars.domain.Mother.CarMother;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -25,9 +26,7 @@ import com.example.coches.cars.infraestructure.adapters.cars.MongoDBCarRepositor
 public class AddCarUnitTester {
 	@Test
 	void it_should_save_a_correct_car() throws Exception {
-		Car car = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("ACTUALIZADO"),
-				new CarDescription("ACTUALIZADO"), new CarBrand("BMW"), new CarPrice(70000.0),
-				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
+		Car car = CarMother.create();
 		// Mock mongodbrepository
 		CarRepository mockMongoDbRepo = Mockito.mock(MongoDBCarRepository.class);
 		// Instanciar el caso de uso con el mock del repositorio
