@@ -26,7 +26,7 @@ export class CochesFiltroComponent {
     private criteriaRepo: GetAllCarsMatchingCriteriaHttpClientService,
     private router:Router){
     this.filtro = new FormGroup({
-      [FORM_CONTROL_NAMES.BRAND] :  new FormControl('', [Validators.required ]),
+      [FORM_CONTROL_NAMES.BRAND] :  new FormControl('', [Validators.required]),
       [FORM_CONTROL_NAMES.MIN_PRICE]: new FormControl('1000'),
       [FORM_CONTROL_NAMES.ORDER_TYPE]: new FormControl('none'),
     })
@@ -44,6 +44,8 @@ export class CochesFiltroComponent {
     const filteredCarList = await getCarsMatchingCriteria(this.criteriaRepo.getCarsMatchingCriteria)(criteriaJson)
     this.cars = filteredCarList;
     this.router.navigate(['/cars'], {queryParams : {cars: JSON.stringify(this.cars)}})
+    // resetear el valor de la marca
+    this.filtro.get("brand")?.reset()
   }
 
 }
