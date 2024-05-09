@@ -1,6 +1,7 @@
 package com.example.coches.cars.application.get_car;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 import java.util.UUID;
@@ -19,13 +20,12 @@ import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.infraestructure.adapters.cars.MongoDBCarRepository;
 
-
 // Cada test va a ser atómico por lo tanto hay que ejecutar todos los pasos
 // necesario que contemplen ese test
 // En el caso de realizar un GET a un coche especifico es necesario primero añadirlo
 public class GetCarUnitTester {
 	@Test
-	void it_should_get_an_existing_car() throws Exception{
+	void it_should_get_an_existing_car() throws Exception {
 		// Mockeamos repositorio
 		CarRepository repo = Mockito.mock(MongoDBCarRepository.class);
 		// Instanciamos un coche válido <- Reemplazar con patrón ObjectMother
@@ -42,7 +42,20 @@ public class GetCarUnitTester {
 		when(searcher.get_one_car_by_id(repo, car.getIdValue())).thenReturn(car);
 		Car retrievedCar = searcher.get_one_car_by_id(repo, car.getIdValue());
 		assertEquals(car, retrievedCar);
-		
+
 	}
-	
+
+	@Test
+	void it_should_not_get_an_inexistent_car() {
+		// Mockeamos repositorio
+		CarRepository repo = Mockito.mock(MongoDBCarRepository.class);
+		// Caso de uso de buscar coche por id
+		// INCONSISTENCIAS CON LA INSTANCIACIÓN, NECESARIO REFACTOR
+		OneCarSearcher searcher = new OneCarSearcher();
+		when(searcher.get_one_car_by_id(repo, "fakeId")).thenReturn(null);
+		Car retrievedCar = searcher.get_one_car_by_id(repo, "fakeId");
+		assertNull(retrievedCar);
+
+	}
+
 }
