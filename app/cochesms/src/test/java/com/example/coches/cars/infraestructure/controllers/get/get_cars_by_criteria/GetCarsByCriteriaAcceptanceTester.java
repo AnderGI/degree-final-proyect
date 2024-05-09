@@ -1,5 +1,4 @@
-package com.example.coches.cars.application.controllers.get.get_cars_by_criteria;
-
+package com.example.coches.cars.infraestructure.controllers.get.get_cars_by_criteria;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -40,7 +39,7 @@ import com.example.coches.cars.domain.criteria.Filters;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
-public class GetCarsByCriteriaUnitTester {
+public class GetCarsByCriteriaAcceptanceTester {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
