@@ -11,7 +11,7 @@ final public class CarStubTitle {
 	}
 	
 	public static CarStubTitle random() {
-		return new CarStubTitle(new Faker().funnyName().name());
+		return new CarStubTitle(new Faker().lorem().characters(25, true));
 	}
 	
 	@Override
