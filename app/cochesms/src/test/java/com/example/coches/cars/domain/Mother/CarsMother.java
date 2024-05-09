@@ -14,13 +14,13 @@ final public class CarsMother {
 	private CarStubTitle title;
 	private CarStubDescription description;
 	private CarStubBrand brand;
-	private CarStubUrl carImageURL;
+	private CarStubImageUrl carImageURL;
 	private CarStubUrl carAnnouncementUrl;
 	private CarStubPrice price;
 
 	public CarsMother(CarStubId id, CarStubTitle title,
 			CarStubDescription description, CarStubBrand brand,
-			CarStubPrice price, CarStubUrl carImageURL,
+			CarStubPrice price, CarStubImageUrl carImageURL,
 			CarStubUrl carAnnouncementUrl) {
 		this.id = id;
 		this.title = title;
