@@ -3,7 +3,7 @@ package com.example.coches.cars.domain.validate_car;
 import com.example.coches.cars.domain.car.Car;
 
 final public class CarValidator {
-	public static Car validateCar(Car carToValidate) {
+	public static Car validateCar(Car carToValidate) throws Exception {
 		// De momento todos los campos son obligatorios
 		// y si no hay uno devuelve null
 		// Para el futuro implementar validadaores -> OCP
@@ -16,7 +16,7 @@ final public class CarValidator {
 			carToValidate.getCarPriceValue() == null || 
 			carToValidate.getCarImageUrlValue() == null || 
 			carToValidate.getCarAnnouncmentURLValue() == null) {
-			return null;
+			throw new Exception();
 		}
 
 		return carToValidate;

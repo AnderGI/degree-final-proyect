@@ -1,15 +1,15 @@
-import { firstValueFrom } from "rxjs";
-import { CarRepository } from "../../../domain/car/CarRepository";
+import { GetAllCarBrands } from "../../../domain/car/GetCarBrandsRepository";
+import { CarBrand } from "../../../domain/car/Car";
 
+/*
 export async function getAllCarBrands(repo:CarRepository): Promise<String[]>{
     return firstValueFrom(repo.getAllCarBrands());
 }
+*/
 
-/*
-Aplicando currying pero primero testing
-export function getAllCarBrands(repository:getAllCarBrands){
+export function getAllCarBrands(repository:GetAllCarBrands){
   return async function():Promise<CarBrand[]>{
     return await repository();
   }
 }
-*/
+

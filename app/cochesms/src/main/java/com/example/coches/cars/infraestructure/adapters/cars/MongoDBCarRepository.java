@@ -63,23 +63,25 @@ public class MongoDBCarRepository implements CarRepository {
 	    }
 	    // Verificar el car en este caso tendria que verificar todos los campos que != null
 	    // A nivel de UI habria un formulario que impedirira enviar campos con valores vacios
-	    
-	    Car toValidateCar = CarValidator.validateCar(car);
-	    
-	    if(toValidateCar == null) return null;
-	   
-	    Query query = new Query(org.springframework.data.mongodb.core.query.Criteria.where("_id").is(new CarId(id)));
-	    Update update = new Update();
-	    update.set("title", new CarTitle(car.getTitleValue()));
-	    update.set("description", new CarDescription(car.getDescriptionValue()));
-	    update.set("brand", new CarBrand(car.getBrandValue()));
-	    update.set("price", new CarPrice(car.getCarPriceValue()));
-	    update.set("carImageURL", new CarUrl(car.getCarImageUrlValue()));
-	    update.set("carAnnouncementUrl", new CarUrl(car.getCarAnnouncmentURLValue()));
-	    mongoTemplate.updateFirst(query, update, Car.class, "cars");
+	    try {
+	    	Car toValidateCar = CarValidator.validateCar(car);
+	    	 Query query = new Query(org.springframework.data.mongodb.core.query.Criteria.where("_id").is(new CarId(id)));
+	 	    Update update = new Update();
+	 	    update.set("title", new CarTitle(car.getTitleValue()));
+	 	    update.set("description", new CarDescription(car.getDescriptionValue()));
+	 	    update.set("brand", new CarBrand(car.getBrandValue()));
+	 	    update.set("price", new CarPrice(car.getCarPriceValue()));
+	 	    update.set("carImageURL", new CarUrl(car.getCarImageUrlValue()));
+	 	    update.set("carAnnouncementUrl", new CarUrl(car.getCarAnnouncmentURLValue()));
+	 	    mongoTemplate.updateFirst(query, update, Car.class, "cars");
 
 
-	    return getCar(id);
+	 	    return getCar(id);
+	    }catch(Exception exp) {
+	    	return null;
+	    }
+	    
+	  
 	}
 
 

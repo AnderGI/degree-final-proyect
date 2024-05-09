@@ -36,6 +36,7 @@ describe('Coches Filtro form', () => {
         });
         // Establecer el valor del input
         container.container.querySelector('select#brand')
+
         console.log(container.container.querySelector('select#brand'));
         
         //expect(screen.getByText('Buscar')).toBeVisible();

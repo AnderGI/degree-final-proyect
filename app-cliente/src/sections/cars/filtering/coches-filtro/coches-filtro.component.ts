@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { getCarsMatchingCriteria } from '../../../../modules/cars/application/get/getCarsMatchingCriteria/getCarsMatchingCriteria';
-import { ApiCarService } from '../../../../modules/cars/infraestructure/api-car.service';
 import { Router } from '@angular/router';
-import { Car } from '../../../../modules/cars/domain/car/Car';
+import { Car, CarBrand } from '../../../../modules/cars/domain/car/Car';
 import { getAllCarBrands } from '../../../../modules/cars/application/get/getAllCarBrands/getAllCarBrands';
 import { CriteriaJSON } from '../../../../modules/cars/domain/criteria/Criteria';
 import { createJsonCriteriaFromHtmlForm } from '../../../../modules/cars/domain/criteria/createCriteriaFromHtmlForm';
 import { FORM_CONTROL_NAMES } from '../../../../modules/cars/domain/car-criteria-form-control-names/CarCriteriaFormControlNames';
+import { GetAllCarBrandsHttpClientService } from '../../../../modules/cars/infraestructure/get-all-car-brands-service/get-all-car-brands-http-client.service';
+import { GetAllCarsMatchingCriteriaHttpClientService } from '../../../../modules/cars/infraestructure/get-all-cars-matching-criteria/get-all-cars-matching-criteria-http-client.service';
+import { getCarsMatchingCriteria } from '../../../../modules/cars/application/get/getCarsMatchingCriteria/getCarsMatchingCriteria';
 
 @Component({  
   selector: 'app-coches-filtro',
@@ -19,15 +20,18 @@ import { FORM_CONTROL_NAMES } from '../../../../modules/cars/domain/car-criteria
 export class CochesFiltroComponent {
   public filtro!:FormGroup;
   private cars!:Car[];
-  public carBrands!:String[];
-  constructor(private api:ApiCarService, private router:Router){
+  public carBrands!:CarBrand[];
+  constructor(
+    private brandsRepo:GetAllCarBrandsHttpClientService, 
+    private criteriaRepo: GetAllCarsMatchingCriteriaHttpClientService,
+    private router:Router){
     this.filtro = new FormGroup({
       [FORM_CONTROL_NAMES.BRAND] :  new FormControl('', [Validators.required]),
       [FORM_CONTROL_NAMES.MIN_PRICE]: new FormControl('1000'),
       [FORM_CONTROL_NAMES.ORDER_TYPE]: new FormControl('none'),
     })
 
-    getAllCarBrands(api).then(data => this.carBrands = data)
+    getAllCarBrands(brandsRepo.getAllCarBrands)().then(data => this.carBrands = data)
   }
 
   // Podria hacer una interface con los tipos que recogemos del formulario
@@ -37,7 +41,7 @@ export class CochesFiltroComponent {
     // primero recoger los valores de los elementos html
     const criteriaForm = document.getElementById("criteriaForm") as HTMLFormElement
     const criteriaJson:CriteriaJSON = createJsonCriteriaFromHtmlForm(criteriaForm);
-    const filteredCarList = await getCarsMatchingCriteria(this.api,criteriaJson)
+    const filteredCarList = await getCarsMatchingCriteria(this.criteriaRepo.getCarsMatchingCriteria)(criteriaJson)
     this.cars = filteredCarList;
     this.router.navigate(['/cars'], {queryParams : {cars: JSON.stringify(this.cars)}})
     // resetear el valor de la marca
