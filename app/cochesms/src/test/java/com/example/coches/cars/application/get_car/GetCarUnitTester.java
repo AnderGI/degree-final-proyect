@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.example.coches.cars.application.add_car.CarSaver;
-import com.example.coches.cars.domain.Mother.CarStubBrand;
-import com.example.coches.cars.domain.Mother.CarStubDescription;
-import com.example.coches.cars.domain.Mother.CarStubId;
-import com.example.coches.cars.domain.Mother.CarStubImageUrl;
-import com.example.coches.cars.domain.Mother.CarStubPrice;
-import com.example.coches.cars.domain.Mother.CarStubTitle;
-import com.example.coches.cars.domain.Mother.CarStubUrl;
+import com.example.coches.cars.domain.Mother.CarBrandMother;
+import com.example.coches.cars.domain.Mother.CarDescriptionMother;
+import com.example.coches.cars.domain.Mother.CarIdMother;
+import com.example.coches.cars.domain.Mother.CarImageUrlMother;
+import com.example.coches.cars.domain.Mother.CarPriceMother;
+import com.example.coches.cars.domain.Mother.CarTitleMother;
+import com.example.coches.cars.domain.Mother.CarUrlMother;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -36,13 +36,13 @@ public class GetCarUnitTester {
 	void it_should_get_an_existing_car() throws Exception {
 		// Mockeamos repositorio
 		CarRepository repo = Mockito.mock(MongoDBCarRepository.class);
-		System.out.println(CarStubId.random());
-		System.out.println(CarStubTitle.random());
-		System.out.println(CarStubDescription.random());
-		System.out.println(CarStubUrl.random());
-		System.out.println(CarStubImageUrl.random());
-		System.out.println(CarStubPrice.random());
-		System.out.println(CarStubBrand.random());
+		System.out.println(CarIdMother.random());
+		System.out.println(CarTitleMother.random());
+		System.out.println(CarDescriptionMother.random());
+		System.out.println(CarUrlMother.random());
+		System.out.println(CarImageUrlMother.random());
+		System.out.println(CarPriceMother.random());
+		System.out.println(CarBrandMother.random());
 		// Instanciamos un coche válido <- Reemplazar con patrón ObjectMother
 		Car car = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("ACTUALIZADO"),
 				new CarDescription("ACTUALIZADO"), new CarBrand("BMW"), new CarPrice(70000.0),
