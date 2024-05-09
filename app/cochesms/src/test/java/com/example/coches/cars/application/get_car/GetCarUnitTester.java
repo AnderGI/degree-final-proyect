@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.example.coches.cars.application.add_car.CarSaver;
+import com.example.coches.cars.domain.Mother.CarStubBrand;
 import com.example.coches.cars.domain.Mother.CarStubDescription;
 import com.example.coches.cars.domain.Mother.CarStubId;
 import com.example.coches.cars.domain.Mother.CarStubImageUrl;
@@ -41,6 +42,7 @@ public class GetCarUnitTester {
 		System.out.println(CarStubUrl.random());
 		System.out.println(CarStubImageUrl.random());
 		System.out.println(CarStubPrice.random());
+		System.out.println(CarStubBrand.random());
 		// Instanciamos un coche válido <- Reemplazar con patrón ObjectMother
 		Car car = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("ACTUALIZADO"),
 				new CarDescription("ACTUALIZADO"), new CarBrand("BMW"), new CarPrice(70000.0),

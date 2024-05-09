@@ -9,7 +9,7 @@ final public class CarStubBrand {
 	}
 	
 	public static CarStubBrand random() {
-		return new CarStubBrand(new Faker().internet().url());
+		return new CarStubBrand(new Faker().company().name());
 	}
 	
 
