@@ -1,5 +1,4 @@
-package com.example.coches.cars.application.controllers.put;
-
+package com.example.coches.cars.infraestructure.controllers.put;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -16,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.coches.cars.application.controllers.CarPutController;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -26,10 +24,11 @@ import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.domain.convert_car_model_to_json_model.CarToJsonConverter;
+import com.example.coches.cars.infraestructure.controllers.CarPutController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
-public class UpdateCarUnitTester {
+public class UpdateCarAcceptanceTester {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
