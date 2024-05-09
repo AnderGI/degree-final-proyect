@@ -1,5 +1,4 @@
-package com.example.coches.cars.application.controllers.post;
-
+package com.example.coches.cars.infraestructure.controllers.post;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -29,7 +28,7 @@ import com.example.coches.cars.domain.convert_car_model_to_json_model.CarToJsonC
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
-public class AddCarUnitTester {
+public class AddCarAcceptanceTester {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
