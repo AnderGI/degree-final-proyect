@@ -1,5 +1,4 @@
-package com.example.coches.cars.application.controllers.get.get_all_car_brands;
-
+package com.example.coches.cars.infraestructure.controllers.get;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -29,7 +28,7 @@ import com.example.coches.cars.domain.car.CarUrl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
-public class GetAllCarBrandsUnitTester {
+public class GetAllCarBrandsAcceptanceTester {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
