@@ -27,7 +27,10 @@ final public class CarPostController {
 
 	@PostMapping(path = "/cars", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ObjectNode> addCar(@RequestBody Car car) {
-		// Validaciones ¿Value Objects? Deberian de hacerse allí
+		// Validaciones 
+		// Value objects para las propiedades
+		// Luego la validación del coche creo que estaría mejor en la capa de aplicación
+		// habría que lanzar errores -> errores de dominio y gestionarlos también
 		Car validCar = CarValidator.validateCar(car);
 		if(validCar == null) return ResponseEntity.badRequest().build();
 		
