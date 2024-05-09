@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.example.coches.cars.application.add_car.CarSaver;
+import com.example.coches.cars.domain.Mother.CarStubId;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -19,6 +20,7 @@ import com.example.coches.cars.domain.car.CarRepository;
 import com.example.coches.cars.domain.car.CarTitle;
 import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.infraestructure.adapters.cars.MongoDBCarRepository;
+import com.github.javafaker.Faker;
 
 // Cada test va a ser atómico por lo tanto hay que ejecutar todos los pasos
 // necesario que contemplen ese test
@@ -28,6 +30,7 @@ public class GetCarUnitTester {
 	void it_should_get_an_existing_car() throws Exception {
 		// Mockeamos repositorio
 		CarRepository repo = Mockito.mock(MongoDBCarRepository.class);
+		System.out.println(CarStubId.random());
 		// Instanciamos un coche válido <- Reemplazar con patrón ObjectMother
 		Car car = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("ACTUALIZADO"),
 				new CarDescription("ACTUALIZADO"), new CarBrand("BMW"), new CarPrice(70000.0),

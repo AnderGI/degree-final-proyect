@@ -18,7 +18,7 @@ final public class CarsMother {
 	private CarStubUrl carAnnouncementUrl;
 	private CarStubPrice price;
 
-	public Car(CarStubId id, CarStubTitle title,
+	public CarsMother(CarStubId id, CarStubTitle title,
 			CarStubDescription description, CarStubBrand brand,
 			CarStubPrice price, CarStubUrl carImageURL,
 			CarStubUrl carAnnouncementUrl) {
