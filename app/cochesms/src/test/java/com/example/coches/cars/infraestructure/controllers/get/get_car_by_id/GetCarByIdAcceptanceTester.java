@@ -1,5 +1,4 @@
-package com.example.coches.cars.application.controllers.get.get_car_by_id;
-
+package com.example.coches.cars.infraestructure.controllers.get.get_car_by_id;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -27,10 +26,9 @@ import com.example.coches.cars.domain.car.CarUrl;
 import com.example.coches.cars.domain.convert_car_model_to_json_model.CarToJsonConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-// En los tests unitarios (Application + Domain)
-// falseamos las implementaciones de infraestructura
+
 @WebMvcTest
-public class GetCarByIdUnitTester {
+public class GetCarByIdAcceptanceTester  {
 
 	@Autowired
 	private MockMvc mockMvc;
