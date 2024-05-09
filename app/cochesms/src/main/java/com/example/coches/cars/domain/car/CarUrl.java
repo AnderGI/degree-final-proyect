@@ -13,13 +13,14 @@ final public class CarUrl {
 
 	@JsonCreator
 	public CarUrl(@JsonProperty("value") String value) {
-		this.value = this.asignarValor(value);
+		this.value = value;
 	}
 
 	public String getValue() {
 		return this.value;
 	}
 
+	// PROBLEMAS DE VALIDACION CON LOS FAKERS
 	private String asignarValor(String url) {
 		// TODO Auto-generated method stub
 		if (url == null || url.isBlank()) {

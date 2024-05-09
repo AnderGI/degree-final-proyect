@@ -14,6 +14,7 @@ import com.example.coches.cars.domain.Mother.CarBrandMother;
 import com.example.coches.cars.domain.Mother.CarDescriptionMother;
 import com.example.coches.cars.domain.Mother.CarIdMother;
 import com.example.coches.cars.domain.Mother.CarImageUrlMother;
+import com.example.coches.cars.domain.Mother.CarMother;
 import com.example.coches.cars.domain.Mother.CarPriceMother;
 import com.example.coches.cars.domain.Mother.CarTitleMother;
 import com.example.coches.cars.domain.Mother.CarUrlMother;
@@ -36,26 +37,22 @@ public class GetCarUnitTester {
 	void it_should_get_an_existing_car() throws Exception {
 		// Mockeamos repositorio
 		CarRepository repo = Mockito.mock(MongoDBCarRepository.class);
-		System.out.println(CarIdMother.random());
-		System.out.println(CarTitleMother.random());
-		System.out.println(CarDescriptionMother.random());
-		System.out.println(CarUrlMother.random());
-		System.out.println(CarImageUrlMother.random());
-		System.out.println(CarPriceMother.random());
-		System.out.println(CarBrandMother.random());
-		// Instanciamos un coche válido <- Reemplazar con patrón ObjectMother
-		Car car = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("ACTUALIZADO"),
-				new CarDescription("ACTUALIZADO"), new CarBrand("BMW"), new CarPrice(70000.0),
-				new CarUrl("https://example.com/bmw-m3.jpg"), new CarUrl("https://example.com/bmw-m3-listing"));
+		Car car = CarMother.create();
+		
 		// Instanciamos el caso de uso de guardar
 		CarSaver saver = new CarSaver(repo);
+		
 		// Lo guardamos y de paso testeamos que no peta añadiendo el trhows
 		saver.save_car(car);
+		
 		// Caso de uso de buscar coche por id
 		// INCONSISTENCIAS CON LA INSTANCIACIÓN, NECESARIO REFACTOR
 		OneCarSearcher searcher = new OneCarSearcher();
+		
 		when(searcher.get_one_car_by_id(repo, car.getIdValue())).thenReturn(car);
+		
 		Car retrievedCar = searcher.get_one_car_by_id(repo, car.getIdValue());
+		
 		assertEquals(car, retrievedCar);
 
 	}
