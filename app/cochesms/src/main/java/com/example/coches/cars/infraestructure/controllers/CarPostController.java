@@ -1,4 +1,4 @@
-package com.example.coches.cars.application.controllers;
+package com.example.coches.cars.infraestructure.controllers;
 
 import java.net.URI;
 import java.net.URISyntaxException;
