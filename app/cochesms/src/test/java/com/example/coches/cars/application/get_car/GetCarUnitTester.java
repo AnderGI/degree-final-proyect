@@ -12,6 +12,8 @@ import org.mockito.Mockito;
 import com.example.coches.cars.application.add_car.CarSaver;
 import com.example.coches.cars.domain.Mother.CarStubDescription;
 import com.example.coches.cars.domain.Mother.CarStubId;
+import com.example.coches.cars.domain.Mother.CarStubImageUrl;
+import com.example.coches.cars.domain.Mother.CarStubPrice;
 import com.example.coches.cars.domain.Mother.CarStubTitle;
 import com.example.coches.cars.domain.Mother.CarStubUrl;
 import com.example.coches.cars.domain.car.Car;
@@ -37,6 +39,8 @@ public class GetCarUnitTester {
 		System.out.println(CarStubTitle.random());
 		System.out.println(CarStubDescription.random());
 		System.out.println(CarStubUrl.random());
+		System.out.println(CarStubImageUrl.random());
+		System.out.println(CarStubPrice.random());
 		// Instanciamos un coche válido <- Reemplazar con patrón ObjectMother
 		Car car = new Car(new CarId(UUID.randomUUID().toString()), new CarTitle("ACTUALIZADO"),
 				new CarDescription("ACTUALIZADO"), new CarBrand("BMW"), new CarPrice(70000.0),
