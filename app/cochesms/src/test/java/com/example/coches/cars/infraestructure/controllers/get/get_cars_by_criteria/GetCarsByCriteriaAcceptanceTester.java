@@ -22,7 +22,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.coches.cars.application.controllers.CarGetController;
 import com.example.coches.cars.domain.car.Car;
 import com.example.coches.cars.domain.car.CarBrand;
 import com.example.coches.cars.domain.car.CarDescription;
@@ -38,6 +37,7 @@ import com.example.coches.cars.domain.criteria.FilterField;
 import com.example.coches.cars.domain.criteria.FilterOperator;
 import com.example.coches.cars.domain.criteria.FilterValue;
 import com.example.coches.cars.domain.criteria.Filters;
+import com.example.coches.cars.infraestructure.controllers.CarGetController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest

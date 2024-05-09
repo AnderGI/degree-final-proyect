@@ -1,4 +1,4 @@
-package com.example.coches.cars.application.controllers;
+package com.example.coches.cars.infraestructure.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
