@@ -8,4 +8,4 @@ Para ello he seguido el patrón de Value Object, con el fin de primero, tener to
 campo centralizada en una única instancia y segundo, darle mayor valor semántico a estas entidades.
 
 Representación esquemática usando Excalidraw:
-![Representacion de modelaje usando Value Objects de una entidad de dominio de cars](../../../excalidraw/CarDomainVO.png)
+![Representacion de modelaje usando Value Objects de una entidad de dominio de cars](../excalidraw/CarDomainVO.png)
