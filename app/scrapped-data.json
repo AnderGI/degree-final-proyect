@@ -1,0 +1,92 @@
+[
+    {
+    "id": "5b62bdda-96ef-4338-abef-3b6e85bb023a",
+    "title": "1982 BMW 728I (E23)",
+    "description": "Buque insignia | Bonita configuración | Placa antigua",
+    "brand": "bmw",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/05/00_01_Bmw-728I_01-0540-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/1982-bmw-728i-e23/",
+    "price": "5150"
+    },
+    {
+    "id": "9c4bf2f3-b929-4772-9c27-c9d1a4f3f1e0",
+    "title": "2004 PORSCHE 986 BOXSTER 2.7",
+    "description": "Bonita configuración | Llantas Sportdesign | Manual",
+    "brand": "porsche",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/05/00_01_Porsche-986-2.7_01-541-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/2004-porsche-986-boxster-2-7/",
+    "price": "7000"
+    },
+    {
+    "id": "dc7321d7-3871-4a4b-85f3-f03acdb0274a",
+    "title": "1985 PORSCHE CARRERA 3.2",
+    "description": "Matriculado como histórico | Bonita configuración | Motor reacondicionado",
+    "brand": "porsche",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/04/00_01_Porsche9113-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/1985-porsche-carrera-3-2-g50/",
+    "price": "24000"
+    },
+    {
+    "id": "6f217445-61ad-41cb-b38b-22e3a3c14d42",
+    "title": "1993 AUDI 100 2.8E (C4)",
+    "description": "Un propietario anterior | Nacional | Quattro",
+    "brand": "audi",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/05/00_01_Audi100_01-0542-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/1993-audi-100-2-8e-c4/",
+    "price": "350"
+    },
+    {
+    "id": "ac675be4-95c7-4631-8edf-a0cff9f61e9e",
+    "title": "2000 BMW Z3 2.8I ROADSTER",
+    "description": "Único propietario | Nacional | Bajo kilometraje",
+    "brand": "bmw",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/05/00_01_BMW_Z3_01-0543-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/2000-bmw-z3-2-8i-roadster/",
+    "price": "8600"
+    },
+    {
+    "id": "8ae7b121-0e78-4fce-8195-3aea3cc1e912",
+    "title": "1981 MERCEDES-BENZ 280SE (W126)",
+    "description": "Calidades de otra época | Unidad bien conservada | Estado original",
+    "brand": "mercedes-benz",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2023/12/00_01_M10-copia_01_0440-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/1981-mercedes-benz-280se-w126-2/",
+    "price": "100"
+    },
+    {
+    "id": "b2e79adf-0149-4ad7-9729-56d444d23570",
+    "title": "2007 PORSCHE 911-997 TURBO",
+    "description": "Pintura original | Primera serie | Muy bajo kilometraje",
+    "brand": "porsche",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/05/00_01_Porsche-997_Turbo_01-0544-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/2007-porsche-911-997-turbo-3/",
+    "price": "13250"
+    },
+    {
+    "id": "2ac2b323-cb65-4705-96e5-af58edb05a91",
+    "title": "2007 BMW (E93) 335I CABRIO",
+    "description": "Nacional | Sofisticado y dinámico | Completo equipamiento",
+    "brand": "bmw",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/05/00_01_BMW_335_i_01-0545-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/2007-bmw-e93-335i-cabrio/",
+    "price": "200"
+    },
+    {
+    "id": "55f13c11-51c0-46ec-8218-292752a755b2",
+    "title": "1999 LOTUS ELISE 111S",
+    "description": "Prestaciones mejoradas | Sensaciones puras | Circuito y carretera",
+    "brand": "lotus",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/05/00_01_Lotus_Elise_01-0546-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/1999-lotus-elise-111s/",
+    "price": "2000"
+    },
+    {
+    "id": "e9bb21c3-2b10-4f85-93ce-1f0795efd3c6",
+    "title": "1969 JAGUAR E-TYPE SERIE II COUPÉ",
+    "description": "Icónico | Restaurado | Lujo y eficacia",
+    "brand": "jaguar",
+    "carImageURL": "https://soulauto.com/wp-content/uploads/2024/05/00_01_JaguarE-Type_01-0514-420x280.jpg?x29230",
+    "carAnnouncement": "https://soulauto.com/1969-jaguar-e-type-serie-ii-coupe-2/",
+    "price": "4000"
+    }
+    ]

@@ -89,9 +89,11 @@ public class MongoDBCarRepository implements CarRepository {
 	public void deleteCar(String id) {
 		// TODO Auto-generated method stub
 		Car toDeleteCar = getCar(id);
+		System.out.println(toDeleteCar);
 		Query deletionQuery = new Query();
-		deletionQuery.query(org.springframework.data.mongodb.core.query.Criteria.where("_id")
-				.is(new CarId(id)));
+		deletionQuery.query(org.springframework.data.mongodb.core.query.Criteria.where("_id.value")
+				.is(toDeleteCar.getIdValue()));
+		mongoTemplate.remove(deletionQuery, Car.class, "cars");
 		
 	}
 
