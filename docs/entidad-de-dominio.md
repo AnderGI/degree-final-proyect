@@ -6,7 +6,7 @@ Teniendo en cuenta el propósito del proyecto: scrappear y renderizar coches de 
 
 Para ello he seguido el patrón de Value Object, con el fin de primero, tener toda la validación respectiva de cada
 campo centralizada en una única instancia y segundo, darle mayor valor semántico a estas entidades. Evitando el
-uso de propiedades primitivas y clases excesivamente grandes y dificiles de manejar (link de video de codely).
+uso de propiedades primitivas y clases excesivamente grandes y dificiles de manejar [explicacion](https://www.youtube.com/watch?v=q_biZCsoloU).
 
 Representación esquemática usando Excalidraw:
 ![Representacion de modelaje usando Value Objects de una entidad de dominio de cars](../excalidraw/CarDomainVO.png)
@@ -41,4 +41,4 @@ Representación de un posible coche utilizado el formato JSON, utilizado para co
 
 ## A tener en cuenta
 
-Evitamos el uso de getters y setters a dock para cumplir con el principio de <quote><strong>Tell don´t ask</strong></quote> (linkear a video)
+Evitamos el uso de getters y setters a dock para cumplir con el principio de <strong>Tell don´t ask</strong> [explicacion](https://www.youtube.com/watch?v=Be-ULOIGAZk)
