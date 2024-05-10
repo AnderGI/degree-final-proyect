@@ -36,6 +36,22 @@ const scrappAllCars = async (req, res) => {
   // publicar evento
   eventPublisher.publishEvent(data);
 
+  // darle el formato a la data que corresponde con el formato d elos value objects
+  data = data.map((coche) => {
+    const { title, description, brand, carImageURL, carAnnouncement, price } =
+      coche;
+    return {
+      // cambiar aqui el modelo
+      title: { value: title },
+      description: { value: description },
+      brand: { value: brand },
+      carImageURL: { value: carImageURL },
+      carAnnouncementURL: { value: carAnnouncement },
+      price: { value: price },
+      //betAmount,
+      //reservePrice,
+    };
+  });
   res.json(data);
 };
 
