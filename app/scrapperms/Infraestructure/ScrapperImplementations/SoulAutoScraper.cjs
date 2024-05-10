@@ -71,6 +71,7 @@ const SoulAutoScrapper = () => {
             };
             const carBrand = SELECT_CAR_BRAND(car);
             data.push({
+              // cambiar aqui el modelo
               title,
               description,
               brand: carBrand,
