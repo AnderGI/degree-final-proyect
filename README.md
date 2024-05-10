@@ -47,3 +47,6 @@ El principal objetivo de este proyecto es aprender y poner en practica lo siguie
 ### Recursos para RabbitMQ
 - How to Use RabbitMQ with NodeJS to Send and Receive Messages [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-use-rabbitmq-with-nodejs/)
 - How to Consume/Publish RabbitMQ queue in NodeJS [Medium](https://medium.com/@rafael.guzman/how-to-consume-publish-rabbitmq-message-in-nodejs-cb68b5a6484c)
+
+### Repository Vs DAO
+Articulo Data Access Object Vs Repository [Medium](https://medium.com/@jotauribe/data-access-objects-vs-repositories-b1497565a873#:~:text=Una%20de%20las%20principales%20diferencias,m%C3%A1s%20arriba%20que%20el%20primero.)
