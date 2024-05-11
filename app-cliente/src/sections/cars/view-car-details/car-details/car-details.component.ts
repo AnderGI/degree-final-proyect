@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Car } from '../../../../modules/cars/domain/car/Car';
-import { ApiCarService } from '../../../../modules/cars/infraestructure/api-car.service';
-import { getCarById } from '../../../../modules/cars/application/get/getCar/getCarById';
+import { getCar } from '../../../../modules/cars/application/get/getCar/getCarById';
 import { CurrencyPipe, JsonPipe } from '@angular/common';
+import { GetCarServiceHttpClientService } from '../../../../modules/cars/infraestructure/get-car-service/get-car-service-http-client.service';
 
 @Component({
   selector: 'app-car-details',
@@ -14,10 +14,10 @@ import { CurrencyPipe, JsonPipe } from '@angular/common';
 })
 export class CarDetailsComponent {
   public car!:Car;
-  constructor(private apiRepo : ApiCarService, private ruta:ActivatedRoute){
+  constructor(private apiRepo : GetCarServiceHttpClientService, private ruta:ActivatedRoute){
     ruta.params.subscribe((params) => {
       const {id} = params
-      getCarById(apiRepo, id).then(data => {
+      getCar(apiRepo.getCar)(id).then(data => {
         console.log(data);
         this.car = data
       })

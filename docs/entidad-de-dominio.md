@@ -9,7 +9,7 @@ campo centralizada en una única instancia y segundo, darle mayor valor semánti
 uso de propiedades primitivas y clases excesivamente grandes y dificiles de manejar [explicacion](https://www.youtube.com/watch?v=q_biZCsoloU).
 
 Representación esquemática usando Excalidraw:
-![Representacion de modelaje usando Value Objects de una entidad de dominio de cars](../excalidraw/CarDomainVO.png)
+![Representacion de modelaje usando Value Objects de una entidad de dominio de cars](../recursos-visuales/CarDomainVO.png)
 
 Representación de un posible coche utilizado el formato JSON, utilizado para compartir la informacion de estas entidades por internet:
 
